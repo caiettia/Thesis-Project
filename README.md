@@ -14,7 +14,11 @@ regressors on these axes. But before we begin plotting, we must understand how w
 
 ## Evaluation Techniques
 ### Mean Absolute Error
-For sake of comparing different models, we use the Mean Absolute Error (MAE). This value is an arithmetic mean of all of the absolute errors for a given model. More generally, every time a model makes a prediction against the test set how close that prediction was to the actual value is recorded as the absolute error. So, for every prediction within the test set, an absolute error value is calculated. Finally, the MAE is calculated by taking the mean of all of these mean values. Regressors always try to minimize error. Thus, a lower MAE value indicates a regressor performing well, while a higher MAE value indicates a regressor being less accurate in predictions. This is all measured in relativity when comparing regressors! 
+For sake of comparing different models, we use the Mean Absolute Error (MAE). This value is an arithmetic mean of all of the absolute errors for a given model. More generally, every time a model makes a prediction against the test set how close that prediction was to the actual value is recorded as the absolute error. So, for every prediction within the test set, an absolute error value is calculated. Finally, the MAE is calculated by taking the mean of all of these mean values. Regressors always try to minimize error. 
+
+![MAE_formula](https://github.com/caiettia/Thesis-Project/blob/main/CodeCogsEqn%20(2).gif)
+
+Thus, a lower MAE value indicates a regressor performing well, while a higher MAE value indicates a regressor being less accurate in predictions. This is all measured in relativity when comparing regressors! 
 
 ### KFold
 KFold is a form of cross validation, where we iteratively test a model to better understand its predictive power through metrics such as Mean Absolute Error (MAE). KFold works by splitting up a training dataset into "k" folds. Then, the model is trained on k-1 "folds" of the data set and validated on the the final fold within a given iteration. KFold iterations k times, so finally the performance metrics are identified by taking the mean of the metrics from each iteration. It is particularly worth noting that each fold is equal in length, and a new fold is picked in each iteration of KFold as the validation set. 
