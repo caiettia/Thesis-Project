@@ -71,7 +71,7 @@ Visually, we can see the same sense of closeness between the three kernels that 
 For purposes of understanding what regressor would be best applicable for our dataset, we can explore the various kernels for SVR. More specifically,
 we will look at the linear, polynomial, and radial basis function (rbf) kernels for SVR. These kernels dictate how the decision boundary is identified for a data set in a given SVR. To better visualize the various kernels with our data set, the plot below is generated:
 
-![svr_kernels](https://github.com/caiettia/Thesis-Project/blob/main/svr_kernels.png)
+![svr_kernels](https://github.com/caiettia/Thesis-Project/blob/main/svr_kernels_upd.png)
 
 We again apply KFold for k=10 and see the following values for our MAE:
 
