@@ -1,7 +1,8 @@
 # Comparing Regressors
 We are given the Boston Housing Dataset, a dataset surrounding the prices of homes in Boston and various datum surrounding them. 
 
-We are going to be looking specifically at 
+We are going to be looking specifically at the price of houses relative to the number of rooms they have. We can see this data in a plot below.
+![blank_plot](https://github.com/caiettia/Thesis-Project/blob/main/blank_plot.png)
 
 ## Support Vector Regression
 For purposes of understanding what regressor would be best applicable for our dataset, we can explore the various kernels for SVR. More specifically,
