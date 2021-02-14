@@ -104,7 +104,17 @@ To visually see how each regressor is fit to the data, we are able to plot the r
 visualizations are not included. Based on the MAE table below, they are inbetween the extremes in terms of performance, and do not appear to be best applicable for our
 purposes with this data set. Instead, we will look at the best, second best, and the worst regressors in terms of performance. 
 
-![various_regressors]()
+![various_regressors](https://github.com/caiettia/Thesis-Project/blob/main/various_regressors.png)
+
+What is particularly interesting about this plot, is just how well it visualizes the idea of a weak versus strong learner. Looking at the Linear model in red, we see how from 
+x = 8 rooms to x = 9 rooms, the linear model does not necessarily account well for the newer observations. Yet looking at the NN and LOWESS regression, we see how each of 
+their curves responds to the shifting weight of the data set. Looking again from 8 to 9 rooms, we see how these two regressors are able to adequately accomodate for the 
+weight of data points being notably higher along the y axis, when compared to the general data set.
+
+Another interesting observation can be seen between x = 6 rooms to x = 7 rooms. Here, the weight NN is not as easily able to fit to the data as the LOWESS regressor. The 
+LOWESS regressor seems to be much more sensitive to local subsets of the data set when compared to the NN. This can also be seen between x = 4 rooms and x = 5 rooms. Again, 
+the LOWESS regressor is able to learn better from the small subset of data when compared to the NN and linear model. So, we can see that the Epanechnikov Kernel Function 
+makes the LOWESS regressor much more sensitive to new data, and thus a strong learner.
 
 From the above explanations of each regressor, we have seen varying levels of performance, quantified by the MAE. From the table below, we see that the locally weighted 
 regression (LOWESS) utilizing the Epanechnikov kernel has the smallest MAE relative to the other regressors. Thus, for the purposes of this data set, LOWESS is the best 
