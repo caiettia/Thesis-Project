@@ -39,8 +39,10 @@ While this is correct in the sense that it identifies a positive correlation bet
 This is because it does not account for any sense of localized weighting between various regions on the graph. 
 This is can be seen granularly between x=4 rooms to x=5 rooms. In this subset, a majority
 of the data points are above the regression line. However, when looking at x=5 rooms to x=6 rooms, the opposite is true. This is one indication that the linear model
-is a weak learner. This means that the model is better than chance when it comes to making predictions, but it is not very sensitive to local subsets of the data. This makes
+is a weak learner. This means that the model is better than chance when it comes to making predictions, but it is not very sensitive to local subsets of the data. Also, being 
+a weak learner entails that the model will not be very sensitive to new data when introduced. This makes
 it a nice starting point for our regression, but certainly not the best regressor we will identify. 
+
 To further understand the rate of error of our linear model, we run our KFold with k=10 and find a Mean Absolute Error of $4,424.53. 
 
 ### LOWESS
@@ -77,7 +79,13 @@ We again apply KFold for k=10 and see the following values for our MAE:
 
 
 ### XGBoost
-Extreme Gradient Boost, or more colloqiually known as XGBoost, is a form of Gradient Boost that is particularly effective at combatting overfitting. This is thanks to the ability for XGBoost to regularize parameters. Gradient Boost, on the other hand, is a form of regression that utilizes an ensemble of decision trees to make predictions. Following k=10 KFold, an MAE of $4,167.28 is observed.
+Extreme Gradient Boost, or more colloqiually known as XGBoost, is a form of Gradient Boost that is particularly effective at combatting overfitting. This is thanks to the 
+ability for XGBoost to regularize parameters. Gradient Boost, on the other hand, is a form of regression that utilizes an ensemble of decision trees to make predictions. 
+We can visually see XGBoost's performance on our data set below: 
+
+![xgb_plot](https://github.com/caiettia/Thesis-Project/blob/main/xgboost_plot.png)
+
+Following k=10 KFold, an MAE of $4,167.28 is observed.
 
 ### Sequential NN
 A Sequential Neural Network is a form of constructing a neural network, where each layer of the NN is built sequentially. So, each iteration of the sequence builds a 
@@ -92,6 +100,12 @@ The NN is then compiled with the ADAM optimizer, and finally fit with the traini
 Finally, we can get a good quantification of the model performance through a k=10 KFold. From this, we see an MAE of $3,895.27.
 
 ## Final Regressor Evaluation
+To visually see how each regressor is fit to the data, we are able to plot the regressor ontop of eachother. Note, for sake of observation, the XGBoost and SVR(rbf) 
+visualizations are not included. Based on the MAE table below, they are inbetween the extremes in terms of performance, and do not appear to be best applicable for our
+purposes with this data set. Instead, we will look at the best, second best, and the worst regressors in terms of performance. 
+
+![various_regressors]()
+
 From the above explanations of each regressor, we have seen varying levels of performance, quantified by the MAE. From the table below, we see that the locally weighted 
 regression (LOWESS) utilizing the Epanechnikov kernel has the smallest MAE relative to the other regressors. Thus, for the purposes of this data set, LOWESS is the best 
 regressor! While neural networks are increasingly regarded as the most advanced or accurate methodologies, this data set is just another example of seemingly simpler 
