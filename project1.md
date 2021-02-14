@@ -85,7 +85,7 @@ since we are utilizing this NN for a regression task!
 The NN is then compiled with the ADAM optimizer, and finally fit with the training data. We can see the model fit below:
 
 
-Finally, we can get a good quantification of the model performance through a k=10 KFold. From this, we see an MAE of $3,915.13.
+Finally, we can get a good quantification of the model performance through a k=10 KFold. From this, we see an MAE of $3,895.27.
 
 ## Final Regressor Evaluation
 From the above explanations of each regressor, we have seen varying levels of performance, quantified by the MAE. From the table below, we see that the locally weighted 
@@ -98,6 +98,6 @@ regression techniques still performing on par or better than more advanced techn
 | Linear Regressor   | $4,424.53|
 | XGBoost         | $4,167.28 |
 | SVR (rbf)     | $4,124.57 |
-| Sequential NN   | $3,915.13|
+| Sequential NN   | $3,895.27|
 | Lowess(Epanechnikov)   | $3,779.39|
 
