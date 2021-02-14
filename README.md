@@ -73,6 +73,9 @@ we will look at the linear, polynomial, and radial basis function (rbf) kernels 
 
 ![svr_kernels](https://github.com/caiettia/Thesis-Project/blob/main/svr_kernels_upd.png)
 
+We can see based on the plot how, when given a kernel, this affects the shape of the regressor. The linear kernel obviously creating a linear regressor, the polynomial kernel creating a polynomial regressor of what visually appears to be of the fourth degree, and the radial basis function producing a 
+
+
 We again apply KFold for k=10 and see the following values for our MAE:
 
 | Kernel       | MAE       |
