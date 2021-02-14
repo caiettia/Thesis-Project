@@ -32,11 +32,15 @@ Without KFold, we could be getting biased evaluation metrics and thus choose a p
 A linear model is the representation of a relationship between two variables, x and y, where any rate of change is identified as constant. This usually takes the form of 
 ![linear_model_eq](https://github.com/caiettia/Thesis-Project/blob/main/CodeCogsEqn%20(1).gif)
 
-When plot along the axis, we see that the model follows a very generalized trend we can see in the data. While 
-this is correct in the sense that it identifies a positive correlation between the two axes, this is not a strong identification of correlation. This is because it does not account for any sense of localized weighting between various regions on the graph.
+When plot along the axis, we see that the model follows a very generalized trend we can see in the data. 
 
 ![lin_mod_plot](https://github.com/caiettia/Thesis-Project/blob/main/lin_mod.png)
-
+While this is correct in the sense that it identifies a positive correlation between the two axes, this is not a strong identification of correlation. 
+This is because it does not account for any sense of localized weighting between various regions on the graph. 
+This is can be seen granularly between x=4 rooms to x=5 rooms. In this subset, a majority
+of the data points are above the regression line. However, when looking at x=5 rooms to x=6 rooms, the opposite is true. This is one indication that the linear model
+is a weak learner. This means that the model is better than chance when it comes to making predictions, but it is not very sensitive to local subsets of the data. This makes
+it a nice starting point for our regression, but certainly not the best regressor we will identify. 
 To further understand the rate of error of our linear model, we run our KFold with k=10 and find a Mean Absolute Error of $4,424.53. 
 
 ### LOWESS
@@ -64,7 +68,7 @@ we will look at the linear, polynomial, and radial basis function (rbf) kernels 
 | Kernel       | MAE       |
 |--------------|-----------|
 | linear       | $4,434.24 |
-| rbf          | $4,124,47 |
+| rbf          | $4,124.47 |
 | polynomial   | $36,017.88|
 
 
@@ -72,7 +76,28 @@ we will look at the linear, polynomial, and radial basis function (rbf) kernels 
 Extreme Gradient Boost, or more colloqiually known as XGBoost, is a form of Gradient Boost that is particularly effective at combatting overfitting. This is thanks to the ability for XGBoost to regularize parameters. Gradient Boost, on the other hand, is a form of regression that utilizes an ensemble of decision trees to make predictions. Following k=10 KFold, an MAE of $4,167.28 is observed.
 
 ### Sequential NN
-Following k=10 KFold, an MAE of $3,915.13 is observed.
+A Sequential Neural Network is a form of constructing a neural network, where each layer of the NN is built sequentially. So, each iteration of the sequence builds a 
+number of neurons within the network, until finally the network is built and fit with the training data. For the purposes of this proejct, the model is sequentially built 
+starting with 128 neurons, then 32 neurons, then 8 neurons, then finally a singular neuron for the last layer. The first three layers have a rectified linear activation 
+function, while the final layer has a linear activation function. The reason this final layer is composed of one neuron is because this is the output layer, and is necessary 
+since we are utilizing this NN for a regression task! 
+
+The NN is then compiled with the ADAM optimizer, and finally fit with the training data. We can see the model fit below:
+
+
+Finally, we can get a good quantification of the model performance through a k=10 KFold. From this, we see an MAE of $3,915.13.
 
 ## Final Regressor Evaluation
-From the above explanations of each regressor, we have seen varying levels of performance, quantified by the MAE. 
+From the above explanations of each regressor, we have seen varying levels of performance, quantified by the MAE. From the table below, we see that the locally weighted 
+regression (LOWESS) utilizing the Epanechnikov kernel has the smallest MAE relative to the other regressors. Thus, for the purposes of this data set, LOWESS is the best 
+regressor! While neural networks are increasingly regarded as the most advanced or accurate methodologies, this data set is just another example of seemingly simpler 
+regression techniques still performing on par or better than more advanced techniques that we may encounter.
+
+| Model       | MAE       |
+|--------------|-----------|
+| Linear Regressor   | $4,424.53|
+| XGBoost         | $4,167.28 |
+| SVR (rbf)     | $4,124.57 |
+| Sequential NN   | $3,915.13|
+| Lowess(Epanechnikov)   | $3,779.39|
+
