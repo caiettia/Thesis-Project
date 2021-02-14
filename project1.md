@@ -5,7 +5,8 @@ We are going to be looking specifically at the price of houses relative to the n
 ![blank_plot](https://github.com/caiettia/Thesis-Project/blob/main/blank_plot.png)
 
 ## KFold
-KFold is a form of cross validation 
+KFold is a form of cross validation, where we iteratively test a model to better understand its predictive power through metrics such as Mean Absolute Error (MAE). KFold works by splitting up a training dataset into "k" folds. Then, the model is trained on k-1 "folds" of the data set and validated on the the final fold within a given iteration. KFold iterations k times, so finally the performance metrics are identified by taking the mean of the metrics from each iteration.
+
 ## Support Vector Regression
 For purposes of understanding what regressor would be best applicable for our dataset, we can explore the various kernels for SVR. More specifically,
 we will look at the linear, polynomial, and radial basis function (rbf) kernels for SVR. Following KFold with k=10 folds, we find that the MAEs yielded are as follows: 
@@ -16,15 +17,14 @@ Following k=10 KFold, an MAE of $4,167.28 is observed.
 
 ## Linear Model
 A linear model is the representation of a relationship between two variables, x and y, where any rate of change is identified as constant. This usually takes the form of 
-
-![linear_model_eq](https://latex.codecogs.com/gif.latex?y%20%3D%20%5Cbeta_1x%20&plus;%5Cbeta_0\)
+![linear_model_eq](https://github.com/caiettia/Thesis-Project/blob/main/CodeCogsEqn%20(1).gif)
 
 When plot along the axis, we see that the model follows a very generalized trend we can see in the data. While 
 this is correct in the sense that it identifies a positive correlation between the two axes, this is not a strong identification of correlation. This is because it does not account for any sense of localized weighting between various regions on the graph.
 
 ![lin_mod_plot](https://github.com/caiettia/Thesis-Project/blob/main/lin_mod.png)
 
-To further understand the rate of error of our linear model, we run our KFold with k=10 and find a Mean Average Error of $4,424.53. 
+To further understand the rate of error of our linear model, we run our KFold with k=10 and find a Mean Absolute Error of $4,424.53. 
 
 ## LOWESS
 Following k=10 KFold, an MAE of $3,799.25 is Quartic observed.
