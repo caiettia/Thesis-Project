@@ -5,7 +5,7 @@ We can see this data in a plot below.
 ![blank_plot](https://github.com/caiettia/Thesis-Project/blob/main/blank_plot.png)
 
 ## KFold
-KFold is a form of cross validation, where we iteratively test a model to better understand its predictive power through metrics such as Mean Absolute Error (MAE). KFold works by splitting up a training dataset into "k" folds. Then, the model is trained on k-1 "folds" of the data set and validated on the the final fold within a given iteration. KFold iterations k times, so finally the performance metrics are identified by taking the mean of the metrics from each iteration.
+KFold is a form of cross validation, where we iteratively test a model to better understand its predictive power through metrics such as Mean Absolute Error (MAE). KFold works by splitting up a training dataset into "k" folds. Then, the model is trained on k-1 "folds" of the data set and validated on the the final fold within a given iteration. KFold iterations k times, so finally the performance metrics are identified by taking the mean of the metrics from each iteration. It is particularly worth noting that each fold is equal in length, and a new fold is picked in each iteration of KFold as the validation set. 
 
 An example of this algorithm can be seen in the image below, where an instance of KFold is run for k=4. 
 ![kfold](https://github.com/caiettia/Thesis-Project/blob/main/kfold_example.png)
