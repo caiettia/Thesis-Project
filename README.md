@@ -96,6 +96,7 @@ since we are utilizing this NN for a regression task!
 
 The NN is then compiled with the ADAM optimizer, and finally fit with the training data. We can see the model fit below:
 
+![nn_plot]()
 
 Finally, we can get a good quantification of the model performance through a k=10 KFold. From this, we see an MAE of $3,895.27.
 
