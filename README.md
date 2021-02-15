@@ -77,7 +77,10 @@ learning, I will keep the fourth degree polynomial included, because this can va
 All of these kernels dictate how the decision boundary is identified for a data set in a given SVR. To better visualize the various kernels with our data set, the plot below is 
 generated:
 
-![svr_kernels](https://github.com/caiettia/Thesis-Project/blob/main/svr_kernels_upd.png)
+
+![svr_kernels_sep](https://github.com/caiettia/Thesis-Project/blob/main/svr_kernels_sep.png)
+
+![svr_kernels_tog](https://github.com/caiettia/Thesis-Project/blob/main/svr_kernels_together.png)
 
 We can see based on the plot how, when given a kernel, this affects the shape of the regressor. The linear kernel obviously creating a linear regressor, the polynomial kernel 
 creating a polynomial regressor of what visually appears to be of the fourth degree, and the radial basis function producing a . 
