@@ -57,9 +57,10 @@ Following a k=10 KFold implementation for each kernel, we observe the following:
 
 | Kernel       | MAE       |
 |--------------|-----------|
-| Tricubic     | $3,795.95 |
-| Quartic      | $3,799.25 |
-| Epanechnikov | $3,779.39 |
+| Tricubic     | $4,081.07 |
+| Quartic      | $4,076.19 |
+| Epanechnikov | $4,085.36 |
+| Uniform      | $4,110.08 |
 
 We can also plot these kernels to visually understand how they may differ. 
 
@@ -69,12 +70,17 @@ Visually, we can see the same sense of closeness between the three kernels that 
 
 ### Support Vector Regression
 For purposes of understanding what regressor would be best applicable for our dataset, we can explore the various kernels for SVR. More specifically,
-we will look at the linear, polynomial, and radial basis function (rbf) kernels for SVR. These kernels dictate how the decision boundary is identified for a data set in a given SVR. To better visualize the various kernels with our data set, the plot below is generated:
+we will look at the linear, polynomial, and radial basis function (rbf) kernels for SVR. When considering what parameters to pass to
+each regressor, the case of the polynomial kernel requires one to observe the data to see what would fit best. Upon observation of the trend of the data, a polynomial of the 
+second or third degree both appear potentially viable for this problem. I recognize this by seeing what appears to be a second or third degree trend in the data. For sake of 
+learning, I will keep the fourth degree polynomial included, because this can validate our inference of the trend in the data based on how it fits to the data.
+All of these kernels dictate how the decision boundary is identified for a data set in a given SVR. To better visualize the various kernels with our data set, the plot below is 
+generated:
 
 ![svr_kernels](https://github.com/caiettia/Thesis-Project/blob/main/svr_kernels_upd.png)
 
-We can see based on the plot how, when given a kernel, this affects the shape of the regressor. The linear kernel obviously creating a linear regressor, the polynomial kernel creating a polynomial regressor of what visually appears to be of the fourth degree, and the radial basis function producing a 
-
+We can see based on the plot how, when given a kernel, this affects the shape of the regressor. The linear kernel obviously creating a linear regressor, the polynomial kernel 
+creating a polynomial regressor of what visually appears to be of the fourth degree, and the radial basis function producing a . 
 
 We again apply KFold for k=10 and see the following values for our MAE:
 
@@ -82,8 +88,13 @@ We again apply KFold for k=10 and see the following values for our MAE:
 |--------------|-----------|
 | linear       | $4,434.24 |
 | rbf          | $4,124.47 |
-| polynomial   | $36,017.88|
+| polynomial (deg = 4)   | $36,017.88 |
+| polynomial (deg = 3)   | $4,242.55 |
+| polynomial (deg = 2)   | $4,155.11 |
 
+Based on the output MAEs from Kfold, we can see that indeed our inference about the polynomial kernel for SVR was correct! The fourth degree result is certainly nonsensical, 
+while the second and third degree results are more agreeable. While the second degree polynomial performs best of the three polynomial kernels, the radial basis function 
+kernel still outperforms them all. Thus, from the SVR camp, we choose the rbf kernel SVR for further comparisons.
 
 ### XGBoost
 Extreme Gradient Boost, or more colloqiually known as XGBoost, is a form of Gradient Boost that is particularly effective at combatting overfitting. This is thanks to the 
