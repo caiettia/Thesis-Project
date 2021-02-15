@@ -108,9 +108,7 @@ The NN is then compiled with the ADAM optimizer, and finally fit with the traini
 Finally, we can get a good quantification of the model performance through a k=10 KFold. From this, we see an MAE of $3,895.27.
 
 ## Final Regressor Evaluation
-To visually see how each regressor is fit to the data, we are able to plot the regressor ontop of eachother. Note, for sake of observation, the XGBoost and SVR(rbf) 
-visualizations are not included. Based on the MAE table below, they are inbetween the extremes in terms of performance, and do not appear to be best applicable for our
-purposes with this data set. Instead, we will look at the best, second best, and the worst regressors in terms of performance. 
+To visually see how each regressor is fit to the data, we are able to plot the regressor ontop of eachother. 
 
 ![various_regressors](https://github.com/caiettia/Thesis-Project/blob/main/various_regressors.png)
 
