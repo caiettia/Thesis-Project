@@ -30,9 +30,9 @@ KFold is a critical step in the process of evaluating various regressors, becaus
 
 Without KFold, we could be getting biased evaluation metrics and thus choose a potentially overfit or underfit model for our regression problem. Thus, it is very important that we do not forget to utilize KFold in evaluating our variety of regressors. 
 
-## Models 
+# Models 
 
-### Linear Model
+## Linear Model
 A linear model is the representation of a relationship between two variables, x and y, where any rate of change is identified as constant. This usually takes the form of 
 ![linear_model_eq](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/CodeCogsEqn%20(1).gif)
 
@@ -49,7 +49,7 @@ it a nice starting point for our regression, but certainly not the best regresso
 
 To further understand the rate of error of our linear model, we run our KFold with k=10 and find a Mean Absolute Error of $4,424.53. 
 
-### LOWESS
+## LOWESS
 Local regression is a form of regression that takes into account local points throughout the plot to identify the a curve of regression. This is 
 done by the process of identifying local weights, which are determined through the use of different kernels or mathematical functions which weight a regression based on local subsets of the overall data set. There are a host of different kernels that can be utilized for weighting, yet only four will be considered for this project: tricubic, quartic, uniform, and the Epanechnikov kernel functions. 
 
@@ -72,7 +72,7 @@ Following a k=10 KFold implementation for each kernel, we observe the following:
 
 
 
-### Support Vector Regression
+## Support Vector Regression
 For purposes of understanding what regressor would be best applicable for our dataset, we can explore the various kernels for SVR. More specifically,
 we will look at the linear, polynomial, and radial basis function (rbf) kernels for SVR. When considering what parameters to pass to
 each regressor, the case of the polynomial kernel requires one to observe the data to see what would fit best. Upon observation of the trend of the data, a polynomial of the 
@@ -103,7 +103,7 @@ Based on the output MAEs from Kfold, we can see that indeed our inference about 
 while the second and third degree results are more agreeable. While the second degree polynomial performs best of the three polynomial kernels, the radial basis function 
 kernel still outperforms them all. Thus, from the SVR camp, we choose the rbf kernel SVR for further comparisons.
 
-### XGBoost
+## XGBoost
 Extreme Gradient Boost, or more colloqiually known as XGBoost, is a form of Gradient Boost that is particularly effective at combatting overfitting. This is thanks to the 
 ability for XGBoost to regularize parameters. Gradient Boost, on the other hand, is a form of regression that utilizes an ensemble of decision trees to make predictions. 
 We can visually see XGBoost's performance on our data set below: 
@@ -112,7 +112,7 @@ We can visually see XGBoost's performance on our data set below:
 
 Following k=10 KFold, an MAE of $4,167.28 is observed.
 
-### Sequential NN
+## Sequential NN
 A Sequential Neural Network is a form of constructing a neural network, where each layer of the NN is built sequentially. So, each iteration of the sequence builds a 
 number of neurons within the network, until finally the network is built and fit with the training data. For the purposes of this proejct, the model is sequentially built 
 starting with 128 neurons, then 32 neurons, then 8 neurons, then finally a singular neuron for the last layer. The first three layers have a rectified linear activation 
@@ -125,7 +125,7 @@ The NN is then compiled with the ADAM optimizer, and finally fit with the traini
 
 Finally, we can get a good quantification of the model performance through a k=10 KFold. From this, we see an MAE of $3,895.27.
 
-## Final Regressor Evaluation
+# Final Regressor Evaluation
 To visually see how each regressor is fit to the data, we are able to plot the regressor ontop of eachother. 
 
 ![various_regressors_sep](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/all_reg_sep.png)
