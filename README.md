@@ -126,26 +126,30 @@ The NN is then compiled with the ADAM optimizer, and finally fit with the traini
 Finally, we can get a good quantification of the model performance through a k=10 KFold. From this, we see an MAE of $3,895.27.
 
 # Final Regressor Evaluation
-To visually see how each regressor is fit to the data, we are able to plot the regressor ontop of eachother. 
+To visually see how each regressor is fit to the data, we are able to plot the regressors ontop of eachother as well as seperately to visualize how the models fit the data. 
 
 ![various_regressors_sep](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/all_reg_sep.png)
 
 ![various_regressors_together](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/all_reg_together.png)
 
-What is particularly interesting about these plot, is just how well they visualize the idea of a weak versus strong learner. Looking at the Linear model in red, we see how from 
-x = 8 rooms to x = 9 rooms, the linear model does not necessarily account well for the newer observations. Yet looking at the NN, LOWESS, and SVR regressions, we see how each 
-of their curves responds to the shifting weight of the data set. Looking again from 8 to 9 rooms, we see how these two regressors are able to adequately accomodate for the 
-weight of data points being notably higher along the y axis, when compared to the general data set.
+What is particularly interesting about these plots is just how well they visualize the idea of a weak versus strong learner. Looking at the Linear model in red, we see how 
+from x = 8 rooms to x = 9 rooms, the linear model does not necessarily account well for the newer observations. Yet looking at the NN, LOWESS, and SVR regressions, we see how 
+each of their curves responds to the shifting weight of the data set. Looking again from 8 to 9 rooms, we see how these two regressors are able to adequately accomodate for 
+the weight of data points being notably higher along the y axis, when compared to the general data set.
 
 Another interesting observation can be seen between x = 6 rooms to x = 7 rooms. Here, the weight NN is not as easily able to fit to the data as the LOWESS regressor. The 
 LOWESS regressor seems to be much more sensitive to local subsets of the data set when compared to the NN. This can also be seen between x = 4 rooms and x = 5 rooms. Again, 
 the LOWESS regressor is able to learn better from the small subset of data when compared to the NN and linear model. So, we can see that the Quartic Kernel Function 
 makes the LOWESS regressor much more sensitive to new data, and thus a strong learner.
 
-From the above explanations of each regressor, we have seen varying levels of performance, quantified by the MAE. From the table below, we see that the locally weighted 
-regression (LOWESS) utilizing the Quartic kernel has the smallest MAE relative to the other regressors. Thus, for the purposes of this data set, LOWESS is the best 
-regressor! While neural networks are increasingly regarded as the most advanced or accurate methodologies, this data set is just another example of seemingly simpler 
-regression techniques still performing on par or better than more advanced techniques that we may encounter.
+From the above explanations of each regressor, we have seen varying levels of performance, quantified by the MAE. Having taken the best performing kernels where applicable 
+and comparing each regressor's MAE wthin the table, we can see that the Sequential Neural Network performs best. This is after utilizing KFold to achieve significantly less 
+biased estimations of the error for each regressor. So, while one regressor may have performed notably better with a given split of the training and testing data, the Sequential Neural Network yielded the lowest MAE score through KFold. Thus, of all the regressors considered, the Sequential Neural Network appears to be the best for this data set!
+
+From the table below, we see that the locally weighted 
+regression (LOWESS) utilizing the Quartic kernel has the smallest MAE relative to the other regressors. 
+Thus, for the purposes of this data set, LOWESS is the best regressor! While neural networks are increasingly regarded as the most advanced or accurate methodologies, this 
+data set is just another example of seemingly simpler regression techniques still performing on par or better than more advanced techniques that we may encounter.
 
 | Model       | MAE       |
 |--------------|-----------|
