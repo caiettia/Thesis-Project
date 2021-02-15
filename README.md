@@ -54,13 +54,11 @@ Local regression is a form of regression that takes into account local points th
 regressor makes a prediction, it does so using only points local to the input. This is done by the process of identifying local weights, which are determined through the use 
 of different kernels or mathematical functions which weight a regression based on local 
 subsets of the overall data set. There are a host of different kernels that can be utilized for weighting, yet only four will be considered for this project: tricubic, 
-quartic, uniform, and the Epanechnikov kernel functions. 
+quartic, uniform, and the Epanechnikov kernel functions. We can also plot these kernels to visually understand how they may differ.
 
 ![diff_kernels_sep](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/lowess_kerns_sep.png)
 
 ![diff_kernels_tog](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/lowess_kerns_together.png)
-
-We can also plot these kernels to visually understand how they may differ.
 
 Visually, we can see the same sense of closeness between the three kernels that we do when comparing the MAE values. Tricubic and Quartic kernels both give us similar curves 
 when plot, signfiying that roughly $4 difference in the MAE. The Epanechnikov kernel is notably more performant relative to the Tricubic and Quartic functions. We can see 
@@ -84,9 +82,8 @@ we will look at the linear, polynomial, and radial basis function (rbf) kernels 
 each regressor, the case of the polynomial kernel requires one to observe the data to see what would fit best. Upon observation of the trend of the data, a polynomial of the 
 second or third degree both appear potentially viable for this problem. I recognize this by seeing what appears to be a second or third degree trend in the data. For sake of 
 learning, I will keep the fourth degree polynomial included, because this can validate our inference of the trend in the data based on how it fits to the data.
-All of these kernels dictate how the decision boundary is identified for a data set in a given SVR. To better visualize the various kernels with our data set, the plot below is 
-generated:
-
+All of these kernels dictate how the decision boundary is identified for a data set in a given SVR. To better visualize the various kernels with our data set, the plot below 
+is generated:
 
 ![svr_kernels_sep](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/svr_kernels_sep.png)
 
@@ -132,7 +129,8 @@ The NN is then compiled with the ADAM optimizer, and adaptive version of gradien
 
 ![nn_plot](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/nn_plot.png)
 
-Visually, we can see the model is fit well with the trend of the data.
+Visually, we can see the model is fit well with the trend of the data. The model fits particularly well with x > 8 rooms, where the model is able to identify the visual trend in the data when it gets much more sparse. 
+
 Finally, we can get a good quantification of the model performance through a k=10 KFold. From this, we see an MAE of $4,165.50.
 
 # Final Regressor Evaluation
@@ -164,7 +162,9 @@ To understand what regressor is best, errors considered, we can plot the MAE in 
 
 From the above explanations of each regressor, we have seen varying levels of performance, quantified by the MAE. Having taken the best performing kernels where applicable 
 and comparing each regressor's MAE wthin the table, we can see that the Sequential Neural Network performs best. This is after utilizing KFold to achieve significantly less 
-biased estimations of the error for each regressor. So, while one regressor may have performed notably better with a given split of the training and testing data, the Locally Weighted Kernel Regressor with the Quartic Kernel yielded the lowest MAE score through KFold. Thus, of all the regressors considered, the LOWESS appears to be the best for this data set! While neural networks are increasingly regarded as the most advanced or accurate methodologies, this 
+biased estimations of the error for each regressor. So, while one regressor may have performed notably better with a given split of the training and testing data, the Locally 
+Weighted Kernel Regressor with the Quartic Kernel yielded the lowest MAE score through KFold. Thus, of all the regressors considered, the LOWESS appears to be the best for 
+this data set! While neural networks are increasingly regarded as the most advanced or accurate methodologies, this 
 data set is just another example of seemingly simpler regression techniques still performing on par or better than more advanced techniques that we may encounter.
 
 
