@@ -110,15 +110,16 @@ kernel still outperforms them all. Thus, from the SVR camp, we choose the rbf ke
 
 ## XGBoost
 Extreme Gradient Boost, or more colloqiually known as XGBoost, is a form of Gradient Boost that is particularly effective at combatting overfitting. This is thanks to the 
-ability for XGBoost to regularize parameters. Gradient Boost, on the other hand, is a form of regression that utilizes an ensemble of decision trees to make predictions. More 
-concisely, XGBoost is utilizing a forest of decision trees, similar to Random Forests, yet XGBoost improves upon this by weighting trees differently, thereby making the 
+ability for XGBoost to regularize parameters. Gradient Boost is a form of regression that utilizes an ensemble of decision trees to make predictions. More 
+concisely, XGBoost is utilizing a forest of decision trees, similar to Random Forests, yet XGBoost improves upon RF by weighting trees differently, thereby making the 
 regressor a stronger learner as it can be more sensitive to new data. We can visually see XGBoost's fit on our data set below: 
 
 ![xgb_plot](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/xgboost_plot.png)
 
-Visually, we can see the strength of XGBoost as a learner with how the regressor fits the fluctuating volume of data. From x = 4 rooms to x = 6 rooms, we can see the algorithm's 
-sensitivity most clearly, following the visual trend of the data quite well. Despite this, near x = 9 rooms, we see the XGBoost regressor visually diverge from the seemingly 
-exponential trend of the data. While this algorithm visually is more performant than the linear model, it is likely not the best regressor we have come across. So, we quantify this regressor again with a k=10 KFold, and an MAE of $4,167.28 is observed.
+Visually, we can see the strength of XGBoost as a learner with how the regressor fits the fluctuating volume of data. From x = 4 rooms to x = 6 rooms, we can see the \
+algorithm's sensitivity most clearly, following the visual trend of the data quite well. Despite this, near x = 9 rooms, we see the XGBoost regressor visually diverge from 
+the seemingly exponential trend of the data. While this algorithm visually is more performant than the linear model, it is likely not the best regressor we have come across. 
+So, we quantify this regressor again with a k=10 KFold, and an MAE of $4,167.28 is observed.
 
 ## Sequential NN
 A Sequential Neural Network is a form of constructing a neural network, where each layer of the NN is built sequentially. So, each iteration of the sequence builds a 
