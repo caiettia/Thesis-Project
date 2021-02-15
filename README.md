@@ -89,8 +89,10 @@ is generated:
 
 ![svr_kernels_tog](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/svr_kernels_together.png)
 
-We can see based on the plot how, when given a kernel, this affects the shape of the regressor. The linear kernel obviously creating a linear regressor, the polynomial kernel 
-creating a polynomial regressor of what visually appears to be of the fourth degree, and the radial basis function producing a . 
+We can see based on the plot how, when given a kernel, this affects the shape of the regressor. The linear kernel identifies a linear relationship within the data, while the 
+polynomial kernels identify second, third, and fourth order non-linear trends within the data. The radial basis function follows a nonlinear trend in the data, and of the 
+five kernels shown, follows the visual trend of the data best. This provides a visual inclination to think that the RBF kernel will likely be best for the purposes of 
+regression in this data set. To confirm this, we can quantifiably compare each kernel using the MAE statistic. 
 
 We again apply KFold for k=10 and see the following values for our MAE:
 
@@ -123,9 +125,7 @@ A Sequential Neural Network is a form of constructing a neural network, where ea
 number of neurons within the network, until finally the network is built and fit with the training data. For the purposes of this proejct, the model is sequentially built 
 starting with 128 neurons, then 32 neurons, then 8 neurons, then finally a singular neuron for the last layer. The first three layers have a rectified linear activation 
 function, while the final layer has a linear activation function. The reason this final layer is composed of one neuron is because this is the output layer, and is necessary 
-since we are utilizing this NN for a regression task! 
-
-The NN is then compiled with the ADAM optimizer, and adaptive version of gradient descent, and finally fit with the training data. We can see the model fit below:
+since we are utilizing this NN for a regression task! The NN is then compiled with the ADAM optimizer, and adaptive version of gradient descent, and finally fit with the training data. We can see the model fit below:
 
 ![nn_plot](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/nn_plot.png)
 
