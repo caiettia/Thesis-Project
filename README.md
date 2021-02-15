@@ -33,12 +33,12 @@ Without KFold, we could be getting biased evaluation metrics and thus choose a p
 # Models 
 
 ## Linear Model
-A linear model is the representation of a relationship between two variables, x and y, where any rate of change is identified as constant. This usually takes the form of 
-![linear_model_eq](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/CodeCogsEqn%20(1).gif)
-
-When plot along the axis, we see that the model follows a very generalized trend we can see in the data. 
+A linear model is the representation of a relationship between two variables, x and y, where any rate of change is identified as constant. This model takes the form of 
+![linear_model_eq](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/CodeCogsEqn%20(1).gif). This model is used when we think there is a linear relationship between the x and y variables being considered. So, when we visually look at the data in the first plot, there could potentially be a linear relationship. Thus, we can fit this model to 
+our data. 
 
 ![lin_mod_plot](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/lin_mod.png)
+
 While this is correct in the sense that it identifies a positive correlation between the two axes, this is not a strong identification of correlation. 
 This is because it does not account for any sense of localized weighting between various regions on the graph. 
 This is can be seen granularly between x=4 rooms to x=5 rooms. In this subset, a majority
@@ -50,8 +50,11 @@ it a nice starting point for our regression, but certainly not the best regresso
 To further understand the rate of error of our linear model, we run our KFold with k=10 and find a Mean Absolute Error of $4,424.53. 
 
 ## LOWESS
-Local regression is a form of regression that takes into account local points throughout the plot to identify the a curve of regression. This is 
-done by the process of identifying local weights, which are determined through the use of different kernels or mathematical functions which weight a regression based on local subsets of the overall data set. There are a host of different kernels that can be utilized for weighting, yet only four will be considered for this project: tricubic, quartic, uniform, and the Epanechnikov kernel functions. 
+Local regression is a form of regression that takes into account local points throughout the plot to identify the a curve of regression. So, when a locally weighted 
+regressor makes a prediction, it does so using only points local to the input. This is done by the process of identifying local weights, which are determined through the use 
+of different kernels or mathematical functions which weight a regression based on local 
+subsets of the overall data set. There are a host of different kernels that can be utilized for weighting, yet only four will be considered for this project: tricubic, 
+quartic, uniform, and the Epanechnikov kernel functions. 
 
 ![diff_kernels_sep](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/lowess_kerns_sep.png)
 
@@ -59,7 +62,10 @@ done by the process of identifying local weights, which are determined through t
 
 We can also plot these kernels to visually understand how they may differ.
 
-Visually, we can see the same sense of closeness between the three kernels that we do when comparing the MAE values. Tricubic and Quartic kernels both give us similar curves when plot, signfiying that roughly $4 difference in the MAE. The Epanechnikov kernel is notably more performant relative to the Tricubic and Quartic functions. We can see this visually in its slight divergence at points from the other two kernels, and also the $16 to $20 difference from the other two kernels. So, we identify the Epanechnikov kernel function as the most performant of the three and the choice as the best representative for LOWESS. 
+Visually, we can see the same sense of closeness between the three kernels that we do when comparing the MAE values. Tricubic and Quartic kernels both give us similar curves 
+when plot, signfiying that roughly $4 difference in the MAE. The Epanechnikov kernel is notably more performant relative to the Tricubic and Quartic functions. We can see 
+this visually in its slight divergence at points from the other two kernels, and also the $16 to $20 difference from the other two kernels. So, we identify the Epanechnikov 
+kernel function as the most performant of the three and the choice as the best representative for LOWESS. 
 
 Following a k=10 KFold implementation for each kernel, we observe the following: 
 
@@ -105,12 +111,15 @@ kernel still outperforms them all. Thus, from the SVR camp, we choose the rbf ke
 
 ## XGBoost
 Extreme Gradient Boost, or more colloqiually known as XGBoost, is a form of Gradient Boost that is particularly effective at combatting overfitting. This is thanks to the 
-ability for XGBoost to regularize parameters. Gradient Boost, on the other hand, is a form of regression that utilizes an ensemble of decision trees to make predictions. 
-We can visually see XGBoost's performance on our data set below: 
+ability for XGBoost to regularize parameters. Gradient Boost, on the other hand, is a form of regression that utilizes an ensemble of decision trees to make predictions. More 
+concisely, XGBoost is utilizing a forest of decision trees, similar to Random Forests, yet XGBoost improves upon this by weighting trees differently, thereby making the 
+regressor a stronger learner as it can be more sensitive to new data. We can visually see XGBoost's fit on our data set below: 
 
 ![xgb_plot](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/xgboost_plot.png)
 
-Following k=10 KFold, an MAE of $4,167.28 is observed.
+Visually, we can see the strength of XGBoost as a learner with how the regressor fits the fluctuating volume of data. From x = 4 rooms to x = 6 rooms, we can see the algorithm's 
+sensitivity most clearly, following the visual trend of the data quite well. Despite this, near x = 9 rooms, we see the XGBoost regressor visually diverge from the seemingly 
+exponential trend of the data. While this algorithm visually is more performant than the linear model, it is likely not the best regressor we have come across. So, we quantify this regressor again with a k=10 KFold, and an MAE of $4,167.28 is observed.
 
 ## Sequential NN
 A Sequential Neural Network is a form of constructing a neural network, where each layer of the NN is built sequentially. So, each iteration of the sequence builds a 
@@ -119,11 +128,12 @@ starting with 128 neurons, then 32 neurons, then 8 neurons, then finally a singu
 function, while the final layer has a linear activation function. The reason this final layer is composed of one neuron is because this is the output layer, and is necessary 
 since we are utilizing this NN for a regression task! 
 
-The NN is then compiled with the ADAM optimizer, and finally fit with the training data. We can see the model fit below:
+The NN is then compiled with the ADAM optimizer, and adaptive version of gradient descent, and finally fit with the training data. We can see the model fit below:
 
 ![nn_plot](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/nn_plot.png)
 
-Finally, we can get a good quantification of the model performance through a k=10 KFold. From this, we see an MAE of $3,895.27.
+Visually, we can see the model is fit well with the trend of the data.
+Finally, we can get a good quantification of the model performance through a k=10 KFold. From this, we see an MAE of $4,165.50.
 
 # Final Regressor Evaluation
 To visually see how each regressor is fit to the data, we are able to plot the regressors ontop of eachother as well as seperately to visualize how the models fit the data. 
@@ -142,20 +152,19 @@ LOWESS regressor seems to be much more sensitive to local subsets of the data se
 the LOWESS regressor is able to learn better from the small subset of data when compared to the NN and linear model. So, we can see that the Quartic Kernel Function 
 makes the LOWESS regressor much more sensitive to new data, and thus a strong learner.
 
-From the above explanations of each regressor, we have seen varying levels of performance, quantified by the MAE. Having taken the best performing kernels where applicable 
-and comparing each regressor's MAE wthin the table, we can see that the Sequential Neural Network performs best. This is after utilizing KFold to achieve significantly less 
-biased estimations of the error for each regressor. So, while one regressor may have performed notably better with a given split of the training and testing data, the Sequential Neural Network yielded the lowest MAE score through KFold. Thus, of all the regressors considered, the Sequential Neural Network appears to be the best for this data set!
-
-From the table below, we see that the locally weighted 
-regression (LOWESS) utilizing the Quartic kernel has the smallest MAE relative to the other regressors. 
-Thus, for the purposes of this data set, LOWESS is the best regressor! While neural networks are increasingly regarded as the most advanced or accurate methodologies, this 
-data set is just another example of seemingly simpler regression techniques still performing on par or better than more advanced techniques that we may encounter.
+To understand what regressor is best, errors considered, we can plot the MAE in a table below:
 
 | Model       | MAE       |
 |--------------|-----------|
 | Linear Regressor   | $4,424.53|
 | XGBoost         | $4,167.28 |
 | SVR (rbf)     | $4,124.57 |
-| Sequential NN   | $3,895.27|
+| Sequential NN   | $4,165.50|
 | Lowess(Quartic)   | $4,076.19|
+
+From the above explanations of each regressor, we have seen varying levels of performance, quantified by the MAE. Having taken the best performing kernels where applicable 
+and comparing each regressor's MAE wthin the table, we can see that the Sequential Neural Network performs best. This is after utilizing KFold to achieve significantly less 
+biased estimations of the error for each regressor. So, while one regressor may have performed notably better with a given split of the training and testing data, the Locally Weighted Kernel Regressor with the Quartic Kernel yielded the lowest MAE score through KFold. Thus, of all the regressors considered, the LOWESS appears to be the best for this data set! While neural networks are increasingly regarded as the most advanced or accurate methodologies, this 
+data set is just another example of seemingly simpler regression techniques still performing on par or better than more advanced techniques that we may encounter.
+
 
