@@ -7,7 +7,7 @@ For this project, we are given the Boston Housing Dataset, a dataset surrounding
 
 To start, we can see this data in a plot below and get a better visual understanding of what might be going on.
 
-![blank_plot](hhttps://raw.githubusercontent.com/caiettia/Thesis-Project/main/blank_plot.png)
+![blank_plot](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/blank_plot.png)
 
 Visually, there appears to be some sort of positive trend within the data. This is a good start, as it will give us an idea of what to expect in terms of plotting various
 regressors on these axes. But before we begin plotting, we must understand how we are going to evaluate our various regressors.
