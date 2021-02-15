@@ -7,7 +7,7 @@ For this project, we are given the Boston Housing Dataset, a dataset surrounding
 
 To start, we can see this data in a plot below and get a better visual understanding of what might be going on.
 
-![blank_plot](https://github.com/caiettia/Thesis-Project/blob/main/blank_plot.png)
+![blank_plot](hhttps://raw.githubusercontent.com/caiettia/Thesis-Project/main/blank_plot.png)
 
 Visually, there appears to be some sort of positive trend within the data. This is a good start, as it will give us an idea of what to expect in terms of plotting various
 regressors on these axes. But before we begin plotting, we must understand how we are going to evaluate our various regressors.
@@ -16,7 +16,7 @@ regressors on these axes. But before we begin plotting, we must understand how w
 ### Mean Absolute Error
 For sake of comparing different models, we use the Mean Absolute Error (MAE). This value is an arithmetic mean of all of the absolute errors for a given model. More generally, every time a model makes a prediction against the test set how close that prediction was to the actual value is recorded as the absolute error. So, for every prediction within the test set, an absolute error value is calculated. Finally, the MAE is calculated by taking the mean of all of these mean values. Regressors always try to minimize error. 
 
-![MAE_formula](https://github.com/caiettia/Thesis-Project/blob/main/CodeCogsEqn%20(2).gif)
+![MAE_formula](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/CodeCogsEqn%20(2).gif)
 
 Thus, a lower MAE value indicates a regressor performing well, while a higher MAE value indicates a regressor being less accurate in predictions. This is all measured in relativity when comparing regressors! 
 
@@ -24,7 +24,7 @@ Thus, a lower MAE value indicates a regressor performing well, while a higher MA
 KFold is a form of cross validation, where we iteratively test a model to better understand its predictive power through metrics such as Mean Absolute Error (MAE). KFold works by splitting up a training dataset into "k" folds. Then, the model is trained on k-1 "folds" of the data set and validated on the the final fold within a given iteration. KFold iterations k times, so finally the performance metrics are identified by taking the mean of the metrics from each iteration. It is particularly worth noting that each fold is equal in length, and a new fold is picked in each iteration of KFold as the validation set. 
 
 An example of this algorithm can be seen in the image below, where an instance of KFold is run for k=4. 
-![kfold](https://github.com/caiettia/Thesis-Project/blob/main/kfold_example.png)
+![kfold](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/kfold_example.png)
 
 KFold is a critical step in the process of evaluating various regressors, because it allows us to obtain less-biased estimations of error for a given regressor. This is thanks to how KFold "shuffles" the data into unique folds and then iteratively trains and tests against different combinations of these folds. This allows the estimated error to account for particularly "good" or "bad" train and test splits within the data that may come about from testing.
 
@@ -34,11 +34,11 @@ Without KFold, we could be getting biased evaluation metrics and thus choose a p
 
 ### Linear Model
 A linear model is the representation of a relationship between two variables, x and y, where any rate of change is identified as constant. This usually takes the form of 
-![linear_model_eq](https://github.com/caiettia/Thesis-Project/blob/main/CodeCogsEqn%20(1).gif)
+![linear_model_eq](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/CodeCogsEqn%20(1).gif)
 
 When plot along the axis, we see that the model follows a very generalized trend we can see in the data. 
 
-![lin_mod_plot](https://github.com/caiettia/Thesis-Project/blob/main/lin_mod.png)
+![lin_mod_plot](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/lin_mod.png)
 While this is correct in the sense that it identifies a positive correlation between the two axes, this is not a strong identification of correlation. 
 This is because it does not account for any sense of localized weighting between various regions on the graph. 
 This is can be seen granularly between x=4 rooms to x=5 rooms. In this subset, a majority
@@ -51,7 +51,15 @@ To further understand the rate of error of our linear model, we run our KFold wi
 
 ### LOWESS
 Local regression is a form of regression that takes into account local points throughout the plot to identify the a curve of regression. This is 
-done by the process of identifying local weights, which are determined through the use of different kernels or mathematical functions which weight a regression based on local subsets of the overall data set. There are a host of different kernels that can be utilized for weighting, yet only three will be considered for this project: tricubic, quartic, and the Epanechnikov kernel functions. 
+done by the process of identifying local weights, which are determined through the use of different kernels or mathematical functions which weight a regression based on local subsets of the overall data set. There are a host of different kernels that can be utilized for weighting, yet only four will be considered for this project: tricubic, quartic, uniform, and the Epanechnikov kernel functions. 
+
+![diff_kernels_sep](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/lowess_kerns_sep.png)
+
+![diff_kernels_tog](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/lowess_kerns_together.png)
+
+We can also plot these kernels to visually understand how they may differ.
+
+Visually, we can see the same sense of closeness between the three kernels that we do when comparing the MAE values. Tricubic and Quartic kernels both give us similar curves when plot, signfiying that roughly $4 difference in the MAE. The Epanechnikov kernel is notably more performant relative to the Tricubic and Quartic functions. We can see this visually in its slight divergence at points from the other two kernels, and also the $16 to $20 difference from the other two kernels. So, we identify the Epanechnikov kernel function as the most performant of the three and the choice as the best representative for LOWESS. 
 
 Following a k=10 KFold implementation for each kernel, we observe the following: 
 
@@ -62,11 +70,7 @@ Following a k=10 KFold implementation for each kernel, we observe the following:
 | Epanechnikov | $4,085.36 |
 | Uniform      | $4,110.08 |
 
-We can also plot these kernels to visually understand how they may differ. 
 
-![diff_kernels_plot](https://github.com/caiettia/Thesis-Project/blob/main/diffkernelslowess.png)
-
-Visually, we can see the same sense of closeness between the three kernels that we do when comparing the MAE values. Tricubic and Quartic kernels both give us similar curves when plot, signfiying that roughly $4 difference in the MAE. The Epanechnikov kernel is notably more performant relative to the Tricubic and Quartic functions. We can see this visually in its slight divergence at points from the other two kernels, and also the $16 to $20 difference from the other two kernels. So, we identify the Epanechnikov kernel function as the most performant of the three and the choice as the best representative for LOWESS. 
 
 ### Support Vector Regression
 For purposes of understanding what regressor would be best applicable for our dataset, we can explore the various kernels for SVR. More specifically,
@@ -78,9 +82,9 @@ All of these kernels dictate how the decision boundary is identified for a data 
 generated:
 
 
-![svr_kernels_sep](https://github.com/caiettia/Thesis-Project/blob/main/svr_kernels_sep.png)
+![svr_kernels_sep](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/svr_kernels_sep.png)
 
-![svr_kernels_tog](https://github.com/caiettia/Thesis-Project/blob/main/svr_kernels_together.png)
+![svr_kernels_tog](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/svr_kernels_together.png)
 
 We can see based on the plot how, when given a kernel, this affects the shape of the regressor. The linear kernel obviously creating a linear regressor, the polynomial kernel 
 creating a polynomial regressor of what visually appears to be of the fourth degree, and the radial basis function producing a . 
@@ -104,7 +108,7 @@ Extreme Gradient Boost, or more colloqiually known as XGBoost, is a form of Grad
 ability for XGBoost to regularize parameters. Gradient Boost, on the other hand, is a form of regression that utilizes an ensemble of decision trees to make predictions. 
 We can visually see XGBoost's performance on our data set below: 
 
-![xgb_plot](https://github.com/caiettia/Thesis-Project/blob/main/xgboost_plot.png)
+![xgb_plot](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/xgboost_plot.png)
 
 Following k=10 KFold, an MAE of $4,167.28 is observed.
 
@@ -117,14 +121,14 @@ since we are utilizing this NN for a regression task!
 
 The NN is then compiled with the ADAM optimizer, and finally fit with the training data. We can see the model fit below:
 
-![nn_plot](https://github.com/caiettia/Thesis-Project/blob/main/nn_plot.png)
+![nn_plot](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/nn_plot.png)
 
 Finally, we can get a good quantification of the model performance through a k=10 KFold. From this, we see an MAE of $3,895.27.
 
 ## Final Regressor Evaluation
 To visually see how each regressor is fit to the data, we are able to plot the regressor ontop of eachother. 
 
-![various_regressors](https://github.com/caiettia/Thesis-Project/blob/main/various_regressors.png)
+![various_regressors](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/various_regressors.png)
 
 What is particularly interesting about this plot, is just how well it visualizes the idea of a weak versus strong learner. Looking at the Linear model in red, we see how from 
 x = 8 rooms to x = 9 rooms, the linear model does not necessarily account well for the newer observations. Yet looking at the NN and LOWESS regression, we see how each of 
