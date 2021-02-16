@@ -78,8 +78,16 @@ Following a k=10 KFold implementation for each kernel, we observe the following:
 
 ## Support Vector Regression
 For purposes of understanding what regressor would be best applicable for our dataset, we can explore the various kernels for SVR. More specifically,
-we will look at the linear, polynomial, and radial basis function (rbf) kernels for SVR. When considering what parameters to pass to
-each regressor, the case of the polynomial kernel requires one to observe the data to see what would fit best. Upon observation of the trend of the data, a polynomial of the 
+we will look at the linear, polynomial, and radial basis function (rbf) kernels for SVR. SVR functions as a regressor by identfying decision boundaries around a curve, based 
+on the kernel  provided. The algorithm identifies a decision boundary, a curve between points within the data, then make a prediction based on the distance of the points to 
+the decision curve. This can be visualized in the graphic below. Of note, epsilon is a parameter that identifies that margin of error, where points within epsilon distance 
+to the decision boundary are not considered for prediction. Also, the example below utilizes a linear kernel. Other kernels would provide different curves for the decision 
+curve.
+
+![svr_explain](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/svr_explain.jpeg)
+
+When considering what parameters to pass to each regressor, the case of the polynomial kernel requires one to observe the data to see what would fit best. 
+Upon observation of the trend of the data, a polynomial of the 
 second or third degree both appear potentially viable for this problem. I recognize this by seeing what appears to be a second or third degree trend in the data. For sake of 
 learning, I will keep the fourth degree polynomial included, because this can validate our inference of the trend in the data based on how it fits to the data.
 All of these kernels dictate how the decision boundary is identified for a data set in a given SVR. To better visualize the various kernels with our data set, the plot below 
