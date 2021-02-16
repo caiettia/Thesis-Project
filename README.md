@@ -123,7 +123,7 @@ So, we quantify this regressor again with a k=10 KFold, and an MAE of $4,167.28 
 
 ## Sequential NN
 A Sequential Neural Network is a form of constructing a neural network, where each layer of the NN is built sequentially. So, each iteration of the sequence builds a 
-number of neurons within the network, until finally the network is built and fit with the training data. For the purposes of this proejct, the model is sequentially built 
+number of neurons within the network, until finally the network is built and fit with the training data. For the purposes of this project, the model is sequentially built 
 starting with 128 neurons, then 32 neurons, then 8 neurons, then finally a singular neuron for the last layer. The first three layers have a rectified linear activation 
 function, while the final layer has a linear activation function. The reason this final layer is composed of one neuron is because this is the output layer, and is necessary 
 since we are utilizing this NN for a regression task! The NN is then compiled with the ADAM optimizer, and adaptive version of gradient descent, and finally fit with the training data. We can see the model fit below:
