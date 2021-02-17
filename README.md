@@ -53,7 +53,7 @@ To further understand the rate of error of our linear model, we run our KFold wi
 Local regression is a form of regression that takes into account local points throughout the plot to identify the a curve of regression. So, when a locally weighted 
 regressor makes a prediction, it does so using only points local to the input. This is done by the process of identifying local weights, which are determined through the use 
 of different kernels or mathematical functions which weight a regression based on local 
-subsets of the overall data set. There are a host of different kernels that can be utilized for weighting, yet only four will be considered for this project: tricubic, 
+subsets of the overall data set. There are a host of different kernels that can be utilized for weighting (read more about these kernels [here](https://en.wikipedia.org/wiki/Kernel_(statistics))), yet only four will be considered for this project: tricubic, 
 quartic, uniform, and the Epanechnikov kernel functions. We can also plot these kernels to visually understand how they may differ.
 
 ![diff_kernels_sep](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/lowess_kerns_sep.png)
