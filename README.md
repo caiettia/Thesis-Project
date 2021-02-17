@@ -60,11 +60,6 @@ quartic, uniform, and the Epanechnikov kernel functions. We can also plot these 
 
 ![diff_kernels_tog](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/lowess_kerns_together.png)
 
-Visually, we can see the same sense of closeness between the three kernels that we do when comparing the MAE values. Tricubic and Quartic kernels both give us similar curves 
-when plot, signfiying that roughly $4 difference in the MAE. The Epanechnikov kernel is notably more performant relative to the Tricubic and Quartic functions. We can see 
-this visually in its slight divergence at points from the other two kernels, and also the $16 to $20 difference from the other two kernels. So, we identify the Epanechnikov 
-kernel function as the most performant of the three and the choice as the best representative for LOWESS. 
-
 Following a k=10 KFold implementation for each kernel, we observe the following: 
 
 | Kernel       | MAE       |
@@ -74,7 +69,12 @@ Following a k=10 KFold implementation for each kernel, we observe the following:
 | Epanechnikov | $4,085.36 |
 | Uniform      | $4,110.08 |
 
-
+Visually, we can see the same sense of closeness between the three kernels that we do when comparing the MAE values. Tricubic, Quartic, and Epanechnikov kernels give us 
+similar curves when plot, signfiying that roughly $<10 difference in their respective MAEs. Visually, only the uniform kernel seems to follow a different fit to our data 
+when compared to the other three kernels. That being said, the Quartic kernel is notably more performant relative to the Tricubic and Epanechnikov functions. We can see this 
+visually in its slight divergence at points from the other two kernels, and also the roughly $5 to $9 difference in MAEs from the Tricubic and Epanechnikov kernels. We can 
+also see that our visual observation of the Uniform kernel performing notably differently from the other three kernels is confirmed in the MAE calculation. So, we 
+identify the Quartic kernel function as the most performant of the three and the choice as the best representative for LOWESS. 
 
 ## Support Vector Regression
 For purposes of understanding what regressor would be best applicable for our dataset, we can explore the various kernels for SVR. More specifically,
