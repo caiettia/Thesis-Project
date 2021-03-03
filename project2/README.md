@@ -57,11 +57,13 @@ $\frac{(\alpha \lambda - \beta)}{(\alpha-1)}$ if $\lambda < |\beta| \le \alpha \
 $0$ if $|\beta| > \alpha \lambda$
 
 We can see from this penalization that, as $\beta$ increases, it may reach a point where $|\beta| > \alpha \lambda$ then SCAD does not further penalize the estimation of the
-given $\beta$ parameter, thus allowing for larger $\beta$ values when compared to other techniques.
+given $\beta$ parameter, thus allowing for larger $\beta$ values when compared to other techniques. We can also see how the SCAD technique does not take one approach unilaterally, and instead imposes linear penalty to smaller estimations of $\beta$ and quadratic penalty to so-called medium $\beta$ estimations.
 
 
 ## Square Root LASSO
+Square Root LASSO is a modification to the LASSO technique, where an L1 penalty is still considered, yet with an objective function of which is a square root. This can be represented through the optimization function:
 
+minimize $\sqrt{ \frac{1}{n} \sum_{i=1}^n (y_i - y_i^{\hat})^2} + \lambda \sum_{i=1}^p |\beta_i|$
 
 
 # References
@@ -69,4 +71,4 @@ given $\beta$ parameter, thus allowing for larger $\beta$ values when compared t
  - https://andrewcharlesjones.github.io/posts/2020/03/scad/
  - https://fan.princeton.edu/papers/01/penlike.pdf
  - https://statisticaloddsandends.wordpress.com/2018/07/31/the-scad-penalty/
- - 
+
