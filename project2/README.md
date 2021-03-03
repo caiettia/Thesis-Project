@@ -85,7 +85,7 @@ minimize $\sqrt{ \frac{1}{n} \sum_{i=1}^n (y_i - y_i^{\hat})^2} + \lambda \sum_{
 It is worth noting that, the main difference between LASSO and Ridge regression is namely the order of the penalty function, with LASSO having a first order penalty and
 Ridge having a second order penalty function. We can further visually explore this relationship in the graphic below:
 
-![RIDGEplot](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project 2/l1_vs_l2_example.png)
+![RIDGEplot](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/l1_vs_l2_example.png)
 
 
 # References
