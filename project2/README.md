@@ -76,7 +76,7 @@ Now, when considering all of the plots above, we can see that as the alpha param
 we see that as lambda increases the scale of the y-axis increases as well. 
 
 ## Square Root LASSO
-Square Root LASSO is a modification to the LASSO technique, where an L1 penalty is still considered, yet with an objective function of which is a square root. This can be represented through the optimization function:
+Square Root LASSO is a modification to the LASSO technique, where an L1 penalty is still considered, yet with an objective function of which is a square root. This can be represented through the minimization of the optimization function:
 
 minimize $\sqrt{ \frac{1}{n} \sum_{i=1}^n (y_i - y_i^{\hat})^2} + \lambda \sum_{i=1}^p |\beta_i|$
 
