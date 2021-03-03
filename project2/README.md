@@ -1,8 +1,6 @@
 # Project 2
 In this project, we will be looking at various regularization techniques. 
 
-## Dataset
-
 ## Background
 At a high level, regularization is a method in which one is able to determine values for weights or select variables. In application,
 this is an optimization problem with constraints applied to the vector of weights,![Betas](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/beta_weights.gif),in a given problem. So, when a regularization method is utilized, we are 
@@ -10,10 +8,9 @@ either doing so to account for strong multi-collinearity between features in our
 parameters for our model than independent observations in the data set. All in all, regularization as it is seen below is done to improve the predictive power
 of our regression by manipulating the parameters of each model.
 
-
 ## Ridge
 Ridge regularization, referred to as L2, is a form of regularization that combats some of the shortcomings of Ordinary Least Squares (OLS) 
-by controlling for the size of each estimator. This is done through the minimization function:
+by controlling for the size of each estimator. Ridge allows us to particularly combat multi-collinearity. This is done through the minimization function:
 
 minimize $\frac{1}{n} \cdot \sum_{i=1}^n(\text{Residual}_i)^2 + \alpha \sum_{j=1}^p \beta_j^2$
 
@@ -38,8 +35,8 @@ plot below:
 ![LASSOplot](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/LASSOpenalty.png)
 
 We can see that as we encounter larger $\beta$ values, the LASSO regularization method penalizes the estimation of the parameter more and more harshly. Thus, we see the 
-penalization of parameters increases linearly as the parameter value increases.
-
+penalization of parameters increases linearly as the parameter value increases. LASSO particularly allows us to help get more parsimonious models.
+ 
 ## Elastic Net
 Elastic Net is a method of combining the LASSO and Ridge regression, L1 and L2, in a convex manner. So, Elastic Net is able to learn the weights for a given regressor
 by minimizing the optimzation problem:
@@ -48,6 +45,9 @@ minimize $\frac{1}{n} \cdot \sum_{i=1}^n (\text{Residual}_i)^2 + \alpha (\lambda
 
 $\alpha$ is again a strength hyperparameter, and is usually identified using the L1 ratio of $\frac{\lambda}{1-\lambda}$
 $\lambda$ is defined to be $0 \le \lambda \le 1$
+
+Elastic Net is able to find a decent middle ground between Ridge and LASSO regularizations, allowing the regularization to address both the multi-collinearity that 
+Ridge addresses while also enabling our model to be more parsimonious in line with LASSO. 
 
 
 ## SCAD
@@ -64,16 +64,22 @@ $\frac{(\alpha \lambda - \beta)}{(\alpha-1)}$ if $\lambda < |\beta| \le \alpha \
 $0$ if $|\beta| > \alpha \lambda$
 
 We can see from this penalization that, as $\beta$ increases, it may reach a point where $|\beta| > \alpha \lambda$ then SCAD does not further penalize the estimation of the
-given $\beta$ parameter, thus allowing for larger $\beta$ values when compared to other techniques. We can also see how the SCAD technique does not take one approach unilaterally, and instead imposes linear penalty to smaller estimations of $\beta$ and quadratic penalty to so-called medium $\beta$ estimations. To better understand how 
-the hyperparameters for SCAD, lambda and alpha, can affect the parameter estimations, various combinations of parameters are observed in the plot below.
+given $\beta$ parameter, thus allowing for larger $\beta$ values when compared to other techniques. We can also see how the SCAD technique does not take one approach unilaterally, and instead imposes linear penalty to smaller estimations of $\beta$ and quadratic penalty to so-called medium $\beta$ estimations. Looking at the plot below, we can see the advantage of SCAD over LASSO in that SCAD "smoothly-clips" the v-shaped penalty functions that LASSO provides. 
+
+![SCADplot](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/SCADpenalty.png)
+
+To better understand the hyperparameters for SCAD, lambda and alpha, can affect the parameter estimations, various combinations of parameters are observed in the plot below.
 
 ![SCADcombos](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/SCAD_explore_diff_param_combos.png)
 
+Now, when considering all of the plots above, we can see that as the alpha parameter increases, the angle of the "v" shape increases. When considering the lambda parameter,
+we see that as lambda increases the scale of the y-axis increases as well. 
 
 ## Square Root LASSO
 Square Root LASSO is a modification to the LASSO technique, where an L1 penalty is still considered, yet with an objective function of which is a square root. This can be represented through the optimization function:
 
 minimize $\sqrt{ \frac{1}{n} \sum_{i=1}^n (y_i - y_i^{\hat})^2} + \lambda \sum_{i=1}^p |\beta_i|$
+
 
 # Observations
 It is worth noting that, the main difference between LASSO and Ridge regression is namely the order of the penalty function, with LASSO having a first order penalty and
