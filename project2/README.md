@@ -5,9 +5,10 @@ In this project, we will be looking at various regularization techniques.
 
 ## Background
 At a high level, regularization is a method in which one is able to determine values for weights or select variables. In application,
-this is an optimization problem with constraints applied to the vector of weights,  ,in a given problem. So, when a regularization method is utilized, we are 
+this is an optimization problem with constraints applied to the vector of weights,![Betas](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/beta_weights.gif),in a given problem. So, when a regularization method is utilized, we are 
 either doing so to account for strong multi-collinearity between features in our regression, or we are accounting for the need to learn more 
-parameters for our model than independent observations in the data set.
+parameters for our model than independent observations in the data set. All in all, regularization as it is seen below is done to improve the predictive power
+of our regression by manipulating the parameters of each model.
 
 
 ## Ridge
@@ -17,10 +18,13 @@ by controlling for the size of each estimator. This is done through the minimiza
 minimize $\frac{1}{n} \cdot \sum_{i=1}^n(\text{Residual}_i)^2 + \alpha \sum_{j=1}^p \beta_j^2$
 
 $\alpha$ is a term that specifies the strength of regularization, and generally can neither be too strong nor too weak. This parameter can be tuned based on the problem.
+We can visually see what this penalty looks like in the plot below:
+
+![RIDGEplot](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/RidgePenalty.png)
 
 We need Ridge regularization to reduce the standard errors of a regression especially when there may be some form of multicollinearity in a multi-variable
 regression data set. One thing of note is that, when observing the penalization function $\alpha \sum_{j=1}^p \beta_j^2$, we see that as the estimation of a $\beta$
-increases, the penalty on the estimation of $\beta$ increases quadratically. Thus, larger $\beta$ terms are penalized more harshly.
+increases, the penalty on the estimation of $\beta$ increases quadratically. Thus, larger $\beta$ terms are penalized more harshly. 
 
 ## LASSO
 Least Absolute Shrinkage and Selection Operator (LASSO), referred to as L1, is a regularization technique which learns the weights of esimators by 
@@ -28,7 +32,10 @@ optimizing the following function:
 
 minimize $\frac{1}{n} \cdot \sum_{i=1}^{n} (\text{Residual}_i)^2 + \alpha \sum_{j=1}^{p}|\beta_j|$
 
-$\alpha$, similar to Ridge, functions as a strength hyperparameter which can be tuned in its applcation.
+$\alpha$, similar to Ridge, functions as a strength hyperparameter which can be tuned in its application. We can again visually see what this penalty look like in the
+plot below:
+
+![LASSOplot](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/LASSOpenalty.png)
 
 We can see that as we encounter larger $\beta$ values, the LASSO regularization method penalizes the estimation of the parameter more and more harshly. Thus, we see the 
 penalization of parameters increases linearly as the parameter value increases.
@@ -57,13 +64,22 @@ $\frac{(\alpha \lambda - \beta)}{(\alpha-1)}$ if $\lambda < |\beta| \le \alpha \
 $0$ if $|\beta| > \alpha \lambda$
 
 We can see from this penalization that, as $\beta$ increases, it may reach a point where $|\beta| > \alpha \lambda$ then SCAD does not further penalize the estimation of the
-given $\beta$ parameter, thus allowing for larger $\beta$ values when compared to other techniques. We can also see how the SCAD technique does not take one approach unilaterally, and instead imposes linear penalty to smaller estimations of $\beta$ and quadratic penalty to so-called medium $\beta$ estimations.
+given $\beta$ parameter, thus allowing for larger $\beta$ values when compared to other techniques. We can also see how the SCAD technique does not take one approach unilaterally, and instead imposes linear penalty to smaller estimations of $\beta$ and quadratic penalty to so-called medium $\beta$ estimations. To better understand how 
+the hyperparameters for SCAD, lambda and alpha, can affect the parameter estimations, various combinations of parameters are observed in the plot below.
+
+![SCADcombos](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/SCAD_explore_diff_param_combos.png)
 
 
 ## Square Root LASSO
 Square Root LASSO is a modification to the LASSO technique, where an L1 penalty is still considered, yet with an objective function of which is a square root. This can be represented through the optimization function:
 
 minimize $\sqrt{ \frac{1}{n} \sum_{i=1}^n (y_i - y_i^{\hat})^2} + \lambda \sum_{i=1}^p |\beta_i|$
+
+# Observations
+It is worth noting that, the main difference between LASSO and Ridge regression is namely the order of the penalty function, with LASSO having a first order penalty and
+Ridge having a second order penalty function. We can further visually explore this relationship in the graphic below:
+
+![RIDGEplot](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project 2/l1_vs_l2_example.png)
 
 
 # References
