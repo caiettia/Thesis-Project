@@ -12,7 +12,7 @@ of our regression by manipulating the parameters of each model.
 Ridge regularization, referred to as L2, is a form of regularization that combats some of the shortcomings of Ordinary Least Squares (OLS) 
 by controlling for the size of each estimator. Ridge allows us to particularly combat multi-collinearity. This is done through the minimization function:
 
-minimize $\frac{1}{n} \cdot \sum_{i=1}^n(\text{Residual}_i)^2 + \alpha \sum_{j=1}^p \beta_j^2$
+minimize ![ridge_eqn](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/ridge_eqn.png)
 
 $\alpha$ is a term that specifies the strength of regularization, and generally can neither be too strong nor too weak. This parameter can be tuned based on the problem.
 We can visually see what this penalty looks like in the plot below:
