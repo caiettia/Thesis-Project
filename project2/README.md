@@ -44,8 +44,9 @@ by minimizing the optimzation problem:
 
 ![elasticneteq](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/elasticnet_eqn.gif)
 
-![alpha](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/alpha.gif) is again a strength hyperparameter, and is usually identified using the L1 ratio of $\frac{\lambda}{1-\lambda}$
-$\lambda$ is defined to be ![inequ](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/0_lambda_1.gif)
+![alpha](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/alpha.gif) is again a strength hyperparameter, and is usually identified using the L1 ratio of ![lambdaratio](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/lambdaratio.gif)
+
+![lambda](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/lambda.gif) is defined to be ![inequ](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/0_lambda_1.gif)
 
 Elastic Net is able to find a decent middle ground between Ridge and LASSO regularizations, allowing the regularization to address both the multi-collinearity that 
 Ridge addresses while also enabling our model to be more parsimonious in line with LASSO. 
