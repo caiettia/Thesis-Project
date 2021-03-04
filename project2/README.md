@@ -1,5 +1,5 @@
 # Project 2
-In this project, we will be looking at various regularization techniques. 
+In this project, we will be looking at various regularization techniques, and how they can affect the efficiency of prediction for regression.
 
 ## Background
 At a high level, regularization is a method in which one is able to determine values for weights or select variables. In application,
@@ -14,7 +14,8 @@ by controlling for the size of each estimator. Ridge allows us to particularly c
 
 ![ridge_eqn](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/ridge_eqn.gif)
 
-![alpha](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/alpha.gif) is a term that specifies the strength of regularization, and generally can neither be too strong nor too weak. This parameter can be tuned based on the problem.
+![alpha](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/alpha.gif) is a term that specifies the strength of regularization, and generally can neither 
+be too strong nor too weak. This parameter can be tuned based on the problem.
 We can visually see what this penalty looks like in the plot below:
 
 ![RIDGEplot](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/RidgePenalty.png)
@@ -30,12 +31,14 @@ optimizing the following function:
 
 ![LASSO_eqn](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/lasso_eqn.gif)
 
-![alpha](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/alpha.gif), similar to Ridge, functions as a strength hyperparameter which can be tuned in its application. We can again visually see what this penalty look like in the
+![alpha](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/alpha.gif), similar to Ridge, functions as a strength hyperparameter which can be tuned in 
+its application. We can again visually see what this penalty look like in the
 plot below:
 
 ![LASSOplot](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/LASSOpenalty.png)
 
-We can see that as we encounter larger ![beta](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/beta.gif) values, the LASSO regularization method penalizes the estimation of the parameter more and more harshly. Thus, we see the 
+We can see that as we encounter larger ![beta](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/beta.gif) values, the LASSO regularization method 
+penalizes the estimation of the parameter more and more harshly. Thus, we see the 
 penalization of parameters increases linearly as the parameter value increases. LASSO particularly allows us to help get more parsimonious models.
  
 ## Elastic Net
@@ -66,7 +69,9 @@ Where the penalization function is frequently represented piece-wise in terms of
 
 We can see from this penalization that, as ![beta](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/beta.gif) increases, it may reach a point where 
 ![betalambda](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/beta_alphalamb.gif) then SCAD does not further penalize the estimation of the
-given ![beta](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/beta.gif) parameter, thus allowing for larger ![beta](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/beta.gif) values when compared to other techniques. We can also see how the SCAD technique does not take one approach unilaterally, and instead imposes linear penalty to smaller estimations of ![beta](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/beta.gif) and quadratic penalty to so-called medium ![beta](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/beta.gif) estimations. Looking at the plot below, we can see the advantage of SCAD over LASSO in that SCAD "smoothly-clips" the v-shaped penalty functions that LASSO provides. 
+given ![beta](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/beta.gif) parameter, thus allowing for larger ![beta](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/beta.gif) values when compared to other techniques. We can also see how the SCAD technique does not 
+take one approach unilaterally, and instead imposes linear penalty to smaller estimations of ![beta](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/beta.gif) and quadratic penalty to so-called medium ![beta](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/beta.gif) 
+estimations. Looking at the plot below, we can see the advantage of SCAD over LASSO in that SCAD "smoothly-clips" the v-shaped penalty functions that LASSO provides. 
 
 ![SCADplot](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/SCADpenalty.png)
 
@@ -78,7 +83,8 @@ Now, when considering all of the plots above, we can see that as the alpha param
 we see that as lambda increases the scale of the y-axis increases as well. 
 
 ## Square Root LASSO
-Square Root LASSO is a modification to the LASSO technique, where an L1 penalty is still considered, yet with an objective function of which is a square root. This can be represented through the minimization of the optimization function:
+Square Root LASSO is a modification to the LASSO technique, where an L1 penalty is still considered, yet with an objective function of which is a square root. This can be 
+represented through the minimization of the optimization function:
 
 ![sqrt_lasso](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/sqrt_lasso.gif)
 
@@ -86,8 +92,6 @@ Square Root LASSO is a modification to the LASSO technique, where an L1 penalty 
 # Observations
 It is worth noting that, the main difference between LASSO and Ridge regression is namely the order of the penalty function, with LASSO having a first order penalty and
 Ridge having a second order penalty function. We can further visually explore this relationship in the graphic below:
-
-![RIDGEplot](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/l1_vs_l2_example.png)
 
 
 # References
