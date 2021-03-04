@@ -93,6 +93,26 @@ represented through the minimization of the optimization function:
 It is worth noting that, the main difference between LASSO and Ridge regression is namely the order of the penalty function, with LASSO having a first order penalty and
 Ridge having a second order penalty function. We can further visually explore this relationship in the graphic below:
 
+# Comparing Regularization Methods
+For purposes of better understanding each regularization method beyond the theoretical level, we can apply each method to some data sets and see how they perform. To 
+understand and compare methods, we use a simple linear regression with no regularization as the base line. Following this, we are able to then utilize SKLearn's GridSearchCV 
+method to tune the hyper parameters for each regularization method. GridSearchCV does this by fitting each model with different combinations of parameters and then scoring 
+them to identify which combination of parameters performs best on the data set. Once identified, these parameters are provided to each model, and KFold Cross Validation is 
+utilized with k=10 folds. The Mean Absolute Error (MAE) is finally obtained and then recorded in a table.
+
+## Boston Housing
+First, we can look at the Boston Housing Data set. This data set records various variables of a home such as the distance to a highway, crime rate of the neighborhood,
+and age of the home to name a few of the variables, then also has a field indicating the value in USD of the house. These variables are regressed against the price to attempt 
+to estimate housing prices in Boston. Each regularization method alongside a baseline linear model is fit to the data and the Mean Absolute Errors are recorded below.
+
+| Method            | MAE       | Best Alpha | Best Lambda |
+|-------------------|-----------|------------|-------------|
+| Linear Regression | $3,433.87 | N/A        | N/A         |
+| Ridge             | $3,419.47 | 0.1        | N/A         |
+| Lasso             | $3,421.35 | 0.05       | N/A         |
+| Elastic Net       | $3,421.45 | 0.01       | 0.95        |
+| Square-root Lasso | $3,483.33 | 0.96       | N/A         |
+
 
 # References
  - https://ncss-wpengine.netdna-ssl.com/wp-content/themes/ncss/pdf/Procedures/NCSS/Ridge_Regression.pdf
