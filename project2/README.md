@@ -156,10 +156,12 @@ estimating these ground-truth beta parameters.
 | Lasso             | -0.467 | 1.488 | 2.504 | 0     | -0.002 | 3.728 | 2.004 | -0.806 |
 | Elastic Net       | -0.464 | 1.490 | 2.498 | 0     | 0      | 3.716 | 2.008 | -0.802 |
 | SCAD              | -0.020 | 1.287 | 2.481 | 0     | 0      | 3.697 | 2.227 | -1.036 |
+| Square-root Lasso | -0.341 | 1.293 | 2.635 | 0     | 0      | 3.802 | 1.935 | -0.686 |
 
-We can notice that both Elastic Net and SCAD are effective in estimating the Beta4 and Beta5 parameters to be 0. Despite this, the two methods perform notably less
-effectively in estimating larger Beta values, notably Beta3 and Beta6. 
-
+We can notice that both Elastic Net, SCAD, and Square-root Lasso are effective in estimating the Beta4 and Beta5 parameters to be 0. Despite this, SCAD and Elastic Net 
+perform notably less effectively in estimating larger Beta values, notably Beta3 and Beta6. Square-root Lasso on the other hand performs the best of the regularization 
+methods at estimating Beta3 as well as one of the better methods in estimating Beta7. Despite being the worst method in estimating Beta8, it appears that Square-root Lasso
+performs best in estimating parameters as well as in minimizing the MAE.
 
 # References
  - https://ncss-wpengine.netdna-ssl.com/wp-content/themes/ncss/pdf/Procedures/NCSS/Ridge_Regression.pdf
