@@ -221,14 +221,15 @@ estimated by each method, and we can visually observe performances of these meth
 | Ridge             | -0.734 | 1.769 | 2.513 | 0.243 | -0.594 | 4.039 | 2.215 | -1.100 |19.806|
 | Lasso             | -0.467 | 1.488 | 2.504 | 0     | -0.002 | 3.728 | 2.004 | -0.806 |18.602|
 | Elastic Net       | -0.464 | 1.490 | 2.498 | 0     | 0      | 3.716 | 2.008 | -0.802 |18.581|
-| SCAD              | 0 | 0.225 | 3.250 | 0     | 0      | 3.823 | 1.538 | -0.153 |20.956|
-| Square-root Lasso | -0.0484 | 1.603 | 2.506 | 0     | 0      | 3.802 | 1.935 | -0.686 |6.909|19.596|
+| SCAD              | -1.257 | 2.393 | 3.726 | 0     | 0      | 4.494 | 2.236 | -1.402 |17.869|
+| Square-root Lasso | -0.0484 | 1.603 | 2.506 | 0     | 0      | 3.802 | 1.935 | -0.686 |19.596|
 
 We can notice that both Elastic Net, SCAD, and Square-root Lasso are effective in estimating the Beta4 and Beta5 parameters to be 0. Despite this, Elastic Net 
 performs notably less effectively in estimating larger Beta values, notably Beta3 and Beta6. SCAD is the most effective at estimating Beta3, however does not perform as well 
 when considering the other Beta parameters. Square-root Lasso on the other hand performs the best of the regularization 
-methods at estimating Beta3 as well as one of the better methods in estimating Beta7. Despite being the worst method in estimating Beta8, it appears that Square-root Lasso
-performs best in estimating parameters as well as one of the best methods in minimizing the MAE.
+methods at estimating Beta3 as well as one of the better methods in estimating Beta7. Yet overall, we can look at the L2 Norm and the MAE to best understand what 
+regularization technique performs best. From this, we can see that SCAD performed best not only in terms of the MAE but also had the smallest L2 Norm, meaning
+that the parameters estimated by SCAD were closest to the ground-truth betas we manufactured.
 
 # References
  - https://ncss-wpengine.netdna-ssl.com/wp-content/themes/ncss/pdf/Procedures/NCSS/Ridge_Regression.pdf
