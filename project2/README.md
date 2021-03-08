@@ -1,12 +1,9 @@
-# Project 2
-In this project, we will be looking at various regularization techniques, and how they can affect the efficiency of prediction for regression.
-
 ## Background
 At a high level, regularization is a method in which one is able to determine values for weights or select variables. In application,
 this is an optimization problem with constraints applied to the vector of weights,![Betas](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/beta_weights.gif),in a given problem. So, when a regularization method is utilized, we are 
-either doing so to account for strong multi-collinearity between features in our regression, or we are accounting for the need to learn more 
+doing so to account for strong multi-collinearity between features in our regression, or we are accounting for the need to learn more 
 parameters for our model than independent observations in the data set. All in all, regularization as it is seen below is done to improve the predictive power
-of our regression by manipulating the parameters of each model.
+of our regression by manipulating the estimators of each model.
 
 ## Ridge
 Ridge regularization, referred to as L2, is a form of regularization that combats some of the shortcomings of Ordinary Least Squares (OLS) 
