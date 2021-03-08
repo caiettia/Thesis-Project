@@ -162,7 +162,7 @@ We can notice that both Elastic Net, SCAD, and Square-root Lasso are effective i
 performs notably less effectively in estimating larger Beta values, notably Beta3 and Beta6. SCAD is the most effective at estimating Beta3, however does not perform as well 
 when considering the other Beta parameters. Square-root Lasso on the other hand performs the best of the regularization 
 methods at estimating Beta3 as well as one of the better methods in estimating Beta7. Despite being the worst method in estimating Beta8, it appears that Square-root Lasso
-performs best in estimating parameters as well as in minimizing the MAE.
+performs best in estimating parameters as well as one of the best methods in minimizing the MAE.
 
 # References
  - https://ncss-wpengine.netdna-ssl.com/wp-content/themes/ncss/pdf/Procedures/NCSS/Ridge_Regression.pdf
