@@ -133,7 +133,7 @@ wind, and rain which are all utilized as features to predict the area burned by 
 can observe the heatmap below showing each variable and their respective correlation coefficients. Here, Red and Blue indicate strong positive and negative correlation 
 respectively.
 
-![bhousecorr](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/bhousing_corr_plot.png)
+![bhousecorr](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/fire_corr_data.png)
 
 The strong correlation we observe between the variables in our data set indicate that we may infact need regularization! This is because regularization allows us to still 
 effectively estimate parameters despite strong multi-collinearity in our data set.
