@@ -1,180 +1,236 @@
-# Comparing Regressors
-When understanding what regression technique is best applicable for a situation, one needs to compare regressors. This means that one methodically looks at various approaches
-for regression and identifies what approach best fits their data set. Given the nature of data and the vast number of approaches available for a problem, there is no true
-one model that will always be best. Thus, we must compare regressors to best understand what models work best for our given data set. 
+## Background
+At a high level, regularization is a method in which one is able to determine values for weights or select variables. In application,
+this is an optimization problem with constraints applied to the vector of weights,![Betas](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/beta_weights.gif),in a given problem. So, when a regularization method is utilized, we are 
+doing so to account for strong multi-collinearity between features in our regression, or we are accounting for the need to learn more 
+parameters for our model than independent observations in the data set. All in all, regularization as it is seen below is done to improve the predictive power
+of our regression by manipulating the estimators of each model.
 
-For this project, we are given the Boston Housing Dataset, a dataset surrounding the prices of homes in Boston and various datum surrounding them. While there are a multitude of different columns in the data set, we are going to be looking specifically at the price of houses relative to the number of rooms they have.
+## Ridge
+Ridge regularization, referred to as L2, is a form of regularization that combats some of the shortcomings of Ordinary Least Squares (OLS) 
+by controlling for the size of each estimator. Ridge allows us to particularly combat multi-collinearity. This is done through the minimization function:
 
-To start, we can see this data in a plot below and get a better visual understanding of what might be going on.
+![ridge_eqn](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/ridge_eqn.gif)
 
-![blank_plot](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/blank_plot.png)
+![alpha](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/alpha.gif) is a term that specifies the strength of regularization, and generally can neither 
+be too strong nor too weak. This parameter can be tuned based on the problem.
+We can visually see what this penalty looks like in the plot below:
 
-Visually, there appears to be some sort of positive trend within the data. This is a good start, as it will give us an idea of what to expect in terms of plotting various
-regressors on these axes. But before we begin plotting, we must understand how we are going to evaluate our various regressors.
+![RIDGEplot](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/RidgePenalty.png)
 
-## Evaluation Techniques
-### Mean Absolute Error
-For sake of comparing different models, we use the Mean Absolute Error (MAE). This value is an arithmetic mean of all of the absolute errors for a given model. More generally, every time a model makes a prediction against the test set how close that prediction was to the actual value is recorded as the absolute error. So, for every prediction within the test set, an absolute error value is calculated. Finally, the MAE is calculated by taking the mean of all of these mean values. Regressors always try to minimize error. 
+We need Ridge regularization to reduce the standard errors of a regression especially when there may be some form of multicollinearity in a multi-variable
+regression data set. One thing of note is that, when observing the penalization function 
+![ridgepenalty](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/ridgepenalty.gif), we see that as the estimation of a ![beta](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/beta.gif)
+increases, the penalty on the estimation of ![beta](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/beta.gif) increases quadratically. Thus, larger ![beta](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/beta.gif) terms are penalized more harshly. 
 
-![MAE_formula](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/CodeCogsEqn%20(2).gif)
+## LASSO
+Least Absolute Shrinkage and Selection Operator (LASSO), referred to as L1, is a regularization technique which learns the weights of esimators by 
+optimizing the following function:
 
-Thus, a lower MAE value indicates a regressor performing well, while a higher MAE value indicates a regressor being less accurate in predictions. This is all measured in relativity when comparing regressors! 
+![LASSO_eqn](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/lasso_eqn.gif)
 
-### KFold
-KFold is a form of cross validation, where we iteratively test a model to better understand its predictive power through metrics such as Mean Absolute Error (MAE). KFold works by splitting up a training dataset into "k" folds. Then, the model is trained on k-1 "folds" of the data set and validated on the the final fold within a given iteration. KFold iterations k times, so finally the performance metrics are identified by taking the mean of the metrics from each iteration. It is particularly worth noting that each fold is equal in length, and a new fold is picked in each iteration of KFold as the validation set. 
+![alpha](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/alpha.gif), similar to Ridge, functions as a strength hyperparameter which can be tuned in 
+its application. We can again visually see what this penalty look like in the
+plot below:
 
-An example of this algorithm can be seen in the image below, where an instance of KFold is run for k=4. 
-![kfold](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/kfold_example.png)
+![LASSOplot](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/LASSOpenalty.png)
 
-KFold is a critical step in the process of evaluating various regressors, because it allows us to obtain less-biased estimations of error for a given regressor. This is thanks to how KFold "shuffles" the data into unique folds and then iteratively trains and tests against different combinations of these folds. This allows the estimated error to account for particularly "good" or "bad" train and test splits within the data that may come about from testing.
+We can see that as we encounter larger ![beta](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/beta.gif) values, the LASSO regularization method 
+penalizes the estimation of the parameter more and more harshly. Thus, we see the 
+penalization of parameters increases linearly as the parameter value increases. LASSO particularly allows us to help get more parsimonious models.
+ 
+## Elastic Net
+Elastic Net is a method of combining the LASSO and Ridge regression, L1 and L2, in a convex manner. So, Elastic Net is able to learn the weights for a given regressor
+by minimizing the optimzation problem:
 
-Without KFold, we could be getting biased evaluation metrics and thus choose a potentially overfit or underfit model for our regression problem. Thus, it is very important that we do not forget to utilize KFold in evaluating our variety of regressors. 
+![elasticneteq](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/elasticnet_eqn.gif)
 
-# Models 
+![alpha](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/alpha.gif) is again a strength hyperparameter, and is usually identified using the L1 ratio of ![lambdaratio](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/lambdaratio.gif)
 
-## Linear Model
-A linear model is the representation of a relationship between two variables, x and y, where any rate of change is identified as constant. This model takes the form of 
-![linear_model_eq](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/CodeCogsEqn%20(1).gif). This model is used when we think there is a linear relationship between the x and y variables being considered. So, when we visually look at the data in the first plot, there could potentially be a linear relationship. Thus, we can fit this model to 
-our data. 
+![lambda](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/lambda.gif) is defined to be ![inequ](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/0_lambda_1.gif)
 
-![lin_mod_plot](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/lin_mod.png)
+Elastic Net is able to find a decent middle ground between Ridge and LASSO regularizations, allowing the regularization to address both the multi-collinearity that 
+Ridge addresses while also enabling our model to be more parsimonious in line with LASSO. 
 
-While this is correct in the sense that it identifies a positive correlation between the two axes, this is not a strong identification of correlation. 
-This is because it does not account for any sense of localized weighting between various regions on the graph. 
-This is can be seen granularly between x=4 rooms to x=5 rooms. In this subset, a majority
-of the data points are above the regression line. However, when looking at x=5 rooms to x=6 rooms, the opposite is true. This is one indication that the linear model
-is a weak learner. This means that the model is better than chance when it comes to making predictions, but it is not very sensitive to local subsets of the data. Also, being 
-a weak learner entails that the model will not be very sensitive to new data when introduced. This makes
-it a nice starting point for our regression, but certainly not the best regressor we will identify. 
 
-To further understand the rate of error of our linear model, we run our KFold with k=10 and find a Mean Absolute Error of $4,424.53. 
+## SCAD
+Smoothly Clipped Absolute Deviations (SCAD) is a form of regularization that attempts to further combat biases that are potentially not fully addressed by the 
+methods of regularization above. SCAD attempts to find a middle ground of regularization when estimating parameters by allowing for large ![beta](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/beta.gif) values to be identified 
+for parameters while encouraging the identification of fewer more meaningful estimators rather than many potentially less meaningful ![beta](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/beta.gif)s. Mathematically, this is done by minimizing the function below:
 
-## LOWESS
-Local regression is a form of regression that takes into account local points throughout the plot to identify the a curve of regression. So, when a locally weighted 
-regressor makes a prediction, it does so using only points local to the input. This is done by the process of identifying local weights, which are determined through the use 
-of different kernels or mathematical functions which weight a regression based on local 
-subsets of the overall data set. There are a host of different kernels that can be utilized for weighting (read more about these kernels [here](https://en.wikipedia.org/wiki/Kernel_(statistics))), yet only four will be considered for this project: tricubic, 
-quartic, uniform, and the Epanechnikov kernel functions. We can also plot these kernels to visually understand how they may differ.
+![SCADmain](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/scad.gif)
 
-![diff_kernels_sep](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/lowess_kerns_sep.png)
+Where the penalization function is frequently represented piece-wise in terms of 
+![lambda](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/lambda.gif) as:
 
-![diff_kernels_tog](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/lowess_kerns_together.png)
+![scadeqn](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/scad_penalty.gif)
 
-Following a k=10 KFold implementation for each kernel, we observe the following: 
+We can see from this penalization that, as ![beta](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/beta.gif) increases, it may reach a point where 
+![betalambda](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/beta_alphalamb.gif) then SCAD does not further penalize the estimation of the
+given ![beta](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/beta.gif) parameter, thus allowing for larger ![beta](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/beta.gif) values when compared to other techniques. We can also see how the SCAD technique does not 
+take one approach unilaterally, and instead imposes linear penalty to smaller estimations of ![beta](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/beta.gif) and quadratic penalty to so-called medium ![beta](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/beta.gif) 
+estimations. Looking at the plot below, we can see the advantage of SCAD over LASSO in that SCAD "smoothly-clips" the v-shaped penalty functions that LASSO provides. 
 
-| Kernel       | MAE       |
-|--------------|-----------|
-| Tricubic     | $4,081.07 |
-| Quartic      | $4,076.19 |
-| Epanechnikov | $4,085.36 |
-| Uniform      | $4,110.08 |
+![SCADplot](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/SCADpenalty.png)
 
-Visually, we can see the same sense of closeness between the three kernels that we do when comparing the MAE values. Tricubic, Quartic, and Epanechnikov kernels give us 
-similar curves when plot, signfiying that roughly $<10 difference in their respective MAEs. Visually, only the uniform kernel seems to follow a different fit to our data 
-when compared to the other three kernels. That being said, the Quartic kernel is notably more performant relative to the Tricubic and Epanechnikov functions. We can see this 
-visually in its slight divergence at points from the other two kernels, and also the roughly $5 to $9 difference in MAEs from the Tricubic and Epanechnikov kernels. We can 
-also see that our visual observation of the Uniform kernel performing notably differently from the other three kernels is confirmed in the MAE calculation. So, we 
-identify the Quartic kernel function as the most performant of the three and the choice as the best representative for LOWESS. 
+To better understand the hyperparameters for SCAD, lambda and alpha, can affect the parameter estimations, various combinations of parameters are observed in the plot below.
 
-## Support Vector Regression
-For purposes of understanding what regressor would be best applicable for our dataset, we can explore the various kernels for SVR. More specifically,
-we will look at the linear, polynomial, and radial basis function (rbf) kernels for SVR. SVR functions as a regressor by identfying decision boundaries around a curve, based 
-on the kernel  provided. The algorithm identifies a decision boundary, a curve between points within the data, then make a prediction based on the distance of the points to 
-the decision curve. This can be visualized in the graphic below. Of note, epsilon is a parameter that identifies that margin of error, where points within epsilon distance 
-to the decision boundary are not considered for prediction. Also, the example below utilizes a linear kernel. Other kernels would provide different curves for the decision 
-curve.
+![SCADcombos](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/SCAD_explore_diff_param_combos.png)
 
-![svr_explain](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/svr_explain.jpeg)
+Now, when considering all of the plots above, we can see that as the alpha parameter increases, the angle of the "v" shape increases. When considering the lambda parameter,
+we see that as lambda increases the scale of the y-axis increases as well. 
 
-When considering what parameters to pass to each regressor, the case of the polynomial kernel requires one to observe the data to see what would fit best. 
-Upon observation of the trend of the data, a polynomial of the 
-second or third degree both appear potentially viable for this problem. I recognize this by seeing what appears to be a second or third degree trend in the data. For sake of 
-learning, I will keep the fourth degree polynomial included, because this can validate our inference of the trend in the data based on how it fits to the data.
-All of these kernels dictate how the decision boundary is identified for a data set in a given SVR. To better visualize the various kernels with our data set, the plot below 
-is generated:
+## Square Root LASSO
+Square Root LASSO is a modification to the LASSO technique, where an L1 penalty is still considered, yet with an objective function of which is a square root. This can be 
+represented through the minimization of the optimization function:
 
-![svr_kernels_sep](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/svr_kernels_sep.png)
+![sqrt_lasso](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/sqrt_lasso.gif)
 
-![svr_kernels_tog](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/svr_kernels_together.png)
 
-We can see based on the plot how, when given a kernel, this affects the shape of the regressor. The linear kernel identifies a linear relationship within the data, while the 
-polynomial kernels identify second, third, and fourth order non-linear trends within the data. The radial basis function follows a nonlinear trend in the data, and of the 
-five kernels shown, follows the visual trend of the data best. This provides a visual inclination to think that the RBF kernel will likely be best for the purposes of 
-regression in this data set. To confirm this, we can quantifiably compare each kernel using the MAE statistic. 
+# Observations
+It is worth noting that, the main difference between LASSO and Ridge regression is namely the order of the penalty function, with LASSO having a first order penalty and
+Ridge having a second order penalty function. We can further visually explore this relationship in the graphic below:
 
-We again apply KFold for k=10 and see the following values for our MAE:
+# Comparing Regularization Methods
+For purposes of better understanding each regularization method beyond the theoretical level, we can apply each method to some data sets and see how they perform. To 
+understand and compare methods, we use a simple linear regression with no regularization as the base line. Following this, we are able to then utilize SKLearn's GridSearchCV 
+method to tune the hyper parameters for each regularization method. GridSearchCV does this by fitting each model with different combinations of parameters and then scoring 
+them to identify which combination of parameters performs best on the data set. Once identified, these parameters are provided to each model, and KFold Cross Validation is 
+utilized with k=10 folds. The Mean Absolute Error (MAE) is finally obtained and then recorded in a table.]
 
-| Kernel       | MAE       |
-|--------------|-----------|
-| linear       | $4,434.24 |
-| rbf          | $4,124.47 |
-| polynomial (deg = 4)   | $36,017.88 |
-| polynomial (deg = 3)   | $4,242.55 |
-| polynomial (deg = 2)   | $4,155.11 |
+We can also look at how well each regularization method can estimate beta parameters when given a usecase that particularly suits the advantages the methods posses; data with 
+high multi-collinearity. We can first create the "ground-truth" beta estimators for the data set, then generate the data set based on these estimators accompanied by 
+a noise function scaled by a scalar. Once the data set is created, we then run each regularization method and get the Beta estimators to identify which methods are closest to
+identifying the ground truth Betas. 
 
-Based on the output MAEs from Kfold, we can see that indeed our inference about the polynomial kernel for SVR was correct! The fourth degree result is certainly nonsensical, 
-while the second and third degree results are more agreeable. While the second degree polynomial performs best of the three polynomial kernels, the radial basis function 
-kernel still outperforms them all. Thus, from the SVR camp, we choose the rbf kernel SVR for further comparisons.
+## Boston Housing
+First, we can look at the Boston Housing Data set. This data set records various variables of a home such as the distance to a highway, crime rate of the neighborhood,
+and age of the home to name a few of the variables, then also has a field indicating the value in USD of the house. To understand how these variables are correlated, we 
+can observe the heatmap below showing each variable and their respective correlation coefficients. Here, Red and Blue indicate strong positive and negative correlation 
+respectively.
 
-## XGBoost
-Extreme Gradient Boost, or more colloqiually known as XGBoost, is a form of Gradient Boost that is particularly effective at combatting overfitting. This is thanks to the 
-ability for XGBoost to regularize parameters. Gradient Boost is a form of regression that utilizes an ensemble of decision trees to make predictions. More 
-concisely, XGBoost is utilizing a forest of decision trees, similar to Random Forests, yet XGBoost improves upon RF by weighting trees differently, thereby making the 
-regressor a stronger learner as it can be more sensitive to new data. We can visually see XGBoost's fit on our data set below: 
+![bhousecorr](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/bhousing_corr_plot.png)
 
-![xgb_plot](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/xgboost_plot.png)
+The strong correlation we observe between the variables in our data set indicate that we may infact need regularization! This is because regularization allows us to still 
+effectively estimate parameters despite strong multi-collinearity in our data set.
 
-Visually, we can see the strength of XGBoost as a learner with how the regressor fits the fluctuating volume of data. From x = 4 rooms to x = 6 rooms, we can see the \
-algorithm's sensitivity most clearly, following the visual trend of the data quite well. Despite this, near x = 9 rooms, we see the XGBoost regressor visually diverge from 
-the seemingly exponential trend of the data. While this algorithm visually is more performant than the linear model, it is likely not the best regressor we have come across. 
-So, we quantify this regressor again with a k=10 KFold, and an MAE of $4,167.28 is observed.
+So, the variables are regressed against the price to attempt to estimate housing prices in Boston. Each regularization method alongside a baseline linear model is fit to the data 
+and the Mean Absolute Errors are recorded below.
 
-## Sequential NN
-A Sequential Neural Network is a neural network, where each layer is built sequentially and the NN particularly handles sequences of data. So, each iteration of the sequence 
-builds a number of neurons within the network, until finally the network is built and fit with the training data. For the purposes of this project, the model is sequentially 
-built starting with 128 neurons, then 32 neurons, then 8 neurons, then finally a singular neuron for the last layer. The first three layers have a rectified linear activation 
-function, while the final layer has a linear activation function. The reason this final layer is composed of one neuron is because this is the output layer, and is necessary 
-since we are utilizing this NN for a regression task! The NN is then compiled with the ADAM optimizer, an adaptive version of gradient descent, and finally fit with the 
-training data. We can see the model predictions plot on the data below:
+| Method            | MAE       | Best Alpha | Best Lambda/Lambda Ratio |
+|-------------------|-----------|------------|-------------|
+| Linear Regression | $3,433.87 | N/A        | N/A         |
+| Ridge             | $3,419.47 | 0.1        | N/A         |
+| Lasso             | $3,421.35 | 0.05       | N/A         |
+| Elastic Net       | $3,421.45 | 0.01       | 0.95        |
+| Square-root Lasso | $3,483.33 | 0.96       | N/A         |
 
-![nn_plot](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/nn_plot.png)
+From the above data outputs, we see that after hyper parameter tuning, Ridge regularization appears to minimize the error of regression the most among the various
+regularization techniques.
 
-Visually, we can see the model is fit well with the trend of the data. The model fits particularly well with x > 8 rooms, where the model is able to identify the visual trend 
-in the data when it gets much more sparse. Visually, it appears the the Sequential NN could be a strong contender in terms of being an applicable regressor for our task.  We 
-can again get a good quantification of the model performance through a k=10 KFold. From this, we see an MAE of $4,165.50.
+## Forest Fires Data set
+First, we can look at the Forest Fires Data set. This data set is composed of various climate-related indices as well as meteorological data such as temperature, humidity, 
+wind, and rain which are all utilized as features to predict the area burned by a given fire. To understand how these variables are correlated, we 
+can observe the heatmap below showing each variable and their respective correlation coefficients. Here, Red and Blue indicate strong positive and negative correlation 
+respectively.
 
-# Final Regressor Evaluation
-To visually see how each regressor is fit to the data, we are able to plot the regressors ontop of eachother as well as seperately to visualize how the models fit the data. 
+![bhousecorr](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/fire_corr_data.png)
 
-![various_regressors_sep](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/all_reg_sep.png)
+The strong correlation we observe between the variables in our data set indicate that we may infact need regularization! This is because regularization allows us to still 
+effectively estimate parameters despite strong multi-collinearity in our data set.
 
-![various_regressors_together](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/all_reg_together.png)
+So, the variables are regressed against the price to attempt to estimate housing prices in Boston. Each regularization method alongside a baseline linear model is fit to the 
+data and the Mean Absolute Errors are recorded below.
 
-What is particularly interesting about these plots is just how well they visualize the idea of a weak versus strong learner. Looking at the Linear model in red, we see how 
-from x = 8 rooms to x = 9 rooms, the linear model does not necessarily account well for the newer observations. Yet looking at the NN, LOWESS, and SVR regressions, we see how 
-each of their curves responds to the shifting weight of the data set. Looking again from 8 to 9 rooms, we see how these two regressors are able to adequately accomodate for 
-the weight of data points being notably higher along the y axis, when compared to the general data set.
+| Method            | MAE       | Best Alpha | Best Lambda/Lambda Ratio |
+|-------------------|-----------|------------|-------------|
+| Linear Regression | 19.97 | N/A        | N/A         |
+| Ridge             | 19.88 | 0.95        | N/A         |
+| Lasso             | 19.66 | 0.95       | N/A         |
+| Elastic Net       | 19.46 | 0.95       | 5        |
+| Square-root Lasso | 19.72 | 0.95       | N/A         |
+| SCAD | 18.58 | 1.0       | 0.75         |
 
-Another interesting observation can be seen between x = 6 rooms to x = 7 rooms. Here, the weight NN is not as easily able to fit to the data as the LOWESS regressor. The 
-LOWESS regressor seems to be much more sensitive to local subsets of the data set when compared to the NN. This can also be seen between x = 4 rooms and x = 5 rooms. Again, 
-the LOWESS regressor is able to learn better from the small subset of data when compared to the NN and linear model. So, we can see that the Quartic Kernel Function 
-makes the LOWESS regressor much more sensitive to new data, and thus a strong learner.
+We can tell from above that utilizing regularization techniques can notably improve our regression performance. Of all of the methods, we see that SCAD in particular
+was the most effective at minimizing our error in regression.
 
-To understand what regressor is best, errors considered, we can plot the MAE in a table below:
+## Randomly Generated Dataset
+To further explore these regularization techniques, I have generated a data set for testing. The dataset was randomly generated using the 
+numpy library as well as the toeplitz function from scipy, so as to ensure we effectively simulate multiple correlations within the data. This can be seen below.
 
-| Model       | MAE       |
-|--------------|-----------|
-| Linear Regressor   | $4,424.53|
-| XGBoost         | $4,167.28 |
-| SVR (rbf)     | $4,124.57 |
-| Sequential NN   | $4,165.50|
-| Lowess(Quartic)   | $4,076.19|
+![feat4corr](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/simdat_4feat_corr.png)
 
-From the above explanations of each regressor, we have seen varying levels of performance, quantified by the MAE. Having taken the best performing kernels where applicable 
-and comparing each regressor's MAE wthin the table, we can see that the Sequential Neural Network performs best. This is after utilizing KFold to achieve significantly less 
-biased estimations of the error for each regressor. So, while one regressor may have performed notably better with a given split of the training and testing data, the Locally 
-Weighted Kernel Regressor with the Quartic Kernel yielded the lowest MAE score through KFold. Thus, of all the regressors considered, the LOWESS appears to be the best for 
-this data set! While neural networks are increasingly regarded as the most advanced or accurate methodologies, this 
-data set is just another example of seemingly simpler regression techniques still performing on par or better than more advanced techniques that we may encounter.
+The data set has 200 samples and was made by first generating a set of 5 betas as the 
+established "ground truth", then creating X and Y values based on these betas, where the Y values were generated by passing the X values as well as a
+random noise function scaled by a scalar constant. Once the data set was generated, each regularization method was evaluated as done in the Boston 
+Housing example above. From each iteration, we see the results below. 
 
+| Method            | MAE       | Best Alpha | Best Lambda/Lambda Ratio |
+|-------------------|-----------|------------|-------------|
+| Linear Regression | 1.68 | N/A        | N/A         |
+| Ridge             | 1.66 | 0.995        | N/A         |
+| Lasso             | 1.50 | 0.25       | N/A         |
+| Elastic Net       | 1.49 | 0.17       | 0.99        |
+| Square-root Lasso | 1.49 | 16       | N/A         |
+| SCAD | 1.48 | 1.0 | 0.02|
+
+Yet another key point to observe between these regularization methods is their respective abilities to estimate parameters. As such, the data set was generated with 8 beta
+parameters as "ground-truth" and then a scalar coupled with a noise function were utilized to obscure these ground truth betas. Thus, it is the task of these regularization
+methods to identify these ground truth parameters.
+
+|                   | Beta1  | Beta2 | Beta3 | Beta4 | Beta5 | L2 Norm |
+|-------------------|--------|-------|-------|-------|-------|-------|
+| Ground-Truth      | -1     | 6     | 9     | 3     | 0 |  |
+| Linear Regression | -0.611 | 6.125 | 8.718 | 2.710 |0.0130 | 25.706 |
+| Ridge             | -0.480 | 6.037 | 8.598 | 2.722 | 0.163| 25.413 |
+| Lasso             | 0 | 5.389 | 8.854 | 2.485     | 0 | 25.185 |
+| Elastic Net       | 0 | 5.440 | 8.811 | 2.565  | 0 | 25.145 |
+| SCAD              | -0.285 | 5.954 | 8.454 | 2.880 | 0.637|24.774|
+| Square-root Lasso | 0 | 5.425 | 8.825 | 2.548     | 0|25.158|
+
+When comparing the estimated betas relative to the ground truth that we manufactured, despite LASSO performing the best in terms of MAE, it does not accurately predict Beta1 
+well. Most methods actually do not end up predicting Beta1 as well as the initial linear model does. Yet despite this, the L2 Norm tells us that SCAD is the regularization
+technique that is closest to the ground-truth betas, and thus the best method for this data set.
+
+## Another Randomly Generated Dataset
+This time, the data set is composed of 8 features as opposed to the 20 above. The same methodology for hyperparameter selection is followed as well as for the 
+data set generation. Similar to what we have done above, we may observe each feature's correlation to eachother in the heatmap below.
+
+![bhousecorr](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/corr_simdata_feat8.png)
+
+
+
+| Method            | MAE       | Best Alpha | Best Lambda/Lambda Ratio |
+|-------------------|-----------|------------|-------------|
+| Linear Regression | 2.01 | N/A        | N/A         |
+| Ridge             | 1.98 | 0.995        | N/A         |
+| Lasso             | 1.76 | 0.085       | N/A         |
+| Elastic Net       | 1.81 | 0.05       | 2.8        |
+| Square-root Lasso | 1.74 | 5.4       | N/A         |
+| SCAD | 1.67 | 3.0 | 0.03|
+
+To examine how well the regularization methods can estimate the ground-truth betas as outlined above, the methodology from above is followed. In the table below, each beta is 
+estimated by each method, and we can visually observe performances of these methods in estimating these ground-truth beta parameters.
+
+|                   | Beta1  | Beta2 | Beta3 | Beta4 | Beta5  | Beta6 | Beta7 | Beta8  | L2 Norm |
+|-------------------|--------|-------|-------|-------|--------|-------|-------|--------|--------|
+| Ground-Truth      | -1     | 2     | 3     | 0     | 0      | 4     | 2     | -1     | |
+| Linear Regression | -0.799 | 1.820 | 2.562 | 0.241 | -0.712 | 4.158 | 2.254 | -1.187 | 20.219| 
+| Ridge             | -0.734 | 1.769 | 2.513 | 0.243 | -0.594 | 4.039 | 2.215 | -1.100 |19.806|
+| Lasso             | -0.467 | 1.488 | 2.504 | 0     | -0.002 | 3.728 | 2.004 | -0.806 |18.602|
+| Elastic Net       | -0.464 | 1.490 | 2.498 | 0     | 0      | 3.716 | 2.008 | -0.802 |18.581|
+| SCAD              | -1.257 | 2.393 | 3.726 | 0     | 0      | 4.494 | 2.236 | -1.402 |17.869|
+| Square-root Lasso | -0.0484 | 1.603 | 2.506 | 0     | 0      | 3.802 | 1.935 | -0.686 |19.596|
+
+We can notice that both Elastic Net, SCAD, and Square-root Lasso are effective in estimating the Beta4 and Beta5 parameters to be 0. Despite this, Elastic Net 
+performs notably less effectively in estimating larger Beta values, notably Beta3 and Beta6. SCAD is the most effective at estimating Beta3, however does not perform as well 
+when considering the other Beta parameters. Square-root Lasso on the other hand performs the best of the regularization 
+methods at estimating Beta3 as well as one of the better methods in estimating Beta7. Yet overall, we can look at the L2 Norm and the MAE to best understand what 
+regularization technique performs best. From this, we can see that SCAD performed best not only in terms of the MAE but also had the smallest L2 Norm, meaning
+that the parameters estimated by SCAD were closest to the ground-truth betas we manufactured.
+
+# References
+ - https://ncss-wpengine.netdna-ssl.com/wp-content/themes/ncss/pdf/Procedures/NCSS/Ridge_Regression.pdf
+ - https://andrewcharlesjones.github.io/posts/2020/03/scad/
+ - https://fan.princeton.edu/papers/01/penlike.pdf
+ - https://statisticaloddsandends.wordpress.com/2018/07/31/the-scad-penalty/
 
