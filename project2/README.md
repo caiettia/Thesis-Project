@@ -127,6 +127,32 @@ and the Mean Absolute Errors are recorded below.
 | Elastic Net       | $3,421.45 | 0.01       | 0.95        |
 | Square-root Lasso | $3,483.33 | 0.96       | N/A         |
 
+## Forest Fires Data set
+First, we can look at the Forest Fires Data set. This data set is composed of various climate-related indices as well as meteorological data such as temperature, humidity, 
+wind, and rain which are all utilized as features to predict the area burned by a given fire. To understand how these variables are correlated, we 
+can observe the heatmap below showing each variable and their respective correlation coefficients. Here, Red and Blue indicate strong positive and negative correlation 
+respectively.
+
+![bhousecorr](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/bhousing_corr_plot.png)
+
+The strong correlation we observe between the variables in our data set indicate that we may infact need regularization! This is because regularization allows us to still 
+effectively estimate parameters despite strong multi-collinearity in our data set.
+
+So, the variables are regressed against the price to attempt to estimate housing prices in Boston. Each regularization method alongside a baseline linear model is fit to the 
+data and the Mean Absolute Errors are recorded below.
+
+| Method            | MAE       | Best Alpha | Best Lambda/Lambda Ratio |
+|-------------------|-----------|------------|-------------|
+| Linear Regression | 19.97 | N/A        | N/A         |
+| Ridge             | 19.88 | 0.95        | N/A         |
+| Lasso             | 19.66 | 0.95       | N/A         |
+| Elastic Net       | 19.46 | 0.95       | 5        |
+| Square-root Lasso | 19.72 | 0.95       | N/A         |
+| SCAD | 18.58 | 1.0       | 0.75         |
+
+We can tell from above that utilizing regularization techniques can notably improve our regression performance. Of all of the methods, we see that SCAD in particular
+was the most effective at minimizing our error in regression.
+
 ## Randomly Generated Dataset
 To further explore these regularization techniques, I have generated a data set for testing. The dataset was randomly generated using the 
 numpy library as well as the toeplitz function from scipy, so as to ensure we effectively simulate multiple correlations within the data. This can be seen below.
