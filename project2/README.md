@@ -127,6 +127,9 @@ and the Mean Absolute Errors are recorded below.
 | Elastic Net       | $3,421.45 | 0.01       | 0.95        |
 | Square-root Lasso | $3,483.33 | 0.96       | N/A         |
 
+From the above data outputs, we see that after hyper parameter tuning, Ridge regularization appears to minimize the error of regression the most among the various
+regularization techniques.
+
 ## Forest Fires Data set
 First, we can look at the Forest Fires Data set. This data set is composed of various climate-related indices as well as meteorological data such as temperature, humidity, 
 wind, and rain which are all utilized as features to predict the area burned by a given fire. To understand how these variables are correlated, we 
