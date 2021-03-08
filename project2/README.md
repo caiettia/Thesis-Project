@@ -127,6 +127,7 @@ Housing example above. From each iteration, we see the results below.
 | Lasso             | 1.82 | 0.05       | N/A         |
 | Elastic Net       | 1.82 | 0.05       | 0.95        |
 | Square-root Lasso | 1.80 | 5.4       | N/A         |
+| SCAD | 1.77 | 1.0 | 0.5|
 
 
 # References
