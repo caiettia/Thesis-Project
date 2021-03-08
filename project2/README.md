@@ -169,28 +169,30 @@ Housing example above. From each iteration, we see the results below.
 
 | Method            | MAE       | Best Alpha | Best Lambda/Lambda Ratio |
 |-------------------|-----------|------------|-------------|
-| Linear Regression | 1.81 | N/A        | N/A         |
-| Ridge             | 1.78 | 0.995        | N/A         |
-| Lasso             | 1.66 | 0.25       | N/A         |
-| Elastic Net       | 1.70 | 0.005       | 0.7        |
-| Square-root Lasso | 1.65 | 21       | N/A         |
-| SCAD | 1.66 | 1.0 | 0.02|
+| Linear Regression | 1.68 | N/A        | N/A         |
+| Ridge             | 1.66 | 0.995        | N/A         |
+| Lasso             | 1.50 | 0.25       | N/A         |
+| Elastic Net       | 1.49 | 0.17       | 0.99        |
+| Square-root Lasso | 1.49 | 16       | N/A         |
+| SCAD | 1.48 | 1.0 | 0.02|
 
 Yet another key point to observe between these regularization methods is their respective abilities to estimate parameters. As such, the data set was generated with 8 beta
 parameters as "ground-truth" and then a scalar coupled with a noise function were utilized to obscure these ground truth betas. Thus, it is the task of these regularization
 methods to identify these ground truth parameters.
 
-|                   | Beta1  | Beta2 | Beta3 | Beta4 | Beta5 |
-|-------------------|--------|-------|-------|-------|-------|
-| Ground-Truth      | -1     | 6     | 9     | 3     | 0 |
-| Linear Regression | -0.728 | 5.529 | 8.875 | 3.262 |-0.082 |
-| Ridge             | -0.654 | 5.498 | 8.720 | 3.277 | 0.019|
-| Lasso             | 0 | 4.939 | 8.686 | 2.961     | 0 |
-| Elastic Net       | -0.697 | 5.525 | 8.822 | 3.253  | -0.022 |
-| SCAD              | 0 | 5.217 | 8.868 | 3.245     | 0|
-| Square-root Lasso | 0 | 4.657 | 8.843 | 2.847     | 0|
+|                   | Beta1  | Beta2 | Beta3 | Beta4 | Beta5 | L2 Norm |
+|-------------------|--------|-------|-------|-------|-------|-------|
+| Ground-Truth      | -1     | 6     | 9     | 3     | 0 |  |
+| Linear Regression | -0.611 | 6.125 | 8.718 | 2.710 |0.0130 | 25.706 |
+| Ridge             | -0.480 | 6.037 | 8.598 | 2.722 | 0.163| 25.413 |
+| Lasso             | 0 | 5.389 | 8.854 | 2.485     | 0 | 25.185 |
+| Elastic Net       | 0 | 5.440 | 8.811 | 2.565  | 0 | 25.145 |
+| SCAD              | -0.285 | 5.954 | 8.454 | 2.880 | 0.637|24.774|
+| Square-root Lasso | 0 | 5.425 | 8.825 | 2.548     | 0|25.158|
 
-When comparing the estimated betas relative to the ground truth that we manufactured, despite LASSO performing the best in terms of MAE, it does not accurately predict Beta1 well. Most methods actually do not end up predicting Beta1 as well as the initial linear model does. 
+When comparing the estimated betas relative to the ground truth that we manufactured, despite LASSO performing the best in terms of MAE, it does not accurately predict Beta1 
+well. Most methods actually do not end up predicting Beta1 as well as the initial linear model does. Yet despite this, the L2 Norm tells us that SCAD is the regularization
+technique that is closest to the ground-truth betas, and thus the best method for this data set.
 
 ## Another Randomly Generated Dataset
 This time, the data set is composed of 8 features as opposed to the 20 above. The same methodology for hyperparameter selection is followed as well as for the 
@@ -212,15 +214,15 @@ data set generation. Similar to what we have done above, we may observe each fea
 To examine how well the regularization methods can estimate the ground-truth betas as outlined above, the methodology from above is followed. In the table below, each beta is 
 estimated by each method, and we can visually observe performances of these methods in estimating these ground-truth beta parameters.
 
-|                   | Beta1  | Beta2 | Beta3 | Beta4 | Beta5  | Beta6 | Beta7 | Beta8  |
-|-------------------|--------|-------|-------|-------|--------|-------|-------|--------|
-| Ground-Truth      | -1     | 2     | 3     | 0     | 0      | 4     | 2     | -1     |
-| Linear Regression | -0.799 | 1.820 | 2.562 | 0.241 | -0.712 | 4.158 | 2.254 | -1.187 |
-| Ridge             | -0.734 | 1.769 | 2.513 | 0.243 | -0.594 | 4.039 | 2.215 | -1.100 |
-| Lasso             | -0.467 | 1.488 | 2.504 | 0     | -0.002 | 3.728 | 2.004 | -0.806 |
-| Elastic Net       | -0.464 | 1.490 | 2.498 | 0     | 0      | 3.716 | 2.008 | -0.802 |
-| SCAD              | 0 | 0.225 | 3.250 | 0     | 0      | 3.823 | 1.538 | -0.153 |
-| Square-root Lasso | -0.341 | 1.293 | 2.635 | 0     | 0      | 3.802 | 1.935 | -0.686 |
+|                   | Beta1  | Beta2 | Beta3 | Beta4 | Beta5  | Beta6 | Beta7 | Beta8  | L2 Norm |
+|-------------------|--------|-------|-------|-------|--------|-------|-------|--------|--------|
+| Ground-Truth      | -1     | 2     | 3     | 0     | 0      | 4     | 2     | -1     | |
+| Linear Regression | -0.799 | 1.820 | 2.562 | 0.241 | -0.712 | 4.158 | 2.254 | -1.187 | 20.219| 
+| Ridge             | -0.734 | 1.769 | 2.513 | 0.243 | -0.594 | 4.039 | 2.215 | -1.100 |19.806|
+| Lasso             | -0.467 | 1.488 | 2.504 | 0     | -0.002 | 3.728 | 2.004 | -0.806 |18.602|
+| Elastic Net       | -0.464 | 1.490 | 2.498 | 0     | 0      | 3.716 | 2.008 | -0.802 |18.581|
+| SCAD              | 0 | 0.225 | 3.250 | 0     | 0      | 3.823 | 1.538 | -0.153 |20.956|
+| Square-root Lasso | -0.0484 | 1.603 | 2.506 | 0     | 0      | 3.802 | 1.935 | -0.686 |6.909|19.596|
 
 We can notice that both Elastic Net, SCAD, and Square-root Lasso are effective in estimating the Beta4 and Beta5 parameters to be 0. Despite this, Elastic Net 
 performs notably less effectively in estimating larger Beta values, notably Beta3 and Beta6. SCAD is the most effective at estimating Beta3, however does not perform as well 
