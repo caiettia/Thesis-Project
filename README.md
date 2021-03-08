@@ -228,9 +228,16 @@ methods at estimating Beta3 as well as one of the better methods in estimating B
 regularization technique performs best. From this, we can see that SCAD performed best not only in terms of the MAE but also had the smallest L2 Norm, meaning
 that the parameters estimated by SCAD were closest to the ground-truth betas we manufactured.
 
+# Conclusion
+Regularization methods are important to understand when applying various regression techniques to a data set. It allows us to more accurately estimate parameters for a model
+when there is a high degree of multi-collinearity within the data set, while also enabling more accurate estimation of parameters when the number of parameters to estimate is 
+large. While relatively newer techniques such as SCAD and Square-root LASSO have been shown to be quite performant on the data sets and simulated data above, it is still
+important to test each of the techniques in application, as one may encounter an older technique being more performant than a newer one.
+
 # References
  - https://ncss-wpengine.netdna-ssl.com/wp-content/themes/ncss/pdf/Procedures/NCSS/Ridge_Regression.pdf
  - https://andrewcharlesjones.github.io/posts/2020/03/scad/
  - https://fan.princeton.edu/papers/01/penlike.pdf
  - https://statisticaloddsandends.wordpress.com/2018/07/31/the-scad-penalty/
+ - https://archive.ics.uci.edu/ml/datasets/Forest+Fires
 
