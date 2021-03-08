@@ -98,7 +98,12 @@ For purposes of better understanding each regularization method beyond the theor
 understand and compare methods, we use a simple linear regression with no regularization as the base line. Following this, we are able to then utilize SKLearn's GridSearchCV 
 method to tune the hyper parameters for each regularization method. GridSearchCV does this by fitting each model with different combinations of parameters and then scoring 
 them to identify which combination of parameters performs best on the data set. Once identified, these parameters are provided to each model, and KFold Cross Validation is 
-utilized with k=10 folds. The Mean Absolute Error (MAE) is finally obtained and then recorded in a table.
+utilized with k=10 folds. The Mean Absolute Error (MAE) is finally obtained and then recorded in a table.]
+
+We can also look at how well each regularization method can estimate beta parameters when given a usecase that particularly suits the advantages the methods posses; data with 
+high multi-collinearity. We can first create the "ground-truth" beta estimators for the data set, then generate the data set based on these estimators accompanied by 
+a noise function scaled by a scalar. Once the data set is created, we then run each regularization method and get the Beta estimators to identify which methods are closest to
+identifying the ground truth Betas. 
 
 ## Boston Housing
 First, we can look at the Boston Housing Data set. This data set records various variables of a home such as the distance to a highway, crime rate of the neighborhood,
