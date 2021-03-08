@@ -141,7 +141,7 @@ data set generation.
 | Lasso             | 1.76 | 0.085       | N/A         |
 | Elastic Net       | 1.81 | 0.05       | 2.8        |
 | Square-root Lasso | 1.74 | 5.4       | N/A         |
-| SCAD | 1.74 | 1.0 | 0.5|
+| SCAD | 1.67 | 3.0 | 0.03|
 
 Yet another key point to observe between these regularization methods is their respective abilities to estimate parameters. As such, the data set was generated with 8 beta
 parameters as "ground-truth" and then a scalar coupled with a noise function were utilized to obscure these ground truth betas. Thus, it is the task of these regularization
@@ -155,11 +155,12 @@ estimating these ground-truth beta parameters.
 | Ridge             | -0.734 | 1.769 | 2.513 | 0.243 | -0.594 | 4.039 | 2.215 | -1.100 |
 | Lasso             | -0.467 | 1.488 | 2.504 | 0     | -0.002 | 3.728 | 2.004 | -0.806 |
 | Elastic Net       | -0.464 | 1.490 | 2.498 | 0     | 0      | 3.716 | 2.008 | -0.802 |
-| SCAD              | -0.020 | 1.287 | 2.481 | 0     | 0      | 3.697 | 2.227 | -1.036 |
+| SCAD              | 0 | 0.225 | 3.250 | 0     | 0      | 3.823 | 1.538 | -0.153 |
 | Square-root Lasso | -0.341 | 1.293 | 2.635 | 0     | 0      | 3.802 | 1.935 | -0.686 |
 
-We can notice that both Elastic Net, SCAD, and Square-root Lasso are effective in estimating the Beta4 and Beta5 parameters to be 0. Despite this, SCAD and Elastic Net 
-perform notably less effectively in estimating larger Beta values, notably Beta3 and Beta6. Square-root Lasso on the other hand performs the best of the regularization 
+We can notice that both Elastic Net, SCAD, and Square-root Lasso are effective in estimating the Beta4 and Beta5 parameters to be 0. Despite this, Elastic Net 
+performs notably less effectively in estimating larger Beta values, notably Beta3 and Beta6. SCAD is the most effective at estimating Beta3, however does not perform as well 
+when considering the other Beta parameters. Square-root Lasso on the other hand performs the best of the regularization 
 methods at estimating Beta3 as well as one of the better methods in estimating Beta7. Despite being the worst method in estimating Beta8, it appears that Square-root Lasso
 performs best in estimating parameters as well as in minimizing the MAE.
 
