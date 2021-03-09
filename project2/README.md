@@ -230,6 +230,6 @@ that the parameters estimated by SCAD were closest to the ground-truth betas we 
 # References
  - https://ncss-wpengine.netdna-ssl.com/wp-content/themes/ncss/pdf/Procedures/NCSS/Ridge_Regression.pdf
  - https://andrewcharlesjones.github.io/posts/2020/03/scad/
- - https://fan.princeton.edu/papers/01/penlike.pdf
+ - Fan, Jianqing, and Runze Li. “Variable selection via nonconcave penalized likelihood and its oracle properties.” Journal of the American statistical Association 96.456 (2001): 1348-1360.
  - https://statisticaloddsandends.wordpress.com/2018/07/31/the-scad-penalty/
 
