@@ -7,7 +7,7 @@ of our regression by manipulating the estimators of each model.
 
 ## Ridge
 Ridge regularization, referred to as L2, is a form of regularization that combats some of the shortcomings of Ordinary Least Squares (OLS) 
-by controlling for the size of each estimator. Ridge allows us to particularly combat multi-collinearity. This is done through the minimization function:
+by controlling for the size of each estimator. Ridge allows us to particularly combat multi-collinearity. This is done through minimizing the function:
 
 ![ridge_eqn](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/ridge_eqn.gif)
 
@@ -24,7 +24,7 @@ increases, the penalty on the estimation of ![beta](https://raw.githubuserconten
 
 ## LASSO
 Least Absolute Shrinkage and Selection Operator (LASSO), referred to as L1, is a regularization technique which learns the weights of esimators by 
-optimizing the following function:
+minimizing the following function:
 
 ![LASSO_eqn](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/lasso_eqn.gif)
 
@@ -40,7 +40,7 @@ penalization of parameters increases linearly as the parameter value increases. 
  
 ## Elastic Net
 Elastic Net is a method of combining the LASSO and Ridge regression, L1 and L2, in a convex manner. So, Elastic Net is able to learn the weights for a given regressor
-by minimizing the optimzation problem:
+by minimizing the function:
 
 ![elasticneteq](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/elasticnet_eqn.gif)
 
@@ -81,9 +81,10 @@ we see that as lambda increases the scale of the y-axis increases as well.
 
 ## Square Root LASSO
 Square Root LASSO is a modification to the LASSO technique, where an L1 penalty is still considered, yet with an objective function of which is a square root. This can be 
-represented through the minimization of the optimization function:
+represented through the minimization the function:
 
 ![sqrt_lasso](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/sqrt_lasso.gif)
+
 
 
 # Observations
