@@ -85,22 +85,18 @@ represented through the minimization of the optimization function:
 
 ![sqrt_lasso](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/sqrt_lasso.gif)
 
-
-# Observations
-It is worth noting that, the main difference between LASSO and Ridge regression is namely the order of the penalty function, with LASSO having a first order penalty and
-Ridge having a second order penalty function. We can further visually explore this relationship in the graphic below:
-
 # Comparing Regularization Methods
 For purposes of better understanding each regularization method beyond the theoretical level, we can apply each method to some data sets and see how they perform. To 
 understand and compare methods, we use a simple linear regression with no regularization as the base line. Following this, we are able to then utilize SKLearn's GridSearchCV 
 method to tune the hyper parameters for each regularization method. GridSearchCV does this by fitting each model with different combinations of parameters and then scoring 
 them to identify which combination of parameters performs best on the data set. Once identified, these parameters are provided to each model, and KFold Cross Validation is 
-utilized with k=10 folds. The Mean Absolute Error (MAE) is finally obtained and then recorded in a table.]
+utilized with k=10 folds. The Mean Absolute Error (MAE) is finally obtained and then recorded in a table.
 
 We can also look at how well each regularization method can estimate beta parameters when given a usecase that particularly suits the advantages the methods posses; data with 
 high multi-collinearity. We can first create the "ground-truth" beta estimators for the data set, then generate the data set based on these estimators accompanied by 
 a noise function scaled by a scalar. Once the data set is created, we then run each regularization method and get the Beta estimators to identify which methods are closest to
-identifying the ground truth Betas. 
+identifying the ground truth Betas. We utilize the L2 Norm value to understand how close the betas estimated are to the ground truth betas. This is done by taking the square 
+root of the squared difference between the estimated beta value and the actual beta value. Smaller L2 Norm values indicate more closeness in estimation. 
 
 ## Boston Housing
 First, we can look at the Boston Housing Data set. This data set records various variables of a home such as the distance to a highway, crime rate of the neighborhood,
@@ -113,8 +109,8 @@ respectively.
 The strong correlation we observe between the variables in our data set indicate that we may infact need regularization! This is because regularization allows us to still 
 effectively estimate parameters despite strong multi-collinearity in our data set.
 
-So, the variables are regressed against the price to attempt to estimate housing prices in Boston. Each regularization method alongside a baseline linear model is fit to the data 
-and the Mean Absolute Errors are recorded below.
+So, the variables are regressed against the price to attempt to estimate housing prices in Boston. Each regularization method alongside a baseline linear model is fit to the 
+data and the Mean Absolute Errors are recorded below.
 
 | Method            | MAE       | Best Alpha | Best Lambda/Lambda Ratio |
 |-------------------|-----------|------------|-------------|
@@ -123,6 +119,7 @@ and the Mean Absolute Errors are recorded below.
 | Lasso             | $3,421.35 | 0.05       | N/A         |
 | Elastic Net       | $3,421.45 | 0.01       | 0.95        |
 | Square-root Lasso | $3,483.33 | 0.96       | N/A         |
+| SCAD | $3,467.36 | 1.0       | 0.03         |
 
 From the above data outputs, we see that after hyper parameter tuning, Ridge regularization appears to minimize the error of regression the most among the various
 regularization techniques.
@@ -152,6 +149,7 @@ data and the Mean Absolute Errors are recorded below.
 
 We can tell from above that utilizing regularization techniques can notably improve our regression performance. Of all of the methods, we see that SCAD in particular
 was the most effective at minimizing our error in regression.
+
 
 ## Randomly Generated Dataset
 To further explore these regularization techniques, I have generated a data set for testing. The dataset was randomly generated using the 
@@ -190,6 +188,7 @@ methods to identify these ground truth parameters.
 When comparing the estimated betas relative to the ground truth that we manufactured, despite LASSO performing the best in terms of MAE, it does not accurately predict Beta1 
 well. Most methods actually do not end up predicting Beta1 as well as the initial linear model does. Yet despite this, the L2 Norm tells us that SCAD is the regularization
 technique that is closest to the ground-truth betas, and thus the best method for this data set.
+
 
 ## Another Randomly Generated Dataset
 This time, the data set is composed of 8 features as opposed to the 20 above. The same methodology for hyperparameter selection is followed as well as for the 
