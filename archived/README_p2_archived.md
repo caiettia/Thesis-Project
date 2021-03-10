@@ -7,7 +7,7 @@ of our regression by manipulating the estimators of each model.
 
 ## Ridge
 Ridge regularization, referred to as L2, is a form of regularization that combats some of the shortcomings of Ordinary Least Squares (OLS) 
-by controlling for the size of each estimator. Ridge allows us to particularly combat multi-collinearity. This is done through the minimization function:
+by controlling for the size of each estimator. Ridge allows us to particularly combat multi-collinearity. This is done through minimizing the function:
 
 ![ridge_eqn](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/ridge_eqn.gif)
 
@@ -24,7 +24,7 @@ increases, the penalty on the estimation of ![beta](https://raw.githubuserconten
 
 ## LASSO
 Least Absolute Shrinkage and Selection Operator (LASSO), referred to as L1, is a regularization technique which learns the weights of esimators by 
-optimizing the following function:
+minimizing the following function:
 
 ![LASSO_eqn](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/lasso_eqn.gif)
 
@@ -40,7 +40,7 @@ penalization of parameters increases linearly as the parameter value increases. 
  
 ## Elastic Net
 Elastic Net is a method of combining the LASSO and Ridge regression, L1 and L2, in a convex manner. So, Elastic Net is able to learn the weights for a given regressor
-by minimizing the optimzation problem:
+by minimizing the function:
 
 ![elasticneteq](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/elasticnet_eqn.gif)
 
@@ -81,22 +81,27 @@ we see that as lambda increases the scale of the y-axis increases as well.
 
 ## Square Root LASSO
 Square Root LASSO is a modification to the LASSO technique, where an L1 penalty is still considered, yet with an objective function of which is a square root. This can be 
-represented through the minimization of the optimization function:
+represented through the minimization the function:
 
 ![sqrt_lasso](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/sqrt_lasso.gif)
+
+
+
+# Observations
+It is worth noting that, the main difference between LASSO and Ridge regression is namely the order of the penalty function, with LASSO having a first order penalty and
+Ridge having a second order penalty function. We can further visually explore this relationship in the graphic below:
 
 # Comparing Regularization Methods
 For purposes of better understanding each regularization method beyond the theoretical level, we can apply each method to some data sets and see how they perform. To 
 understand and compare methods, we use a simple linear regression with no regularization as the base line. Following this, we are able to then utilize SKLearn's GridSearchCV 
 method to tune the hyper parameters for each regularization method. GridSearchCV does this by fitting each model with different combinations of parameters and then scoring 
 them to identify which combination of parameters performs best on the data set. Once identified, these parameters are provided to each model, and KFold Cross Validation is 
-utilized with k=10 folds. The Mean Absolute Error (MAE) is finally obtained and then recorded in a table.
+utilized with k=10 folds. The Mean Absolute Error (MAE) is finally obtained and then recorded in a table.]
 
 We can also look at how well each regularization method can estimate beta parameters when given a usecase that particularly suits the advantages the methods posses; data with 
 high multi-collinearity. We can first create the "ground-truth" beta estimators for the data set, then generate the data set based on these estimators accompanied by 
 a noise function scaled by a scalar. Once the data set is created, we then run each regularization method and get the Beta estimators to identify which methods are closest to
-identifying the ground truth Betas. We utilize the L2 Norm value to understand how close the betas estimated are to the ground truth betas. This is done by taking the square 
-root of the squared difference between the estimated beta value and the actual beta value. Smaller L2 Norm values indicate more closeness in estimation. 
+identifying the ground truth Betas. 
 
 ## Boston Housing
 First, we can look at the Boston Housing Data set. This data set records various variables of a home such as the distance to a highway, crime rate of the neighborhood,
@@ -109,8 +114,8 @@ respectively.
 The strong correlation we observe between the variables in our data set indicate that we may infact need regularization! This is because regularization allows us to still 
 effectively estimate parameters despite strong multi-collinearity in our data set.
 
-So, the variables are regressed against the price to attempt to estimate housing prices in Boston. Each regularization method alongside a baseline linear model is fit to the 
-data and the Mean Absolute Errors are recorded below.
+So, the variables are regressed against the price to attempt to estimate housing prices in Boston. Each regularization method alongside a baseline linear model is fit to the data 
+and the Mean Absolute Errors are recorded below.
 
 | Method            | MAE       | Best Alpha | Best Lambda/Lambda Ratio |
 |-------------------|-----------|------------|-------------|
@@ -119,7 +124,6 @@ data and the Mean Absolute Errors are recorded below.
 | Lasso             | $3,421.35 | 0.05       | N/A         |
 | Elastic Net       | $3,421.45 | 0.01       | 0.95        |
 | Square-root Lasso | $3,483.33 | 0.96       | N/A         |
-| SCAD | $3,467.36 | 1.0       | 0.03         |
 
 From the above data outputs, we see that after hyper parameter tuning, Ridge regularization appears to minimize the error of regression the most among the various
 regularization techniques.
@@ -149,7 +153,6 @@ data and the Mean Absolute Errors are recorded below.
 
 We can tell from above that utilizing regularization techniques can notably improve our regression performance. Of all of the methods, we see that SCAD in particular
 was the most effective at minimizing our error in regression.
-
 
 ## Randomly Generated Dataset
 To further explore these regularization techniques, I have generated a data set for testing. The dataset was randomly generated using the 
@@ -189,7 +192,6 @@ When comparing the estimated betas relative to the ground truth that we manufact
 well. Most methods actually do not end up predicting Beta1 as well as the initial linear model does. Yet despite this, the L2 Norm tells us that SCAD is the regularization
 technique that is closest to the ground-truth betas, and thus the best method for this data set.
 
-
 ## Another Randomly Generated Dataset
 This time, the data set is composed of 8 features as opposed to the 20 above. The same methodology for hyperparameter selection is followed as well as for the 
 data set generation. Similar to what we have done above, we may observe each feature's correlation to eachother in the heatmap below.
@@ -227,9 +229,16 @@ methods at estimating Beta3 as well as one of the better methods in estimating B
 regularization technique performs best. From this, we can see that SCAD performed best not only in terms of the MAE but also had the smallest L2 Norm, meaning
 that the parameters estimated by SCAD were closest to the ground-truth betas we manufactured.
 
+# Conclusion
+Regularization methods are important to understand when applying various regression techniques to a data set. It allows us to more accurately estimate parameters for a model
+when there is a high degree of multi-collinearity within the data set, while also enabling more accurate estimation of parameters when the number of parameters to estimate is 
+large. While relatively newer techniques such as SCAD and Square-root LASSO have been shown to be quite performant on the data sets and simulated data above, it is still
+important to test each of the techniques in application, as one may encounter an older technique being more performant than a newer one.
+
 # References
  - https://ncss-wpengine.netdna-ssl.com/wp-content/themes/ncss/pdf/Procedures/NCSS/Ridge_Regression.pdf
  - https://andrewcharlesjones.github.io/posts/2020/03/scad/
- - Fan, Jianqing, and Runze Li. “Variable selection via nonconcave penalized likelihood and its oracle properties.” Journal of the American statistical Association 96.456 (2001): 1348-1360.
+ - https://fan.princeton.edu/papers/01/penlike.pdf
  - https://statisticaloddsandends.wordpress.com/2018/07/31/the-scad-penalty/
+ - https://archive.ics.uci.edu/ml/datasets/Forest+Fires
 
