@@ -37,7 +37,16 @@ plot below:
 We can see that as we encounter larger ![beta](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/beta.gif) values, the LASSO regularization method 
 penalizes the estimation of the parameter more and more harshly. Thus, we see the 
 penalization of parameters increases linearly as the parameter value increases. LASSO particularly allows us to help get more parsimonious models.
- 
+
+## Square Root LASSO
+Square Root LASSO is a modification to the LASSO technique, where an L1 penalty is still considered, yet with an objective function of which is a square root. This can be 
+represented through the minimization of the optimization function:
+
+![sqrt_lasso](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/sqrt_lasso.gif) 
+
+The key difference to note is that Square Root Lasso takes the square root of the mean of the squared residuals as the objective function to be minimized. The penalty term 
+for this method is the same as in the LASSO technique.
+
 ## Elastic Net
 Elastic Net is a method of combining the LASSO and Ridge regression, L1 and L2, in a convex manner. So, Elastic Net is able to learn the weights for a given regressor
 by minimizing the optimzation problem:
@@ -79,11 +88,10 @@ To better understand the hyperparameters for SCAD, lambda and alpha, can affect 
 Now, when considering all of the plots above, we can see that as the alpha parameter increases, the angle of the "v" shape increases. When considering the lambda parameter,
 we see that as lambda increases the scale of the y-axis increases as well. 
 
-## Square Root LASSO
-Square Root LASSO is a modification to the LASSO technique, where an L1 penalty is still considered, yet with an objective function of which is a square root. This can be 
-represented through the minimization of the optimization function:
 
-![sqrt_lasso](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/sqrt_lasso.gif)
+
+
+
 
 # Comparing Regularization Methods
 For purposes of better understanding each regularization method beyond the theoretical level, we can apply each method to some data sets and see how they perform. To 
