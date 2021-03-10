@@ -89,7 +89,9 @@ represented through the minimization of the optimization function:
 For purposes of better understanding each regularization method beyond the theoretical level, we can apply each method to some data sets and see how they perform. To 
 understand and compare methods, we use a simple linear regression with no regularization as the base line. Following this, we are able to then utilize SKLearn's GridSearchCV 
 method to tune the hyper parameters for each regularization method. GridSearchCV does this by fitting each model with different combinations of parameters and then scoring 
-them to identify which combination of parameters performs best on the data set. Once identified, these parameters are provided to each model, and KFold Cross Validation is 
+them to identify which combination of parameters performs best on the data set. In some instances, however, GridSearchCV is not utilized as the models we are working with are 
+not SKLearn based. So, for these instances we iteratively test different combinations of parameters and use the combination that yields the best performance in terms of MAE. 
+Once identified, these parameters are provided to each model, and KFold Cross Validation is 
 utilized with k=10 folds. The Mean Absolute Error (MAE) is finally obtained and then recorded in a table.
 
 We can also look at how well each regularization method can estimate beta parameters when given a usecase that particularly suits the advantages the methods posses; data with 
