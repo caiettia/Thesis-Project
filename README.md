@@ -142,8 +142,8 @@ respectively.
 
 ![bhousecorr](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/fire_corr_data.png)
 
-The strong correlation we observe between the variables in our data set indicate that we may infact need regularization! This is because regularization allows us to still 
-effectively estimate parameters despite strong multi-collinearity in our data set.
+We agains see some notable positive correlation between variables as well as as instance of negative correlation. Thus, we can utilize our regularization techniques to
+determine estimators.
 
 So, the variables are regressed against the price to attempt to estimate housing prices in Boston. Each regularization method alongside a baseline linear model is fit to the 
 data and the Mean Absolute Errors are recorded below.
