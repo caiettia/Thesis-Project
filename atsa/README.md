@@ -31,5 +31,27 @@ Discussed the next block, block 2, and talked about the first case study.
     - the goal was then to understand how water distributes itself in nature
     - how much water is being distributed from soil into trees then back into the atmosphere?\
     - the natural area was appealing for this study
+
+## Group 1 Discussion
+ - supporting functions file
+    - load each file in the utility script
+    - put them together then clean them up 
+    - try to make them into one data frame
+    - what about duplicates
+      - all the data packets are the same but the timing is off by a slight amount?
+    - function to identify indices of duplicates
+    - looking at raw data from first file, we see third to fifth line has duplicates
+      - duplicates may have the same time stamp...could be helpful to then remove them
+      - identify if time stamps are roughly similar
+      - make sure that all columns are the exact same
+    - mainly just understanding the problem of duplicate values will be difficult
+  - at 15 minute mark we do not need averages
+    - at 60 minutes we just average everything in a 60 minute time period (probably 4 observations)
+ - how can we make the time values continuous?
+    - want to make time continuous rather than discrete
+ - duplicates are inflating metrics
+ - we need to find the mean of the data points at 15 minute blocks
+    - concern with duplicate packets is that they will inflate values at different time intervals
+    
  
 
