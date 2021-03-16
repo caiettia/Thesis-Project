@@ -53,5 +53,6 @@ Discussed the next block, block 2, and talked about the first case study.
  - we need to find the mean of the data points at 15 minute blocks
     - concern with duplicate packets is that they will inflate values at different time intervals
     
- 
+ # 3/16/2021
+ Continue group work. Answered some of the Case Study 1 approach questions in the discussion forum.
 
