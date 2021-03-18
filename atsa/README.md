@@ -55,4 +55,40 @@ Discussed the next block, block 2, and talked about the first case study.
     
  # 3/16/2021
  Continue group work. Answered some of the Case Study 1 approach questions in the discussion forum.
+ 
+ 
+ # 3/18/2021
+ NOTE arrived about 20 minutes late to class...need to update notes
+ 
+ - the second case study is introduced
+   - the problem with this case study is we need to fill in some values 
+ - data
+  - SW down
+    - average of solar flux over a given day
+  - H_0
+    - daily extraterrestrial solar radiation
+  - f_FEC
+    - conversion of value from flux units to the amount of photon energy in shortwave solar radiation
+    - value is constant
+  - I_0
+    - values composed of equation from this link: https://bitbucket.org/labprentice/gepisat/src/master/
+    - solar noon is when the sun is directly above you
+      - we have to correct this solar noon to conventional time (local clock time)
+      - there is an equation of time, EOT
+      - timezone? every 15 degrees east or west we move an hour in time
+      - a majority of these equations are in the SPLASH code
+
+ - SPLASH
+    - we care about the $ra_j.m2 is the value we are looking for. This gives us H_0 for each day
+    - declination angle, distance factor, heliocentric, sunset angle, etc. are all already calculated
+    - issue is SPLASH goes straight into the integral of the daily energy
+      - we do not have the half-hourly
+      - hint hint: it is available in the GePiSaT code (available in Python not R)
+      - the R version is available in the repository
+      - will have to add the missing pieces from solar.py to solar.R
+      - then, for each day, just calculate the whole half-hourly time series from 0:00 to 23:59
+      - recreate the blue/red figure from section 2.2 in the notebook
+      - red = gap-filled dataset, blue = original data
+
+
 
