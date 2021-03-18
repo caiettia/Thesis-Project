@@ -200,22 +200,24 @@ Without KFold, we could be getting biased evaluation metrics and thus choose a p
 
 # Results
 Before dropping the variables.
-| Method            | MSE      | Alpha | Lambda |
+| Method            | MAE      | Alpha | Lambda |
 |-------------------|----------|-------|--------|
 | Linear Regression | $3491.85 | N/A   | N/A    |
 | Ridge             | $2161.45 | 8     | N/A    |
 | LASSO             | $2151.37 | 0.015 | N/A    |
 | Elastic Net       | $2125.39 | 0.015 | 0.25   |
 | Square Root LASSO | $3130.33 | 0.96  | N/A    |
-| SCAD              | $2540.32 | 0.02  | 1.5    |
+| SCAD              |$2407.42 | 0.02  | 1.5    |
 
-After dropping the variables.
-| Method            | MSE      | Alpha | Lambda |
-|-------------------|----------|-------|--------|
-| Linear Regression | $3434.79 | N/A   | N/A    |
-| Ridge             | $2323.63 | 20     | N/A    |
-| LASSO             | $2254.95 | 0.015 | N/A    |
-| Elastic Net       | $2246.08 | 0.015 | 0.85   |
-| Square Root LASSO | $3524.91 | 0.56  | N/A    |
-| SCAD              | $2407.42 | 0.05  | 1.1    |
+| LOWESS Kernel     | MAE      | Tau |
+|-------------------|----------|-------|
+| Tricubic | $3491.85 | N/A   | 
+| Quartic | $3491.85 | N/A   | 
+| Uniform | $3491.85 | N/A   | 
+| Epanechnikov | $3491.85 | N/A  |
+
+
+| Method     | MAE      | Bootstrap | Max Depth| Max Features | Min Samples Leaf | Min Samples Split| n estimators| 
+|-------------------|----------|-------|-------|-------|-------|-------|-------|
+|Random Forests | $2815.32 | True | 110 | 3 | 4 | 8 | 100 |
 
