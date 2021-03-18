@@ -60,6 +60,8 @@ Discussed the next block, block 2, and talked about the first case study.
  # 3/18/2021
  NOTE arrived about 20 minutes late to class...need to update notes
  
+ - exercise 2
+  - calculate half-hourly solar radiation values based on the gap-filling method in the class notebook for 3/18
  - the second case study is introduced
    - the problem with this case study is we need to fill in some values 
  - data
@@ -89,6 +91,8 @@ Discussed the next block, block 2, and talked about the first case study.
       - then, for each day, just calculate the whole half-hourly time series from 0:00 to 23:59
       - recreate the blue/red figure from section 2.2 in the notebook
       - red = gap-filled dataset, blue = original data
+
+ - need to write first impressions on the discussion board
 
 
 
