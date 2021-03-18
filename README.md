@@ -16,6 +16,13 @@ We observe some strong correlation between input features in our data set. We ca
 observation, yet this strong multicollinearity between features indicates that regularization methods will be important in minimizing the Mean Absolute Error (MAE) of
 our regression.
 
+# Data Processing
+Before the data is input into each model, we can utilize the PolynomialFeatures and StandardScaler functions from the SKLearn library. These functions allow us to scale
+our data to be better understood by each regressor. Note, based on our current implementation of the Square Root LASSO regressor, we are unable to scale the data before
+passing the data to this regressor. Thus, in this instance, our data is not scaled. Using polynomial features and scaling allows us to better find the potential interactions
+between features that may exist in our data set. Thus, in implementation, we have chosen to create PolynomialFeatures of degree 3 from the data set and then scale the data
+before processing in each model. 
+
 # Variable Selection
 For identifying what variables are statistically significant for regression, we may utilize Stepwise Selection. This is a method where a simple linear model is fit with one
 feature from the data, and iteratively variables are added to the model and evaluated. Stepwise utilizes an F-test for variable selection, identifying based on a p-value
@@ -65,7 +72,6 @@ space is the blue/green shaded region.
 
 In this gif, we see that each frame is an iteration of the PSO algorithm. As each iteration progresses, the algorithm hones in on the minimum of the function; the optimal
 solution. With these methods, we are able to tune the hyperparameters and achieve the best possible minimization of error for each function.
-
 
 
 # Models
@@ -220,4 +226,8 @@ Before dropping the variables.
 | Method     | MAE      | Bootstrap | Max Depth| Max Features | Min Samples Leaf | Min Samples Split| n estimators| 
 |-------------------|----------|-------|-------|-------|-------|-------|-------|
 |Random Forests | $2815.32 | True | 110 | 3 | 4 | 8 | 100 |
+
+| Method     | MAE      | Reg Lambda | Max Depth| Alpha | Gamma| n estimators|
+|-------------------|----------|-------|-------|-------|-------|----------|
+| XGBoost | $2,384.10 | 20 | 3 | 1 | 10 | 100 |
 
