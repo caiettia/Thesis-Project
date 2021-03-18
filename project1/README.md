@@ -132,14 +132,15 @@ So, we quantify this regressor again with a k=10 KFold, and an MAE of $4,167.28 
 ## Sequential NN
 A Sequential Neural Network is a neural network, where each layer is built sequentially and the NN particularly handles sequences of data. So, each iteration of the sequence 
 builds a number of neurons within the network, until finally the network is built and fit with the training data. For the purposes of this project, the model is sequentially 
-built starting with 128 neurons, then 32 neurons, then 8 neurons, then finally a singular neuron for the last layer. The first three layers have a rectified linear activation 
-function, while the final layer has a linear activation function. The reason this final layer is composed of one neuron is because this is the output layer, and is necessary 
-since we are utilizing this NN for a regression task! The NN is then compiled with the ADAM optimizer, an adaptive version of gradient descent, and finally fit with the 
-training data. We can see the model predictions plot on the data below:
+built starting with 128 neurons, then 32 neurons, then 8 neurons, then finally a singular neuron for the last layer. The first three layers have a rectified linear 
+activation function, while the final layer has a linear activation function. The reason this final layer is composed of one neuron is because this is the output layer, and 
+is necessary since we are utilizing this NN for a regression task! The NN is then compiled with the ADAM optimizer, an adaptive version of gradient descent, and finally fit 
+with the training data. We can see the model predictions plot on the data below:
 
 ![nn_plot](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/nn_plot.png)
 
-Visually, we can see the model is fit well with the trend of the data. The model fits particularly well with x > 8 rooms, where the model is able to identify the visual trend 
+Visually, we can see the model is fit well with the trend of the data. The model fits particularly well with x > 8 rooms, where the model is able to identify the visual 
+trend 
 in the data when it gets much more sparse. Visually, it appears the the Sequential NN could be a strong contender in terms of being an applicable regressor for our task.  We 
 can again get a good quantification of the model performance through a k=10 KFold. From this, we see an MAE of $4,165.50.
 
