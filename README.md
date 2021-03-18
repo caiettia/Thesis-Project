@@ -1,5 +1,7 @@
-note: for parameter optimization used GridsearchCV for sklearn functions, and PSO for non-sklearn (SCAD, SQRT LASSO)
-
+For this project, we will be looking at a variety of the regression methods we have covered thus far and how they perform when applied to a real data set. For our evaluation
+we will start by first identfiying what features are statistically significant for prediction. Then, we will tune the hyperparameters of our various models through either
+GridSearchCV or Particle Swarm Optimization (PSO) where applicable. Finally, we will look at the Mean Absolute Errors (MAE) produced by each model to understand what 
+method of regression is most applicable to our data set.
 
 # Dataset
 ## Boston Housing
@@ -10,7 +12,9 @@ respectively.
 
 ![bhousecorr](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/bhousing_corr_plot.png)
 
-We observe some strong correlation between input features in our data set. We can apply various regression techniques to observe what method minimizes the error in observation
+We observe some strong correlation between input features in our data set. We can apply various regression techniques to observe what method minimizes the error in 
+observation, yet this strong multicollinearity between features indicates that regularization methods will be important in minimizing the Mean Absolute Error (MAE) of
+our regression.
 
 # Variable Selection
 For identifying what variables are statistically significant for regression, we may utilize Stepwise Selection. This is a method where a simple linear model is fit with one
@@ -37,6 +41,11 @@ From our above stepwise regression, we can see that we only end up excluding two
 that the proportion of owner-occupied units built prior to 1940 and the proportion of non-retail business acres per town are both not statistically significant in
 explaining the median value of owner-occupied homes. Having identified these rest of the variables as statistically significant for our regression, we may proceed by
 excluding the two features that are not significant (older and industrial). 
+
+Why this is important can be easily seen through analyzing the error from a linear model. If we include all of the features from the data set, a simple linear model
+produces a Mean Absolute Error (MAE) of $3491.85. If we exclude the two variables outlined above, we can refit our data to the linear model and find our MAE to be 
+$3434.79. This notable drop in the error is thanks to the exclusion of variables that are not statistically significant to predicting the median home price. Thus, only the
+statistically significant variables are included for this project.
 
 # Hyperparameter Tuning
 Some of the methods that are utilized for regression have hyperparameters, which dictate how the function is applied to the input data. These parameters must be tuned
@@ -69,12 +78,23 @@ line of best-fit within the data, where each input feature has a weight, or a Be
 
 
 # Results
-
+Before dropping the variables.
 | Method            | MSE      | Alpha | Lambda |
 |-------------------|----------|-------|--------|
-| Linear Regression | $3452.29 | N/A   | N/A    |
+| Linear Regression | $3491.85 | N/A   | N/A    |
 | Ridge             | $2161.45 | 8     | N/A    |
 | LASSO             | $2151.37 | 0.015 | N/A    |
 | Elastic Net       | $2125.39 | 0.015 | 0.25   |
-| Square Root LASSO | $3483.33 | 0.96  | N/A    |
+| Square Root LASSO | $3130.33 | 0.96  | N/A    |
+| SCAD              | $2540.32 | 0.02  | 1.5    |
+
+After dropping the variables.
+| Method            | MSE      | Alpha | Lambda |
+|-------------------|----------|-------|--------|
+| Linear Regression | $3434.79 | N/A   | N/A    |
+| Ridge             | $2323.63 | 20     | N/A    |
+| LASSO             | $2254.95 | 0.015 | N/A    |
+| Elastic Net       | $2246.08 | 0.015 | 0.85   |
+| Square Root LASSO | $3524.91 | 0.56  | N/A    |
 | SCAD              | $2407.42 | 0.05  | 1.1    |
+
