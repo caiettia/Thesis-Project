@@ -33,6 +33,10 @@ are shown in the table below.
 | tax      | full-value property-tax rate per $10,000   | 7.576e-5  | keep |
 | crime      | per capita crime rate by town   | 0.004 | keep |
 
+From our above stepwise regression, we can see that we only end up excluding two features from the data set based on an alpha of 0.05, or 5% confidence rate. This tells us
+that the proportion of owner-occupied units built prior to 1940 and the proportion of non-retail business acres per town are both not statistically significant in
+explaining the median value of owner-occupied homes. Having identified these rest of the variables as statistically significant for our regression, we may proceed by
+excluding the two features that are not significant (older and industrial). 
 
 # Hyperparameter Tuning
 Some of the methods that are utilized for regression have hyperparameters, which dictate how the function is applied to the input data. These parameters must be tuned
