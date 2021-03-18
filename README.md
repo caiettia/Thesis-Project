@@ -63,12 +63,14 @@ space is the blue/green shaded region.
 
 ![RIDGEplot](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/midtermproject/pso_example.png)
 
-With these methods, we are able to tune the hyperparameters and achieve the best possible minimization of error for each function.
-
+In this gif, we see that each frame is an iteration of the PSO algorithm. As each iteration progresses, the algorithm hones in on the minimum of the function; the optimal
+solution. With these methods, we are able to tune the hyperparameters and achieve the best possible minimization of error for each function.
 
 
 
 # Models
+We can now look at the various models from our toolkit and apply each model to the real data set. From application, we will observe the MAE as well as the optimal 
+hyperparameters having been identified through hyperparameter tuning methods outlined above. These values will be recorded in the table below.
 
 ## Linear Model
 For purposes of understanding how our regressors would perform against a baseline, a simple linear model is utilized. This model can be thought of trivially as a
