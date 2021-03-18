@@ -70,7 +70,8 @@ solution. With these methods, we are able to tune the hyperparameters and achiev
 
 # Models
 We can now look at the various models from our toolkit and apply each model to the real data set. From application, we will observe the MAE as well as the optimal 
-hyperparameters having been identified through hyperparameter tuning methods outlined above. These values will be recorded in the table below.
+hyperparameters having been identified through hyperparameter tuning methods outlined above. For sake of better understanding what methods we are working with in
+this project, I have included descriptions of each method from my previous work below. 
 
 ## Linear Model
 For purposes of understanding how our regressors would perform against a baseline, a simple linear model is utilized. This model can be thought of trivially as a
@@ -163,13 +164,40 @@ To better understand the hyperparameters for SCAD, lambda and alpha, can affect 
 Now, when considering all of the plots above, we can see that as the alpha parameter increases, the angle of the "v" shape increases. When considering the lambda parameter,
 we see that as lambda increases the scale of the y-axis increases as well. 
 
+## LOWESS Regression
+Local regression is a form of regression that takes into account local points throughout the plot to identify the a curve of regression. So, when a locally weighted 
+regressor makes a prediction, it does so using only points local to the input. This is done by the process of identifying local weights, which are determined through the use 
+of different kernels or mathematical functions which weight a regression based on local 
+subsets of the overall data set. There are a host of different kernels that can be utilized for weighting (read more about these kernels [here](https://en.wikipedia.org/wiki/Kernel_(statistics))), yet only four will be considered for this project: tricubic, 
+quartic, uniform, and the Epanechnikov kernel functions.
 
+## XGBoost
+Extreme Gradient Boost, or more colloqiually known as XGBoost, is a form of Gradient Boost that is particularly effective at combatting overfitting. This is thanks to the 
+ability for XGBoost to regularize parameters. Gradient Boost is a form of regression that utilizes an ensemble of decision trees to make predictions. More 
+concisely, XGBoost is utilizing a forest of decision trees, similar to Random Forests, yet XGBoost improves upon RF by weighting trees differently, thereby making the 
+regressor a stronger learner as it can be more sensitive to new data.
 
+## Sequential NN
+A Sequential Neural Network is a neural network, where each layer is built sequentially and the NN particularly handles sequences of data. So, each iteration of the sequence 
+builds a number of neurons within the network, until finally the network is built and fit with the training data. For the purposes of this project, the model is sequentially 
+built starting with 128 neurons, then 32 neurons, then 8 neurons, then finally a singular neuron for the last layer. The first three layers have a rectified linear 
+activation function, while the final layer has a linear activation function. The reason this final layer is composed of one neuron is because this is the output layer, and 
+is necessary since we are utilizing this NN for a regression task! The NN is then compiled with the ADAM optimizer, an adaptive version of gradient descent, and finally fit 
+with the training data.
 
+# Model Evaluation
+For purposes of understanding how these regression methods perform against eachother, we apply each of them to the Boston Housing data set. In terms of how these methods 
+are applied, we utilize KFold Cross Validation to ensure that we are minimizing the bias in our error statistics. 
 
+## KFold
+KFold is a form of cross validation, where we iteratively test a model to better understand its predictive power through metrics such as Mean Absolute Error (MAE). KFold works by splitting up a training dataset into "k" folds. Then, the model is trained on k-1 "folds" of the data set and validated on the the final fold within a given iteration. KFold iterations k times, so finally the performance metrics are identified by taking the mean of the metrics from each iteration. It is particularly worth noting that each fold is equal in length, and a new fold is picked in each iteration of KFold as the validation set. 
 
+An example of this algorithm can be seen in the image below, where an instance of KFold is run for k=4. 
+![kfold](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/kfold_example.png)
 
+KFold is a critical step in the process of evaluating various regressors, because it allows us to obtain less-biased estimations of error for a given regressor. This is thanks to how KFold "shuffles" the data into unique folds and then iteratively trains and tests against different combinations of these folds. This allows the estimated error to account for particularly "good" or "bad" train and test splits within the data that may come about from testing.
 
+Without KFold, we could be getting biased evaluation metrics and thus choose a potentially overfit or underfit model for our regression problem. Thus, it is very important that we do not forget to utilize KFold in evaluating our variety of regressors. 
 
 
 # Results
