@@ -236,3 +236,7 @@ lowest MAE observed for each model.
 |-------------------|----------|-------|-------|-------|-------|----------|
 | XGBoost | $2384.10 | 20 | 3 | 1 | 10 | 100 |
 
+
+From all of the above regressor results, we see that in terms of the minimization of the MAE, the Elastic Net algorithm of regularized regression performed
+best when applied to this data set after the polynomial featuring and scaling of the data. This makes sense given the high levels of multi-collinearity that we observe
+in the initial graphic above. Always remember to try a variety of methods in your toolkit to your data, as there is never a one-size-fits-all solution!
