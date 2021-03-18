@@ -205,7 +205,10 @@ Without KFold, we could be getting biased evaluation metrics and thus choose a p
 
 
 # Results
-Before dropping the variables.
+Following the methodologies outlined above, we finally can apply each model to the data set and observe the optimal hyperparameters chosen for each model as well as the
+lowest MAE observed for each model. 
+
+
 | Method            | MAE      | Alpha | Lambda |
 |-------------------|----------|-------|--------|
 | Linear Regression | $3491.85 | N/A   | N/A    |
@@ -215,19 +218,21 @@ Before dropping the variables.
 | Square Root LASSO | $3130.33 | 0.96  | N/A    |
 | SCAD              |$2407.42 | 0.02  | 1.5    |
 
+
 | LOWESS Kernel     | MAE      | Tau |
 |-------------------|----------|-------|
-| Tricubic | $3491.85 | N/A   | 
-| Quartic | $3491.85 | N/A   | 
-| Uniform | $3491.85 | N/A   | 
-| Epanechnikov | $3491.85 | N/A  |
+| Tricubic | $2251.05 | 0.3    | 
+| Quartic | $2251.07 | 0.3    | 
+| Uniform | $2250.89 | 0.3    | 
+| Epanechnikov | $2250.87 | 0.3  |
 
 
 | Method     | MAE      | Bootstrap | Max Depth| Max Features | Min Samples Leaf | Min Samples Split| n estimators| 
 |-------------------|----------|-------|-------|-------|-------|-------|-------|
 |Random Forests | $2815.32 | True | 110 | 3 | 4 | 8 | 100 |
 
+
 | Method     | MAE      | Reg Lambda | Max Depth| Alpha | Gamma| n estimators|
 |-------------------|----------|-------|-------|-------|-------|----------|
-| XGBoost | $2,384.10 | 20 | 3 | 1 | 10 | 100 |
+| XGBoost | $2384.10 | 20 | 3 | 1 | 10 | 100 |
 
