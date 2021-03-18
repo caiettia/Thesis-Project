@@ -77,6 +77,13 @@ For purposes of understanding how our regressors would perform against a baselin
 line of best-fit within the data, where each input feature has a weight, or a Beta, associated with predicting the dependent variable, housing price. 
 
 ## Regularized Regression
+For applications of regularized regression, we have a variety of models in our toolkit: Ridge, LASSO, Elastic Net, Square Root LASSO, and SCAD. Noticing how much
+multi-collinearity is present in the data set, these methods for regression will likely perform very competitively against the other methods. 
+
+
+
+
+
 
 
 # Results
