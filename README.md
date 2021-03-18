@@ -12,6 +12,28 @@ respectively.
 
 We observe some strong correlation between input features in our data set. We can apply various regression techniques to observe what method minimizes the error in observation
 
+# Variable Selection
+For identifying what variables are statistically significant for regression, we may utilize Stepwise Selection. This is a method where a simple linear model is fit with one
+feature from the data, and iteratively variables are added to the model and evaluated. Stepwise utilizes an F-test for variable selection, identifying based on a p-value
+with a confidence score usually of 5%, or alpha = 0.05, if a variable is statistically significant. If the p-value < 0.05, then we know that this variable is statistically
+significant in predicting the dependent variable. Thus, this method is applied to the features in our data set and the variables determined to be statistically significant
+are shown in the table below.
+
+| Variable | Variable Explanation                                 | p-value   | Keep or Drop |
+|----------|------------------------------------------------------|-----------|--------------|
+| lstat    | % lower status of the population                     | 3.731e-89 | keep |
+| rooms    | average number of rooms per dwelling                 | 3.031e-27 | keep |
+| ptratio  | pupil-teacher ratio by town                          | 3.436e-14 | keep |
+| distance | weighted distances to five Boston employment centers | 9.735e-6  | keep |
+| nox      | nitric oxides concentration (parts per 10 million)   | 2.782e-8  | keep |
+| older      | proportion of owner-occupied units built prior to 1940.   | 0.661  | drop |
+| industrial      | proportion of non-retail business acres per town   | 0.550  | drop |
+| residential      | proportion of residential land zoned for lots over 25,000 sq ft.    | 0.011  | keep |
+| highway     | index of accessibility to radial highways | 0.0153  | keep |
+| tax      | full-value property-tax rate per $10,000   | 7.576e-5  | keep |
+| crime      | per capita crime rate by town   | 0.004 | keep |
+
+
 # Hyperparameter Tuning
 Some of the methods that are utilized for regression have hyperparameters, which dictate how the function is applied to the input data. These parameters must be tuned
 when applied to our data set, as there is no "one-size-fits-all" combination of parameters for any of the regressor functions that is universally optimal.
@@ -30,8 +52,7 @@ space is the blue/green shaded region.
 
 With these methods, we are able to tune the hyperparameters and achieve the best possible minimization of error for each function.
 
-# Variable Selection
-For identifying what variables are statistically significant for regression, we may utilize Stepwise Selection. 
+
 
 
 # Models
