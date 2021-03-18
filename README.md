@@ -157,13 +157,6 @@ estimations. Looking at the plot below, we can see the advantage of SCAD over LA
 
 ![SCADplot](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/SCADpenalty.png)
 
-To better understand the hyperparameters for SCAD, lambda and alpha, can affect the parameter estimations, various combinations of parameters are observed in the plot below.
-
-![SCADcombos](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/SCAD_explore_diff_param_combos.png)
-
-Now, when considering all of the plots above, we can see that as the alpha parameter increases, the angle of the "v" shape increases. When considering the lambda parameter,
-we see that as lambda increases the scale of the y-axis increases as well. 
-
 ## LOWESS Regression
 Local regression is a form of regression that takes into account local points throughout the plot to identify the a curve of regression. So, when a locally weighted 
 regressor makes a prediction, it does so using only points local to the input. This is done by the process of identifying local weights, which are determined through the use 
@@ -184,6 +177,11 @@ built starting with 128 neurons, then 32 neurons, then 8 neurons, then finally a
 activation function, while the final layer has a linear activation function. The reason this final layer is composed of one neuron is because this is the output layer, and 
 is necessary since we are utilizing this NN for a regression task! The NN is then compiled with the ADAM optimizer, an adaptive version of gradient descent, and finally fit 
 with the training data.
+
+## Random Forest
+Random Forests is a regression algorithm that is an expansion upon the Decision Trees algorithm. The algorithm works by creating a forest of Decision Trees that are randomly
+sampled with replacement. RF then weights each Decision Tree to control for some of the overfitting issues that the Decision Tree algorithm is prone to. 
+
 
 # Model Evaluation
 For purposes of understanding how these regression methods perform against eachother, we apply each of them to the Boston Housing data set. In terms of how these methods 
