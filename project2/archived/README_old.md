@@ -37,16 +37,7 @@ plot below:
 We can see that as we encounter larger ![beta](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/beta.gif) values, the LASSO regularization method 
 penalizes the estimation of the parameter more and more harshly. Thus, we see the 
 penalization of parameters increases linearly as the parameter value increases. LASSO particularly allows us to help get more parsimonious models.
-
-## Square Root LASSO
-Square Root LASSO is a modification to the LASSO technique, where an L1 penalty is still considered, yet with an objective function of which is a square root. This can be 
-represented through the minimization of the optimization function:
-
-![sqrt_lasso](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/sqrt_lasso.gif) 
-
-The key difference to note is that Square Root Lasso takes the square root of the mean of the squared residuals as the objective function to be minimized. The penalty term 
-for this method is the same as in the LASSO technique.
-
+ 
 ## Elastic Net
 Elastic Net is a method of combining the LASSO and Ridge regression, L1 and L2, in a convex manner. So, Elastic Net is able to learn the weights for a given regressor
 by minimizing the optimzation problem:
@@ -88,18 +79,17 @@ To better understand the hyperparameters for SCAD, lambda and alpha, can affect 
 Now, when considering all of the plots above, we can see that as the alpha parameter increases, the angle of the "v" shape increases. When considering the lambda parameter,
 we see that as lambda increases the scale of the y-axis increases as well. 
 
+## Square Root LASSO
+Square Root LASSO is a modification to the LASSO technique, where an L1 penalty is still considered, yet with an objective function of which is a square root. This can be 
+represented through the minimization of the optimization function:
 
-
-
-
+![sqrt_lasso](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/sqrt_lasso.gif)
 
 # Comparing Regularization Methods
 For purposes of better understanding each regularization method beyond the theoretical level, we can apply each method to some data sets and see how they perform. To 
 understand and compare methods, we use a simple linear regression with no regularization as the base line. Following this, we are able to then utilize SKLearn's GridSearchCV 
 method to tune the hyper parameters for each regularization method. GridSearchCV does this by fitting each model with different combinations of parameters and then scoring 
-them to identify which combination of parameters performs best on the data set. In some instances, however, GridSearchCV is not utilized as the models we are working with are 
-not SKLearn based. So, for these instances we iteratively test different combinations of parameters and use the combination that yields the best performance in terms of MAE. 
-Once identified, these parameters are provided to each model, and KFold Cross Validation is 
+them to identify which combination of parameters performs best on the data set. Once identified, these parameters are provided to each model, and KFold Cross Validation is 
 utilized with k=10 folds. The Mean Absolute Error (MAE) is finally obtained and then recorded in a table.
 
 We can also look at how well each regularization method can estimate beta parameters when given a usecase that particularly suits the advantages the methods posses; data with 
@@ -142,8 +132,8 @@ respectively.
 
 ![bhousecorr](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project2/fire_corr_data.png)
 
-We agains see some notable positive correlation between variables as well as as instance of negative correlation. Thus, we can utilize our regularization techniques to
-determine estimators.
+The strong correlation we observe between the variables in our data set indicate that we may infact need regularization! This is because regularization allows us to still 
+effectively estimate parameters despite strong multi-collinearity in our data set.
 
 So, the variables are regressed against the price to attempt to estimate housing prices in Boston. Each regularization method alongside a baseline linear model is fit to the 
 data and the Mean Absolute Errors are recorded below.
@@ -236,13 +226,6 @@ when considering the other Beta parameters. Square-root Lasso on the other hand 
 methods at estimating Beta3 as well as one of the better methods in estimating Beta7. Yet overall, we can look at the L2 Norm and the MAE to best understand what 
 regularization technique performs best. From this, we can see that SCAD performed best not only in terms of the MAE but also had the smallest L2 Norm, meaning
 that the parameters estimated by SCAD were closest to the ground-truth betas we manufactured.
-
-# Conclusion
-Regularization methods are important to understand when applying various regression techniques to a data set. It allows us to more accurately estimate parameters for a model
-when there is a high degree of multi-collinearity within the data set, while also enabling more accurate estimation of parameters when the number of parameters to estimate is 
-large. While relatively newer techniques such as SCAD and Square-root LASSO have been shown to be quite performant on the data sets and simulated data above, it is still
-important to test each of the techniques in application, as one may encounter an older technique being more performant than a newer one.
-
 
 # References
  - https://ncss-wpengine.netdna-ssl.com/wp-content/themes/ncss/pdf/Procedures/NCSS/Ridge_Regression.pdf
