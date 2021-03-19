@@ -210,6 +210,7 @@ lowest MAE observed for each model.
 ## Best Parameters
 
 ### Kernel Regression
+
 | LOWESS Kernel     | MAE      | Tau |
 |-------------------|----------|-------|
 | Tricubic | $2251.05 | 0.3    | 
@@ -229,11 +230,13 @@ lowest MAE observed for each model.
 | SCAD              |$2407.42 | 0.02  | 1.5    |
 
 ### XGBoost
+
 | Method     | MAE      | Reg Lambda | Max Depth| Alpha | Gamma| n estimators|
 |-------------------|----------|-------|-------|-------|-------|----------|
 | XGBoost | $2384.10 | 20 | 3 | 1 | 10 | 100 |
 
 ### Random Forests
+
 | Method     | MAE      | Bootstrap | Max Depth| Max Features | Min Samples Leaf | Min Samples Split| n estimators| 
 |-------------------|----------|-------|-------|-------|-------|-------|-------|
 |Random Forests | $2815.32 | True | 110 | 3 | 4 | 8 | 100 |
@@ -241,6 +244,7 @@ lowest MAE observed for each model.
 
 
 ## Error Rates Observed
+
 | Method     | MAE      |
 |-------------------|----------|
 |Sequential NN| $2210.59|
