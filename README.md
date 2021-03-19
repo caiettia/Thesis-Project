@@ -215,7 +215,7 @@ lowest MAE observed for each model.
 | Ridge             | $2161.45 | 8     | N/A    |
 | LASSO             | $2151.37 | 0.015 | N/A    |
 | Elastic Net       | $2125.39 | 0.015 | 0.25   |
-| Square Root LASSO | $3130.33 | 0.96  | N/A    |
+| Square Root LASSO | $2138.40 | 0.01  | 10    |
 | SCAD              |$2407.42 | 0.02  | 1.5    |
 
 
@@ -236,6 +236,9 @@ lowest MAE observed for each model.
 |-------------------|----------|-------|-------|-------|-------|----------|
 | XGBoost | $2384.10 | 20 | 3 | 1 | 10 | 100 |
 
+| Method     | MAE      |
+|-------------------|----------|
+|Sequential NN| $2210.59|
 
 From all of the above regressor results, we see that in terms of the minimization of the MAE, the Elastic Net algorithm of regularized regression performed
 best when applied to this data set after the polynomial featuring and scaling of the data. This makes sense given the high levels of multi-collinearity that we observe
