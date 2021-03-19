@@ -210,6 +210,14 @@ lowest MAE observed for each model.
 
 ## Best Parameters
 
+### Kernel Regression
+| LOWESS Kernel     | MAE      | Tau |
+|-------------------|----------|-------|
+| Tricubic | $2251.05 | 0.3    | 
+| Quartic | $2251.07 | 0.3    | 
+| Uniform | $2250.89 | 0.3    | 
+| Epanechnikov | $2250.87 | 0.3  |
+
 ### Regularized Regression
 
 | Method            | MAE      | Alpha | Lambda |
@@ -221,23 +229,17 @@ lowest MAE observed for each model.
 | Square Root LASSO | $2138.40 | 0.01  | 10    |
 | SCAD              |$2407.42 | 0.02  | 1.5    |
 
-### Kernel Regression
-| LOWESS Kernel     | MAE      | Tau |
-|-------------------|----------|-------|
-| Tricubic | $2251.05 | 0.3    | 
-| Quartic | $2251.07 | 0.3    | 
-| Uniform | $2250.89 | 0.3    | 
-| Epanechnikov | $2250.87 | 0.3  |
+### XGBoost
+| Method     | MAE      | Reg Lambda | Max Depth| Alpha | Gamma| n estimators|
+|-------------------|----------|-------|-------|-------|-------|----------|
+| XGBoost | $2384.10 | 20 | 3 | 1 | 10 | 100 |
 
 ### Random Forests
 | Method     | MAE      | Bootstrap | Max Depth| Max Features | Min Samples Leaf | Min Samples Split| n estimators| 
 |-------------------|----------|-------|-------|-------|-------|-------|-------|
 |Random Forests | $2815.32 | True | 110 | 3 | 4 | 8 | 100 |
 
-### XGBoost
-| Method     | MAE      | Reg Lambda | Max Depth| Alpha | Gamma| n estimators|
-|-------------------|----------|-------|-------|-------|-------|----------|
-| XGBoost | $2384.10 | 20 | 3 | 1 | 10 | 100 |
+
 
 ## Error Rates Observed
 | Method     | MAE      |
@@ -252,7 +254,7 @@ lowest MAE observed for each model.
 | Linear Regression | $3491.85 |
 | Ridge             | $2161.45 |
 | LASSO             | $2151.37 |
-| Elastic Net       | $2125.39 |
+| **Elastic Net **      | **$2125.39** |
 | Square Root LASSO | $2138.40 |
 | SCAD              |$2407.42 | 
 
