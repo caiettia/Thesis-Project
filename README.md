@@ -254,7 +254,7 @@ lowest MAE observed for each model.
 | Linear Regression | $3491.85 |
 | Ridge             | $2161.45 |
 | LASSO             | $2151.37 |
-| **Elastic Net **      | **$2125.39** |
+| **Elastic Net**     | $2125.39 |
 | Square Root LASSO | $2138.40 |
 | SCAD              |$2407.42 | 
 
