@@ -18,8 +18,7 @@ our regression.
 
 # Data Processing
 Before the data is input into each model, we can utilize the PolynomialFeatures and StandardScaler functions from the SKLearn library. These functions allow us to scale
-our data to be better understood by each regressor. Note, based on our current implementation of the Square Root LASSO regressor, we are unable to scale the data before
-passing the data to this regressor. Thus, in this instance, our data is not scaled. Using polynomial features and scaling allows us to better find the potential interactions
+our data to be better understood by each regressor. Using polynomial features and scaling allows us to better find the potential interactions
 between features that may exist in our data set. Thus, in implementation, we have chosen to create PolynomialFeatures of degree 3 from the data set and then scale the data
 before processing in each model. 
 
