@@ -208,6 +208,9 @@ Without KFold, we could be getting biased evaluation metrics and thus choose a p
 Following the methodologies outlined above, we finally can apply each model to the data set and observe the optimal hyperparameters chosen for each model as well as the
 lowest MAE observed for each model. 
 
+## Best Parameters
+
+### Regularized Regression
 
 | Method            | MAE      | Alpha | Lambda |
 |-------------------|----------|-------|--------|
@@ -218,7 +221,7 @@ lowest MAE observed for each model.
 | Square Root LASSO | $2138.40 | 0.01  | 10    |
 | SCAD              |$2407.42 | 0.02  | 1.5    |
 
-
+### Kernel Regression
 | LOWESS Kernel     | MAE      | Tau |
 |-------------------|----------|-------|
 | Tricubic | $2251.05 | 0.3    | 
@@ -226,19 +229,32 @@ lowest MAE observed for each model.
 | Uniform | $2250.89 | 0.3    | 
 | Epanechnikov | $2250.87 | 0.3  |
 
-
+### Random Forests
 | Method     | MAE      | Bootstrap | Max Depth| Max Features | Min Samples Leaf | Min Samples Split| n estimators| 
 |-------------------|----------|-------|-------|-------|-------|-------|-------|
 |Random Forests | $2815.32 | True | 110 | 3 | 4 | 8 | 100 |
 
-
+### XGBoost
 | Method     | MAE      | Reg Lambda | Max Depth| Alpha | Gamma| n estimators|
 |-------------------|----------|-------|-------|-------|-------|----------|
 | XGBoost | $2384.10 | 20 | 3 | 1 | 10 | 100 |
 
+## Error Rates Observed
 | Method     | MAE      |
 |-------------------|----------|
 |Sequential NN| $2210.59|
+| XGBoost | $2384.10 |
+| Epanechnikov | $2250.87 | 
+| Uniform | $2250.89 |
+| Quartic | $2251.07 | 
+| Tricubic | $2251.05 |
+|Random Forests | $2815.32 |
+| Linear Regression | $3491.85 |
+| Ridge             | $2161.45 |
+| LASSO             | $2151.37 |
+| Elastic Net       | $2125.39 |
+| Square Root LASSO | $2138.40 |
+| SCAD              |$2407.42 | 
 
 From all of the above regressor results, we see that in terms of the minimization of the MAE, the Elastic Net algorithm of regularized regression performed
 best when applied to this data set after the polynomial featuring and scaling of the data. This makes sense given the high levels of multi-collinearity that we observe
