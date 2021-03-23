@@ -94,5 +94,44 @@ Discussed the next block, block 2, and talked about the first case study.
 
  - need to write first impressions on the discussion board
 
+# 3/23/2021
+- we end up with physical measurements with the main data, and we can see large gaps in the time series
+  - the time series is aggregated at half-hour samples
+  - in units of solar radiation (photon flux density)
+    - energy we get specific to plant response
+- we care about modeling radiation in this study
+  - and radiation is very sensitive to time
+
+## Q_gap
+- we only care about a specific band of energy, so for Q_gap we finaly multiply by f_FEC to get just the one band we are worried about; PPFD
+  - tone the values down to the earths surface then do a unit conversion
+
+- the challenge is how do we get the raw observation into our format desired in R?
+  - solar.R script! from the SPLASH repository
+
+## I_0
+- calculating I_0 is found in the splash_doc.pdf file
+  - the third term in this formula is a discrete time series, and the first 2 values are factors/constants that scale the time series
+  - so this term will give us the discrete time series we want...but it is only on the outer edge of the atmosphere
+    - so we are scaling values down based on an average to try to represent the greater atmosphere
+    - we are using observations as a scaling factor in the Q_gap formula
+    - this scaling takes account for weird atmospheric things like clouds, pollution, gases
+    
+solar constant: a constant radiation the sun beams out that reaches the surface of the Earth. It is challenging to estimate a value (watts per sq. meter) and has been historically re-restimated
+  - most recent value is 1360.8 watts per sq meter
+distance factor: accounts for the variability in I_0 that reaches the Earth due to the relative change in distance between the EArth and the Sun caused by the eccentricity of Earth's ellipitcal orbit (can see the splash documentation further to see this)
+  - perihilion = closest to the sun   
+  - aphelion = furthest from the sun
+- we design calendars based off equinoxs and divide up time based on coming back to these equinoxs
+  - complicates things because planetary objects interact with eachother based on masses
+  - so Earth's calendar has gone through several historic changes
+    - we now use the Gregorian calendar
+- When the earth is speeding up and slingshotting around the sun, we encounter some error.
+  - thus, the more complicated equation (not equation 12) should be used because any error is bad.
+  - both equations, however, yield a similar curve (Kepler 2000, Klein 1977)
+  - the calculation is only telling us how far away we are from the sun 
+
+inclinication factor : attenuates the incoming radiation perpendicular to the surface (how much energy are you getting where you stand on the surface of the Earth from the sun)
+
 
 
