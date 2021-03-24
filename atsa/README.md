@@ -132,6 +132,27 @@ distance factor: accounts for the variability in I_0 that reaches the Earth due 
   - the calculation is only telling us how far away we are from the sun 
 
 inclinication factor : attenuates the incoming radiation perpendicular to the surface (how much energy are you getting where you stand on the surface of the Earth from the sun)
+ - a series of sin and cos are used in a fourier transformation
+ - the hour angle, h, is what we really care about
+  - assume we are on a flat surface
+ - heliocentric longitude relative to verticle equinox
+  - 3 methods: kepler, cooper, or circle
+  - these allow us to get declination angles on any given day of the year
+    - that is just to calculate delta though
+ - calculating h
+  - this will give us the discrete time series
+  - section 2.3.5 will tell us how to calculate this value
+  - solar time is different than clock time. Solar time is constant, clock time is continuous
+    - solar time is physically defined
+  - these values are calculated in section 2.3.X 
 
+## Solar.r
+- functions needed from solar.R
+  - julian_day, dsin, dcos, calc_daily_solar, berger_ts
+- how do we use these?
+  - julian_day : a helper function for finding N and n
+  - dsin, dcos : are used to calculate ra_j.m2 (07)
+  - calc_daily_solar : lat = 34.2547, n (day of year) = days of december in 2003, elevation = 87m, year = 2020 (parameters)
+    - output is a list of the different variables 
 
 
