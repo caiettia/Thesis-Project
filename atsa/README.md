@@ -156,3 +156,28 @@ inclinication factor : attenuates the incoming radiation perpendicular to the su
     - output is a list of the different variables 
 
 
+# 3/25/2021
+- provide the latitude (from fluxdata.org site = 34.2547)
+- get end of the year with the julian function - julian_day(2020,3,25) - julian_day(2020,1,1)+1
+  - gives you 85; meaning the 85th day of the year
+- elevation = 87
+- out <- calc_daily_solar(34.2547, 85, elv=87, y=2020)
+  - assign the above calculation to a variable to get the dataframe returned
+  - out$ra_j.m2 = the daily solar radiation in joules/sq meter
+- I_0 is the chjallenge
+  - model in 06 function uses hs which is the sunset hour angle used in integrating daily values
+  - need to replace the sunset hour angle with the hour angle
+    - if we want half hour measurements to match the half hourly observations, we need I_0 to have the hour angle
+    - we can get this using the gepisat documentation 
+- Gepisat documentation
+  - has a solar.py file
+    - replace python code for creating half-hourly values with R code
+  - 2,3,4 functions are all the same
+  - 5, time zone is new
+    - take local time, add equation of time, subtract longitudinal correction
+    - with these three values, you have your time series then get hour angles from step 9.
+    - with hour angles, you have hs and can then get the I_0 values
+    - scale them, convert their units, will have time series to underlay behind observations...this will be what we then have as the "red lines" which are the calculated values while blue is the observed
+   - want to preserve observations, and replace the holes with the gapfilling values
+
+
