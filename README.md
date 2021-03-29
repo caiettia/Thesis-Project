@@ -58,3 +58,7 @@ To better understand how our models performed, we can also plot the residuals fo
 ### NW
 ![residsgam](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project_4/NWKernel_residualsplot.png)
 
+From the above plot of residuals, we can easily see the normal distribution of the GAM's residuals. The NW kernel density estimation, however, does not appear to showcase a 
+normal distribution, indicating that the NW Kernel Density Estimation is not as effective in estimating the RMSD variable for this data set. This is because the lack of 
+normal distribution for errors for a model indicates that the model itself has errors that are biased to specific input features. Thus, we can say that for this application
+of models, the Generalized Additive Model performed most admirably of the two!
