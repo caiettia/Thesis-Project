@@ -54,11 +54,15 @@ final iteration of the algorithm. With this, we have been able to generate the p
 To better understand how our models performed, we can also plot the residuals for each model and see. 
 ### GAM
 ![residsnw](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project_4/GAM_residualsplot.png)
+![resids nw](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project_4/resids_GAM.png)
 
 ### NW
 ![residsgam](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project_4/NWKernel_residualsplot.png)
+![resids gam](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project_4/resids_NW.png)
 
 From the above plot of residuals, we can easily see the normal distribution of the GAM's residuals. The NW kernel density estimation, however, does not appear to showcase a 
 normal distribution, indicating that the NW Kernel Density Estimation is not as effective in estimating the RMSD variable for this data set. This is because the lack of 
-normal distribution for errors for a model indicates that the model itself has errors that are biased to specific input features. Thus, we can say that for this application
-of models, the Generalized Additive Model performed most admirably of the two!
+normal distribution for errors for a model indicates that the model itself has errors that are biased to specific input features. The quantile plots can also show us how the 
+data fits to a normal distribution, the y=x line in red. We can see for the NW kernel density estimation how the residuals certainly do not fit to the red line well, a strong
+visual indication of the poor R-squared value that we observe for this method. For the GAM however, we see a better quantile plot but still do not observe the data fitting 
+admirably to the normal distribution. Thus, we can say that for this application of models, the Generalized Additive Model performed most admirably of the two!
