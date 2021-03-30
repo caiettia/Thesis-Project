@@ -216,3 +216,39 @@ inclinication factor : attenuates the incoming radiation perpendicular to the su
    - want to preserve observations, and replace the holes with the gapfilling values
 
 
+## 3/30/2021
+Outliers are particularly challenging to identify as good or bad because, while they can skew data, they are still a part of the original data set so the issue is not 
+as simple as removing each outlier!
+ - Peirce's criterion
+    - the rejection of doubtful observations
+    - a statistical method for removing outlier values 
+    - used by the US coastal service in the 1800s!
+    - highly robust and scriptable
+    - identifies the maximum deviation that is expected based on a data set (so deviations exceeding this max are then identified as outliers and removed)
+        - deviation is the squared error (squared residual)
+ - Chauvenet method is another method from 2003
+
+Lab 2
+ - work with NEE_VUT_REF from the Fluxnet dataset
+ - plot(flux05.df$SW_IN_F, flux05.df$NEE_VUT_REF)
+  - make a linear model with the dependent variable, NEE_VUT_REF, against the dependent variable, SW_IN_F (solar radiation)
+ - in case of the MSE, m = 2
+  - assume we have an outlier (n=1)
+  - calculate perice's x^2 using script
+  - find the maximum squared error deviation (eqn. 35 in gepisat doc)
+  - have to scale peirces threshold to the data  set (eqn. 35) by multiplying peirces criterion by your MSE
+  - then identify which values are greater
+    - if find more than one, you have to increment n until the number of outliers found is less than the number that you are guessing (n)
+
+ - big questions
+  - what are outliers? why care?
+  - what is peirce's method? why care?
+  - check out another method. Chauvenet's is one.
+  - what is this data set?
+  - reproduce the algorithm in R (its on the wikipedia page lol)
+  - repeat this process and find the outliers in a linear model between NEE_VUT_RF and SW_IN_F
+  - make scatter plot, how many outliers did we find?
+  - reflect on methods...what worked what didnt? what inferences can you make?
+  - references (turn in as a notebook...make sure you have NAME, DATE, STRUCTURE (1.1, 1.2, 2, 2.1, etc.))
+    - make sure the .pynb is complete (every run cell appears in the github when posted!)
+
