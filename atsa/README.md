@@ -30,8 +30,10 @@ Outliers can cause many issues for model creation and prediction through the bia
 present bias into the estimation of parameters for a given model, and decreases the predictive power of a given model. Simple examples of outliers that can cause problems
 could also be patients with a height of 20 ft or weight of -30 pounds. More can be read about the importance of identifying outliers ![here](https://pulmonarychronicles.com/index.php/pulmonarychronicles/article/view/252/635).
 
+# Raw Notes 
+Below, I have taken a spark-notes of class discussion each day.
 
-# 3/9/2021
+## 3/9/2021
 Discussed the next block, block 2, and talked about the first case study.
 
 - this case study looked at a network of bluetooth relays in an environment
@@ -49,7 +51,7 @@ Discussed the next block, block 2, and talked about the first case study.
   - essentially, we are going to bin the data in these intervals into discrete 15 minute bins
   - repeat this then for 60 minute, 12 hour, and 24 hour intervals
 
-# 3/11/2021
+## 3/11/2021
 - adc0, adc1, adc2
   - raw voltage (mV)
   - adc3 to adc 6 are ignorable
@@ -65,7 +67,7 @@ Discussed the next block, block 2, and talked about the first case study.
     - how much water is being distributed from soil into trees then back into the atmosphere?\
     - the natural area was appealing for this study
 
-## Group 1 Discussion
+### Group 1 Discussion
  - supporting functions file
     - load each file in the utility script
     - put them together then clean them up 
@@ -86,11 +88,11 @@ Discussed the next block, block 2, and talked about the first case study.
  - we need to find the mean of the data points at 15 minute blocks
     - concern with duplicate packets is that they will inflate values at different time intervals
     
- # 3/16/2021
+ ## 3/16/2021
  Continue group work. Answered some of the Case Study 1 approach questions in the discussion forum.
  
  
- # 3/18/2021
+ ## 3/18/2021
  NOTE arrived about 20 minutes late to class...need to update notes
  
  - exercise 2
@@ -127,7 +129,7 @@ Discussed the next block, block 2, and talked about the first case study.
 
  - need to write first impressions on the discussion board
 
-# 3/23/2021
+## 3/23/2021
 - we end up with physical measurements with the main data, and we can see large gaps in the time series
   - the time series is aggregated at half-hour samples
   - in units of solar radiation (photon flux density)
@@ -135,14 +137,14 @@ Discussed the next block, block 2, and talked about the first case study.
 - we care about modeling radiation in this study
   - and radiation is very sensitive to time
 
-## Q_gap
+### Q_gap
 - we only care about a specific band of energy, so for Q_gap we finaly multiply by f_FEC to get just the one band we are worried about; PPFD
   - tone the values down to the earths surface then do a unit conversion
 
 - the challenge is how do we get the raw observation into our format desired in R?
   - solar.R script! from the SPLASH repository
 
-## I_0
+### I_0
 - calculating I_0 is found in the splash_doc.pdf file
   - the third term in this formula is a discrete time series, and the first 2 values are factors/constants that scale the time series
   - so this term will give us the discrete time series we want...but it is only on the outer edge of the atmosphere
@@ -179,7 +181,7 @@ inclinication factor : attenuates the incoming radiation perpendicular to the su
     - solar time is physically defined
   - these values are calculated in section 2.3.X 
 
-## Solar.r
+### Solar.r
 - functions needed from solar.R
   - julian_day, dsin, dcos, calc_daily_solar, berger_ts
 - how do we use these?
@@ -189,7 +191,7 @@ inclinication factor : attenuates the incoming radiation perpendicular to the su
     - output is a list of the different variables 
 
 
-# 3/25/2021
+## 3/25/2021
 - provide the latitude (from fluxdata.org site = 34.2547)
 - get end of the year with the julian function - julian_day(2020,3,25) - julian_day(2020,1,1)+1
   - gives you 85; meaning the 85th day of the year
