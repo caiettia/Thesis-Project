@@ -5,13 +5,13 @@ detecting outliers. These issues are common when working with different real-wor
 
 ## Duplicated Data
 We talked about this problem in the context of Exercise 2.1. Duplicate data is dangerous as it can inflate various descriptive statistics which, depending on their context
-of use, can lead to major problems further down the line of decision making based on data analysis. In some cases, ![duplicate patient data](https://www.justassociates.com/customer-spotlight/studies-success/childrens-medical-center-dallas) can be more common than expected, accounting for 22% of all records. This 
+of use, can lead to major problems further down the line of decision making based on data analysis. In some cases, [duplicate patient data](https://www.justassociates.com/customer-spotlight/studies-success/childrens-medical-center-dallas) can be more common than expected, accounting for 22% of all records. This 
 lead to 45% of doctors in the health system encountering duplicate records, and 25% of doctors saying this affected the quality of care patients received. Being able to
 infer day-to-day operations based on your data is important, and duplicated records only challenges this.
 
 ## Missing Data
-Having holes in your data set can produce problems that are, on their own, ![challenging to identify](https://www.bauer.uh.edu/jhess/documents/2.pdf). Missing data is a known
-problem in statistical data analysis, and the NIH identifies ![three major reasons](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3668100/#:~:text=Missing%20data%20present%20various%20problems,the%20representativeness%20of%20the%20samples.) as to why this may present issues for us in analysis.
+Having holes in your data set can produce problems that are, on their own, [challenging to identify](https://www.bauer.uh.edu/jhess/documents/2.pdf). Missing data is a known
+problem in statistical data analysis, and the NIH identifies [three major reasons](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3668100/#:~:text=Missing%20data%20present%20various%20problems,the%20representativeness%20of%20the%20samples.) as to why this may present issues for us in analysis.
 1. Missing data reduces statistical power (increases the probability of Type I and Type II error)
 2. Lost data can present bias when estimating parameters; where bias on its own is already difficult enough to identify
 3. Representativeness can be reduced in your data (i.e when examining the theory of red cars receiving more speeding tickets, we could have a data set of majority red cars but missing grey cars. Grey cars are common, and thus our data set is not representative!)
@@ -28,7 +28,7 @@ forgiving toward the rest of the students.
 
 Outliers can cause many issues for model creation and prediction through the biasing of residuals and inflation or deflation of summary statistics. These issues can further 
 present bias into the estimation of parameters for a given model, and decreases the predictive power of a given model. Simple examples of outliers that can cause problems
-could also be patients with a height of 20 ft or weight of -30 pounds. More can be read about the importance of identifying outliers ![here](https://pulmonarychronicles.com/index.php/pulmonarychronicles/article/view/252/635).
+could also be patients with a height of 20 ft or weight of -30 pounds. More can be read about the importance of identifying outliers [here](https://pulmonarychronicles.com/index.php/pulmonarychronicles/article/view/252/635).
 
 # Raw Notes 
 Below, I have taken a spark-notes of class discussion each day.
