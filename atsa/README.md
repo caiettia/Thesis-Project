@@ -231,24 +231,24 @@ as simple as removing each outlier!
 Lab 2
  - work with NEE_VUT_REF from the Fluxnet dataset
  - plot(flux05.df$SW_IN_F, flux05.df$NEE_VUT_REF)
-  - make a linear model with the dependent variable, NEE_VUT_REF, against the dependent variable, SW_IN_F (solar radiation)
+    - make a linear model with the dependent variable, NEE_VUT_REF, against the dependent variable, SW_IN_F (solar radiation)
  - in case of the MSE, m = 2
-  - assume we have an outlier (n=1)
-  - calculate perice's x^2 using script
-  - find the maximum squared error deviation (eqn. 35 in gepisat doc)
-  - have to scale peirces threshold to the data  set (eqn. 35) by multiplying peirces criterion by your MSE
-  - then identify which values are greater
-    - if find more than one, you have to increment n until the number of outliers found is less than the number that you are guessing (n)
+    - assume we have an outlier (n=1)
+   - calculate perice's x^2 using script
+    - find the maximum squared error deviation (eqn. 35 in gepisat doc)
+    - have to scale peirces threshold to the data  set (eqn. 35) by multiplying peirces criterion by your MSE
+   - then identify which values are greater
+     - if find more than one, you have to increment n until the number of outliers found is less than the number that you are guessing (n)
 
  - big questions
-  - what are outliers? why care?
-  - what is peirce's method? why care?
-  - check out another method. Chauvenet's is one.
-  - what is this data set?
-  - reproduce the algorithm in R (its on the wikipedia page lol)
-  - repeat this process and find the outliers in a linear model between NEE_VUT_RF and SW_IN_F
-  - make scatter plot, how many outliers did we find?
-  - reflect on methods...what worked what didnt? what inferences can you make?
-  - references (turn in as a notebook...make sure you have NAME, DATE, STRUCTURE (1.1, 1.2, 2, 2.1, etc.))
-    - make sure the .pynb is complete (every run cell appears in the github when posted!)
+    - what are outliers? why care?
+    - what is peirce's method? why care?
+    - check out another method. Chauvenet's is one.
+    - what is this data set?
+    - reproduce the algorithm in R (its on the wikipedia page lol)
+   - repeat this process and find the outliers in a linear model between NEE_VUT_RF and SW_IN_F
+   - make scatter plot, how many outliers did we find?
+    - reflect on methods...what worked what didnt? what inferences can you make?
+   - references (turn in as a notebook...make sure you have NAME, DATE, STRUCTURE (1.1, 1.2, 2, 2.1, etc.))
+     - make sure the .pynb is complete (every run cell appears in the github when posted!)
 
