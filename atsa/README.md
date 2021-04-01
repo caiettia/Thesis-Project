@@ -252,3 +252,6 @@ Lab 2
    - references (turn in as a notebook...make sure you have NAME, DATE, STRUCTURE (1.1, 1.2, 2, 2.1, etc.))
      - make sure the .pynb is complete (every run cell appears in the github when posted!)
 
+## 4/1/2021
+Today we mainly worked on Lab and Davis was available to answer questions
+
