@@ -49,7 +49,7 @@ final iteration of the algorithm. With this, we have been able to generate the p
 | Model | RMSE | R-squared |
 |--------|--------|--------|
 | GAM | 5.03628 | 0.32219| 
-| NW | 6.11853 | 0.0003572|
+| NW | 3.71250 | 0.63122|
 
 To better understand how our models performed, we can also plot the residuals for each model and see. 
 ### GAM
@@ -60,9 +60,13 @@ To better understand how our models performed, we can also plot the residuals fo
 ![residsgam](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project_4/NWKernel_residualsplot.png)
 ![resids gam](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project_4/resids_NW.png)
 
-From the above plot of residuals, we can easily see the normal distribution of the GAM's residuals. The NW kernel density estimation, however, does not appear to showcase a 
-normal distribution, indicating that the NW Kernel Density Estimation is not as effective in estimating the RMSD variable for this data set. This is because the lack of 
-normal distribution for errors for a model indicates that the model itself has errors that are biased to specific input features. The quantile plots can also show us how the 
-data fits to a normal distribution, the y=x line in red. We can see for the NW kernel density estimation how the residuals certainly do not fit to the red line well, a strong
-visual indication of the poor R-squared value that we observe for this method. For the GAM however, we see a better quantile plot but still do not observe the data fitting 
-admirably to the normal distribution. Thus, we can say that for this application of models, the Generalized Additive Model performed most admirably of the two!
+From the above plot of residuals, we can easily see the normal distribution of the GAM's residuals yet there appears to be a slight deviation from a mean of 0 in the 
+residuals. We can observe there to be a slight negative skew from the mean on residuals for the GAM plot. The NW kernel density estimation, also appears to have a normal 
+distribution of residual errors, indicating that the NW Kernel Density Estimation is more effective in estimating the RMSD variable for this data set. Yet from these two 
+histograms of residuals, we can certainly observe the better performance of the NW Kernel Density Estimation as the residuals more closely follow a normal distribution 
+relative to the residual plots for the GAM.  The quantile plots can also show us how the data fits to a normal distribution. For the GAM plot, we see the normal distribution
+represented by the red line plot at y=x, while for the NW plot we can observe the normal distribution centered around x=0. From this, we learn that a majority of the 
+residuals for the NW plot are centered around x=0 while the GAM plot of residuals showcases more points deviating from the red line. This is notable in the range of values 
+where x < -1.25. These residuals greater than the normal distribution line showcase a skew in the model and We can see for the NW kernel density estimation how the residuals 
+certainly do not fit to the red line well, a strong visual indication of the relatively poor R-squared value that we observe for this method. Thus, we can say that for this 
+application of models, the Nadaraya-Watson Kernel Density Estimation method performed most admirably of the two!
