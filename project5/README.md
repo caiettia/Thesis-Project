@@ -1,5 +1,5 @@
 # Project 5
-For my project, I decided to curate a text-based data set pertaining to blockchain in healthcare. I did this by 
+For my project, I decided to curate a text-based data set pertaining to blockchain in healthcare. The reason for this, is I want to better understand how Blockchain as a technology is percevied in the Healthcare industry. As such, I will be taking my text-based data set and performing Sentiment Analysis on said data set. From this, I hope to have a better understanding of how the technology is perceived by a public forum such as Twitter in regards to its application and use in the Healthcare sector. 
 
 # Data
 ## Curating
