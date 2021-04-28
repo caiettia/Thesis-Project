@@ -46,7 +46,8 @@ removes miscellaneous text artifacts the Twitter API would include in text objec
 finally have all of the text from each tweet cleaned up and ready for processing by our model.
 
 ## Preliminary Observations
-Overall, 207200 tweets by about 45000 unique accounts were retrieved from January 1, 2016 to January 31, 2021. We can see the number of tweets over time in the figure below.
+Overall, 207200 tweets by about 45000 unique accounts were retrieved from January 1, 2016 to January 31, 2021. We can see the number of tweets over time with a 12-month 
+moving average imposed in the figure below.
 
 ![volume](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project5/volume_movingavg_month.png)
 
