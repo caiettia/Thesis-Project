@@ -81,16 +81,16 @@ Since this is a text-focused task, we can utilize a newer model in the textual a
 comes from a 2018 publication by Google, and is a neural network based model that is pre-trained on 2,500 million words from Wikipedia and 800 million words from the 
 BooksCorpus, a corpus of 7,000 literary works. BERT is first trained on these two data sets to learn the context of words and how they are used through two methods: Next 
 Sentence Prediction (NSP) and Masked Language Modeling (MLM). Briefly, Next Sentence Prediction is a task BERT utilizes to understand if, when given two setences, BERT learns 
-to predict if the second sentence provided follows the first from the document or not. Masked Language Modeling, on the other hand, is when BERT learns to predict what a word is in a 
-given sentence, by first masking said word then attempting to predict it by referencing the remaining words in the sentence. Thus, BERT begins to develop an understanding of 
-how words are used in a sentence and what those words might be. Both NSP and MLM are done simultaneously in the pre-training phase, and BERT develops a model from this of 110 
-million parameters in the BERT-base model, and 340 million parameters in the BERT-large model. For sake of computational efficiency while maintaining performance, BERT-base 
-will be utilized.
+to predict if the second sentence provided follows the first from the document or not. Masked Language Modeling, on the other hand, is when BERT learns to predict what a word is in a given sentence, by first masking said word then attempting to predict it by referencing the remaining words in the sentence. Thus, BERT begins to develop an understanding of how words are used in a sentence and what those words might be. Both NSP and MLM are done simultaneously in the pre-training phase, and BERT develops a model from this of 110 million parameters in the BERT-base model, and 340 million parameters in the BERT-large model. For sake of computational efficiency while maintaining performance, BERT-base will be utilized.
 
 Using BERT in this instance is particularly advantageous for this task, as BERT is pre-trained on these massive data sets. Thus, we need only to fine-tune our instance of a 
 BERT model to then make sentiment classifications for our task. Taking advantage of this knowledge transfer is what has made BERT such a strong contender for one of the most
 advanced Natural Language Processing models available. Also, as a fun fact, as of October of 2020 BERT models handle a majority of the english language search queries on 
 Google.com! So, it is highly likely you have already encountered and used BERT without even realizing. 
+
+In terms of implementation, the Transformers library is utilized. This allows us to use not only the BERT-base model as our classifier but also the BERTTokenizer, which 
+tokenizes data to be then interpretted by the BERT model. So, in terms of feature extraction, BERT handles this by learning word-embeddings through the pre-training phase.
+The fine-tuning of the model really only alters various parameters previously generated from pre-training, to then better fit the model to the training data provided. 
 
 ## Model Evaluation
 We first split out data set to create a test set comprised of 20% of the data. Then, with the remaining 80% of our dataset, we utilize K-Fold Cross Validation where K = 10. 
@@ -119,7 +119,7 @@ When looking at this, we see that following 2017 the positive tweets are observe
 
 From this, we see that the percent composition of the positive class overtime is increasing at a much greater rate than the negative class. Yet it is still worth noting that 
 we observe the negative class still increasing over time, albeit at a much slower rate relatively. So, people are much more increasingly positively talking about blockchain 
-in healthcare relative to their skepticism about the technology in the healthcare sector. So overall, we observe that people are talkign very positively about the idea of blockchain in healthcare, with the general trend of positivity persisting into 2021!
+in healthcare relative to their skepticism about the technology in the healthcare sector. So overall, we observe that people are talking very positively about the idea of blockchain in healthcare, with the general trend of positivity persisting into 2021!
 
 
 
