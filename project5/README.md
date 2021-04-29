@@ -90,7 +90,8 @@ Google.com! So, it is highly likely you have already encountered and used BERT w
 
 In terms of implementation, the Transformers library is utilized. This allows us to use not only the BERT-base model as our classifier but also the BERTTokenizer, which 
 tokenizes data to be then interpretted by the BERT model. So, in terms of feature extraction, BERT handles this by learning word-embeddings through the pre-training phase.
-The fine-tuning of the model really only alters various parameters previously generated from pre-training, to then better fit the model to the training data provided. 
+The fine-tuning of the model really only alters various parameters previously generated from pre-training, to then better fit the model to the training data provided. In 
+terms of hyperparameters, all recommendations are followed from the original 2018 publication of the model.
 
 ## Model Evaluation
 We first split out data set to create a test set comprised of 20% of the data. Then, with the remaining 80% of our dataset, we utilize K-Fold Cross Validation where K = 10. 
