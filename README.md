@@ -1,72 +1,130 @@
-For this project, we are looking at data from a paper titled Physicochemical Properties of Protein Tertiary Structure Data Set. We are also going to explore General Additive Models and Nadaraya-Watson Kernel Density Estimation for this data set.
+# Project 5
+For my project, I decided to curate a text-based data set pertaining to blockchain in healthcare. The reason for this, is I want to better understand how Blockchain as a technology is percevied in the Healthcare industry. As such, I will be taking my text-based data set and performing Sentiment Analysis on said data set. From this, I hope to have a better understanding of how the technology is perceived by a public forum such as Twitter in regards to its application and use in the Healthcare sector. 
 
-# Dataset
-This data set is composed of 9 features, labeled f(1) to f(9), which are utilized to predict the RMSD variable. These variables are associated with the paper Physicochemical 
-Properties of Protein Tertiary Structure that you may read more about [here](https://learn-us-east-1-prod-fleet01-xythos.content.blackboardcdn.com/blackboard.learn.xythos.prod/571910f3bd595/4039444?X-Blackboard-Expiration=1617073200000&X-Blackboard-Signature=uRjHNQGWBUh3FV6EEyGE3fiTr6Jwqtv5q9adF6uUun8%3D&X-Blackboard-Client-Id=100852&response-cache-control=private%2C%20max-age%3D21600&response-content-disposition=inline%3B%20filename%2A%3DUTF-8%27%2740_IJMECE%25281%2529.pdf&response-content-type=application%2Fpdf&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20210329T210000Z&X-Amz-SignedHeaders=host&X-Amz-Expires=21600&X-Amz-Credential=AKIAYDKQORRYTKBSBE4S%2F20210329%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=06c80732ca5ddb2cc59ea385595a943fb50c97e51e7eda4b4bb7cf0cf1dbed59). As per the paper, it utilized the dataset from the [UCI Machine Learning repository](http://archive.ics.uci.edu/ml/datasets/Physicochemical+Properties+of+Protein+Tertiary+Structure) to 
-explore the performance of various regression models for the prediction of protein tertiary structures by modelling physiochemical properties. With this, each variable 
-in the dataset is listed in the table below alongside what said variable entails.
+# Data
+## Curating
+My data set was curated from Twitter. I did this because of the abundance of data available on the platform to ensure that I would be able to retrieve enough tweets for my purposes. So, I utilized the Twitter API through a developer account as well as a webscraper, snscrape, to retrieve the tweets. 
 
-| Variable    |   Description   |
-|------|-----|
-|RMSD|Size of the Residue|
-|f(1) |Total surface area |
-|f(2) | Non polar exposed area|
-|f(3) | Fractional area of exposed non polar residue|
-|f(4) | Fractional area of exposed non polar part of residue|
-|f(5) | Molecular mass weighted exposed area|
-|f(6) | Average deviation from standard exposed area of residue|
-|f(7) | Euclidian distance|
-|f(8) | Secondary structure penalty|
-|f(9) | Spacial Distribution constrains (N, K value)|
+To successfully get tweets based on a keyword search for a given time period, I had to first get the tweet IDs. Getting tweets with this method is not possible
+through the sole use of the Twitter API, as the Twitter API does not let you search for tweets based on parameters such as time or topic. The API does, however, allow you to 
+search for historical tweets from any given time stamp by passing the Tweet's ID. This ID is a unique value assigned to each tweet as it is created. Once this ID is retrieved,
+the Twitter API has the historical lookup feature mentioned previously that is able to then process 900 tweet IDs per 15 minutes. 
 
-# Models
-## General Additive Model (GAM)
-A GAM is a generalization of the linear model in which values are predicted using smoothing functions of predictors, or features. These models allow us to combine advantageous 
-features from generalized linear models by using smoothing functions as additive terms. 
+### Tweet IDs
+So, we first need to get the tweet IDs. To do this, I utilize the snscrape library. This allows me to retrieve tweet IDs based on a keyword search while also specifying 
+temporal bounds for tweets. The library can be run in a python environment, however I chose to utilize the command line to run queries for tweet IDs, which are then stored in 
+basic text files. The code to do this can be seen below.
 
-## Nadaraya-Watson KDE (NW)
-This form of kernel density estimation estimates predicted values as locally weighted averages by utilizing the Nadaraya-Watson kernel. This kernel can be see in the formulae 
-below. We represent the input features as X and the dependent variable as Y. Mathematically, this kernel is represented by an estimation of the joint probability density 
-function, f, and the marginal density function, f_x, as seen in the first equation. The more generealized form of this equation is then show as a summation of this proportion 
-of density functions to ultimately calculate the conditional expectation of what a given value, y, is dependent on the given input features, x. 
+![code_ids](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project5/examplecode.PNG)
 
-![eqn1](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project_4/estimate_jointpdf.gif)
+In this example, the code is written so that my query includes tweets starting from 2019-01-01, and ending on 2019-12-31. The temporal bounds, when passed to the library, 
+are not inclusive of the bound itself and thus need to be plus or minus a day from the desired boundary date. Next, I specify the keyword strings that I would like to query 
+Twitter for, "blockchain healthcare". This will then only retrieve tweets relating to the topic of Blockchain in Healthcare. Finally, before executing my query, I am able
+to simply specify where I would like the text file of tweet IDs to be stored. Once all of these parameters are specified, the OS library in Python is utilized to
+programmatically execute snscrape commands on the command line interface. So, to retrieve tweet IDs, I specify temporal bounds from January 2016 to January 2021. This
+then gives me all of the tweets about Blockchain in Healthcare that have been tweeted within that timeline. 
 
-![eqn2](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project_4/nwkde_expectation.gif)
+### Twitter API
+Once I have been able to retrieve all of the tweet IDs, I can then utilize the Twittier API and its historical lookup function to retrieve more data about each tweet. This is 
+done by utilizing the python library tweepy where I am able to specify my API keys first, then iteratively read tweet IDs from the above scraping method and pass them to the 
+Twitter API. This can be seen in the code snippet below.
 
-# Evaluation
-Each model is applied to the data set and the f(x) variables are utilized as features to predict the dependent variable, RMSD. To evaluate each model, the performance metrics 
-of R-squared and Root Mean Square Error (RMSE) are utilized. R-squared, or the coefficient of determination, will tell us how well the data is fit to the regression line.
-Thus, a higher R-squared is preferred, and values can range from 0 to 1. The RMSE is a statistic to show the standard deviation of the residual values; the difference between 
-predicted values and the ground-truth values each model has attempted to predict. For purposes of this application, the SKLearn library is utilized to calculate both of these 
-metrics. 
+![apicode](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project5/apiexample.PNG)
 
-To ensure that we are getting an unbiased evaluation of both of our models, KFold crossvalidation is utilized with k=10 folds. This method evenly splits the data set into 
-training and testing folds, then iteratively training k-1 = 9 folds of data with a model, then testing against the remaining fold. This test is what generates a performance
-metric calculation. With k=10 folds, we generate 10 different sets of performance metrics and finally are able to take the mean of these metrics for each model following the
-final iteration of the algorithm. With this, we have been able to generate the performance metrics observed in the table below.
+Here, I pass my Twitter API access keys to the authenticator to initialize my tweepy instance. Then, I read the tweet IDs I retrieved from the previous step and pass them 
+iteratively to the Twitter API. Each ID then returns a response object to which I take the fields seen in the for loop and store them in an overall data frame. 
 
-| Model | RMSE | R-squared |
-|--------|--------|--------|
-| GAM | 5.03628 | 0.32219| 
-| NW | 3.71250 | 0.63122|
+### Pre-Processing 
+When working with the tweet data I have retrieved, I need to clean up the text of each tweet before I can effectively apply Natural Language Processing methods to it. As 
+such, I utilize the regular expressions library, seen as "re". The code snippet for this can be seen below.
 
-To better understand how our models performed, we can also plot the residuals for each model and see. 
-### GAM
-![residsnw](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project_4/GAM_residualsplot.png)
-![resids nw](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project_4/resids_GAM.png)
+![apicode](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project5/preprocess.PNG)
 
-### NW
-![residsgam](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project_4/NWKernel_residualsplot.png)
-![resids gam](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project_4/resids_NW.png)
+I take all of the text from each tweet and pass it through the clean_text function which applies various
+regex expressions to remove text from the tweets. The text cleaning process overall removes: hyperlinks from each tweet, the @ symbol used when referencing different users, 
+removes miscellaneous text artifacts the Twitter API would include in text objects, then finally drop any excessive spacing between words in a tweet. Thus, we are able to 
+finally have all of the text from each tweet cleaned up and ready for processing by our model.
 
-From the above plot of residuals, we can easily see the normal distribution of the GAM's residuals yet there appears to be a slight deviation from a mean of 0 in the 
-residuals. We can observe there to be a slight negative skew from the mean on residuals for the GAM plot. The NW kernel density estimation, also appears to have a normal 
-distribution of residual errors, indicating that the NW Kernel Density Estimation is more effective in estimating the RMSD variable for this data set. Yet from these two 
-histograms of residuals, we can certainly observe the better performance of the NW Kernel Density Estimation as the residuals more closely follow a normal distribution 
-relative to the residual plots for the GAM.  The quantile plots can also show us how the data fits to a normal distribution. For the GAM plot, we see the normal distribution
-represented by the red line plot at y=x, while for the NW plot we can observe the normal distribution centered around x=0. From this, we learn that a majority of the 
-residuals for the NW plot are centered around x=0 while the GAM plot of residuals showcases more points deviating from the red line. This is notable in the range of values 
-where x < -1.25. These residuals greater than the normal distribution line showcase a skew in the model and We can see for the NW kernel density estimation how the residuals 
-certainly do not fit to the red line well, a strong visual indication of the relatively poor R-squared value that we observe for this method. Thus, we can say that for this 
-application of models, the Nadaraya-Watson Kernel Density Estimation method performed most admirably of the two!
+## Preliminary Observations
+Overall, 207200 tweets by about 45000 unique accounts were retrieved from January 1, 2016 to January 31, 2021. We can see the number of tweets over time with a 12-month 
+moving average imposed in the figure below.
+
+![volume](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project5/volume_movingavg_month.png)
+
+So, we understand that the volume of tweets over time appears to mimic a bell curve centered around the year 2018, with still a spike in mentions of Blockchain in Healthcare 
+noted in mid 2017. To better understand what is happening here, we can further explore the tweets through sentiment analysis.
+
+
+# Sentiment Analysis
+To conduct this sentiment analysis task, we first need to treat this as a multi-class task with positive, neutral, and negative classes. This is so we may include and 
+consider the polar classes rather than only considering one class in a binary instance (i.e positive vs. not positive). 
+
+## Training Data 
+Thus, we have a manually labeled training data set of tweets with 2586 positive tweets, 2586 neutral tweets, and 2398 negative tweets. Given that our sentiment analysis task 
+is a multi-class classification task, we must then understand how we can arrange our training data set to effectively train a classifier that is not necessarily able to 
+handle beyond the binary class task. To do this, we arrange our data into a One Versus One (OVO) set up. This means that, given our three class task, we train three separate 
+models where each model only considers two classes in the data set. Each of the three models are trained on these two class data sets, then consolidated in an ensemble logic 
+where a final class label is assigned based on the outputs of the various models. In terms of how the training data is then set up, we can see the combinations of classes fed 
+to each binary model in the table below.
+
+| Classes               | Respective Rows |
+|-----------------------|-----------------|
+| Positive vs. Neutral  | 2586 vs. 2586   |
+| Positive vs. Negative | 2586 vs. 2398   |
+| Neutral vs. Negative  | 2586 vs. 2398   |
+
+We can see that, while the class balance is not perfect when considering the Negative class, a difference of 188 rows in the data set is close enough class balance to warrant
+not having to worry too much about synthetic class generation.
+
+## Model Selection
+Since this is a text-focused task, we can utilize a newer model in the textual analysis arsenal: Bidirectional Encoder Representations from Transformers (BERT). This model 
+comes from a 2018 publication by Google, and is a neural network based model that is pre-trained on 2,500 million words from Wikipedia and 800 million words from the 
+BooksCorpus, a corpus of 7,000 literary works. BERT is first trained on these two data sets to learn the context of words and how they are used through two methods: Next 
+Sentence Prediction (NSP) and Masked Language Modeling (MLM). Briefly, Next Sentence Prediction is a task BERT utilizes to understand if, when given two setences, BERT learns 
+to predict if the second sentence provided follows the first from the document or not. Masked Language Modeling, on the other hand, is when BERT learns to predict what a word is in a given sentence, by first masking said word then attempting to predict it by referencing the remaining words in the sentence. Thus, BERT begins to develop an understanding of how words are used in a sentence and what those words might be. Both NSP and MLM are done simultaneously in the pre-training phase, and BERT develops a model from this of 110 million parameters in the BERT-base model, and 340 million parameters in the BERT-large model. For sake of computational efficiency while maintaining performance, BERT-base will be utilized.
+
+Using BERT in this instance is particularly advantageous for this task, as BERT is pre-trained on these massive data sets. Thus, we need only to fine-tune our instance of a 
+BERT model to then make sentiment classifications for our task. Taking advantage of this knowledge transfer is what has made BERT such a strong contender for one of the most
+advanced Natural Language Processing models available. Also, as a fun fact, as of October of 2020 BERT models handle a majority of the english language search queries on 
+Google.com! So, it is highly likely you have already encountered and used BERT without even realizing. 
+
+In terms of implementation, the Transformers library is utilized. This allows us to use not only the BERT-base model as our classifier but also the BERTTokenizer, which 
+tokenizes data to be then interpretted by the BERT model. So, in terms of feature extraction, BERT handles this by learning word-embeddings through the pre-training phase.
+The fine-tuning of the model really only alters various parameters previously generated from pre-training, to then better fit the model to the training data provided. In 
+terms of hyperparameters, all recommendations are followed from the original 2018 publication of the model.
+
+## Model Evaluation
+We first split out data set to create a test set comprised of 20% of the data. Then, with the remaining 80% of our dataset, we utilize K-Fold Cross Validation where K = 10. 
+We can see the row-breakdown of this in the image below.
+
+![split_dat](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project5/train_test_split_fig.png)
+
+Thus, BERT is trained and validated with 80% of the data, while then performance metrics are generated from the 1514 rows in our test set. With this, we observe a performance 
+of BERT of 94.9% overall accuracy in a One Versus One set up. We also observe, F-scores for the Positive, Neutral, and Negative classes of 94.24%, 94.95%, and 95.57% 
+respectively. Seeing this admirable performance and balanced range of F-scores, we can explore the sentiment class distribution of the data set. 
+
+# Sentiment Exploration
+Overall, we can first look at the sentiment class distribution of tweets.
+
+![rawperc](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project5/perc_comp_tweets.png)
+
+Here we can see that nearly 50% of our data set is positive, while only about 8.5% of our data set is negative. This tells us that, when tweeting about Blockchain in Healthcare, byenlarge Twitter users speak positively on the topic. To further consider this temporally, we can look at the raw class composition aggregated by month.
+
+![overtime](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project5/raw_perc_over_time.png)
+
+When looking at this, we see that following 2017 the positive tweets are observed to be the majority class of all tweets for nearly every month in 2018 to 2021. Thus, even as the volume of tweets decreases following 2018, the optimism of the tweets that are produced is notably still visible in the years following. To understand the rate of increase of positive tweets, we can briefly fit a linear line of best-fit to each class and observe a more quantifiable story in the data.
+
+![lines](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project5/perc_over_time__lines.png)
+
+![formulae](https://raw.githubusercontent.com/caiettia/Thesis-Project/main/project5/bestfitformulae.png)
+
+From this, we see that the percent composition of the positive class overtime is increasing at a much greater rate than the negative class. Yet it is still worth noting that 
+we observe the negative class still increasing over time, albeit at a much slower rate relatively. So, people are much more increasingly positively talking about blockchain 
+in healthcare relative to their skepticism about the technology in the healthcare sector. So overall, we observe that people are talking very positively about the idea of blockchain in healthcare, with the general trend of positivity persisting into 2021!
+
+
+
+
+
+
+
