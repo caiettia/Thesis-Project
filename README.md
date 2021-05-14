@@ -1,7 +1,11 @@
-# Project 5
-For my project, I decided to curate a text-based data set pertaining to blockchain in healthcare. The reason for this, is I want to better understand how Blockchain as a technology is percevied in the Healthcare industry. As such, I will be taking my text-based data set and performing Sentiment Analysis on said data set. From this, I hope to have a better understanding of how the technology is perceived by a public forum such as Twitter in regards to its application and use in the Healthcare sector. 
+# Capstone
+For my capstone, I decided to curate a text-based data set pertaining to blockchain in healthcare. The reason for this, is I want to better understand how Blockchain as a technology is percevied in the Healthcare industry. As such, I will be taking my text-based data set and performing Sentiment Analysis on said data set. From this, I hope to have a better understanding of how the technology is perceived by a public forum such as Twitter in regards to its application and use in the Healthcare sector. 
+
 ## Background
 To help understand our problem statement, we can define Blockchain. Blockchain, at a high level, is a special kind of data base. It is built on a peer-to-peer network based architecture, where many computer systems in a network all hold copies for the Blockchain. More granularly, it is composed of a series of blocks where each block stores data in the form of a cryptographic hash, and is connected to the previous block in the chain by noting the previous blocks respective hash. Thus, by noting the previous blocks hash, the blocks are chained together: hence the name.
+
+## Applications in Healthcare
+Blockchain technology saw a rise to prominence following the widely publicized success of its first scaled proof of concept: cryptocurrency. Seeing the technology deliver on its promises in this application drew the theoretical eye to applications of blockchain in other sectors, namely the healthcare sector. Here, a variety of applications are being theorized and tested. Some applications include patient health records and electronic medical records, track and trace applications for the pharmaceutical supply chain, clinical trial and research data security, and contracts and chargeback solutions for the medical supply chain. These examples are just a few of the more broad applications of the technology that are being explored currently. Yet a notable hurdle to understanding if the technology has a strong future in the healthcare sector is how the public perceives the technology. Should the perception of blockchain in healthcare be positive, we can infer then the technology has a better chance at being adopting in the sector.
 
 # Data
 ## Curating
